@@ -96,17 +96,30 @@ Resolved by the Phase 0 digest (`01-rulebook-digest.md`):
   Influence is a derived tier off current Stress, not a stackable
   effects list. Likely doesn't need Foundry Active Effects for MVP.
 
-Still genuinely open (need user input, not in the book):
-- Actor types: "scientist" only, or also a "team" actor for solo-mode
-  play? Bestiary confirmed to need **no** stat-bearing NPC actor type at
-  all (creatures are flavor text, not opponents with dice pools).
-- Card-deck mechanic: use Foundry v13's native `Cards` document
-  (deck/hand/pile) to model the draw/discard/hand economy instead of a
-  custom tracker? (Recommended — needs a docs check in Phase 2/4.)
-- Public release intended, or personal/private table use only?
+Resolved by user decision (2026-08-09):
+- **Actor types**: two — `scientist` (PC) and `team` (solo-mode combined
+  party). No NPC/monster actor type — bestiary stays as flavor
+  text/journal content, not stat-bearing actors.
+- **Card deck**: build on Foundry v13's native `Cards` document
+  (deck/hand/pile) for the draw/discard/hand economy instead of a custom
+  tracker. Needs a live-docs check on the `Cards`/`CardStack`/`Cardsv13`
+  API shape when Phase 2/4 gets there — don't assume training-data API
+  shape given CLAUDE.md's v13-drift warning.
+- **Release scope**: public release intended. `system.json` needs a real
+  license file, versioning discipline, and a public manifest URL
+  (GitHub releases) in mind from the start; Phase 10 isn't just "personal
+  cleanup."
 
 ## Next step
 
-Phase 1 — nail down MVP scope using the digest above (ask the user the
-still-open decisions listed there), then move to Phase 2 project
-scaffolding (`system.json`, local Foundry dev symlink).
+Phase 1 MVP scope is now effectively settled by the decisions above:
+- Actor types: `scientist`, `team`.
+- Item types: single `gear` type (die-rated storage-unit item, per the
+  digest — no separate weapons/armor categories).
+- Core roll mechanic + Foundry `Cards`-backed deck economy.
+- No NPC actor type, no Active Effects, no compendium content for MVP.
+
+Move to **Phase 2 — project scaffolding**: `system.json` manifest (id,
+title, version, v13 compatibility, esmodules/styles/lang entries, `packs`
+left empty for now), decide on a license file (public release), and set up
+the local Foundry `Data/systems/` dev symlink so changes are testable live.
