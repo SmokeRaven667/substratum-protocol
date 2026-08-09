@@ -10,8 +10,62 @@ conventions, `README.md` for dev reference links.
 (structured reference: core Skill Check mechanic, Stress/Anomaly Influence,
 Actions table, exosuit abilities, chargen, Anomaly Skill/endgame, Depth
 Sectors, bestiary, solo modes, hazards). Consult that file instead of the
-PDF for all mechanic/data-model questions going forward. Still no code
-exists yet — Phase 1 (MVP scope) is next.
+PDF for all mechanic/data-model questions going forward.
+
+**Phase 1 — done.** MVP scope settled (see Open decisions below).
+
+**Phase 2 — done.** Scaffolding in place:
+- `system.json` (id `substratum-protocol`, MIT-licensed code, targeting
+  Foundry **v14** (see below), author SmokeRaven667, repo
+  https://github.com/SmokeRaven667/substratum-protocol).
+- `LICENSE` (MIT for code; notes rulebook content stays under Pandion Games'
+  ORC License separately).
+- Directory skeleton: `module/`, `styles/`, `lang/`, `templates/{actor,item,chat}/`,
+  `packs/`.
+- Minimal working stub: `module/substratum-protocol.mjs` (just a Hooks.once('init')
+  console log), empty `styles/substratum-protocol.css`, minimal `lang/en.json`.
+  No build step — plain ESM/Handlebars/CSS needs none, per CLAUDE.md.
+- **Local dev loop — verified working.** The real Foundry user data directory
+  is `C:\u\FoundryVTT` (NOT `C:\Users\smoke\AppData\Local\FoundryVTT` — that
+  path exists too but is a stale/unused install; don't symlink there again).
+  `Data\systems\substratum-protocol` is a **directory junction** (`mklink /J`,
+  not a symlink — see below for why) pointing at this repo. Confirmed by
+  actually creating a test world (`Data\worlds\substratum-protocol`) bound to
+  the system, which loaded `system.json` correctly (`systemVersion: "0.1.0"`
+  recorded in `world.json`), and by a clean log scan with zero errors for
+  `substratum-protocol` across three restarts (only two pre-existing, unrelated
+  broken folders — `forbidden-lands-bkup-2024-05-23`,
+  `morkborg - original working before fixes` — log "Invalid system" errors,
+  not ours).
+  - Foundry only scans `Data/systems` at **boot**, not live — after linking or
+    changing the folder, the app process must be restarted (kill + relaunch),
+    not just have the setup page refreshed.
+  - Junction vs. symlink: started with a symlink, which appeared to fail
+    silently (no log entry at all, not even an error) after one restart, so
+    switched to a junction on the theory that Node's `fs.readdir` reports
+    Windows symlinks-to-directories as `isSymbolicLink()`-only (not
+    `isDirectory()`), which a naive directory-type filter would skip, while
+    junctions report as real directories. **Caveat: inconclusive** — in
+    hindsight the plain symlink may have actually been working too (a restart
+    right before the junction swap did successfully surface the system and
+    let a world get created on the symlink). Kept the junction since it's
+    already in place, tested working, and is the theoretically safer choice
+    either way — no need to revisit unless the junction itself ever causes
+    problems.
+  - This local instance runs **Foundry v14 Build 363**. Decided (2026-08-09):
+    **target v14, not v13** — `system.json` now declares
+    `compatibility: {minimum: "14", verified: "14.363"}`, and `CLAUDE.md`'s
+    Stack section / API-drift note were updated from v13 to v14 throughout so
+    future sessions build against the right API surface from the start.
+- Git: repo initialized (`git init`, default branch renamed `master` → `main`
+  to match GitHub's default and the `system.json`/README links), `origin`
+  remote set to `https://github.com/SmokeRaven667/substratum-protocol.git`.
+  History is split one branch per phase (`phase-0-rulebook-digest` →
+  `phase-1-mvp-scope` → `phase-2-scaffolding`) so branches correlate to the
+  numbered phases in this doc; `main` fast-forwards to the latest phase
+  branch as phases complete. Nothing pushed to the remote yet.
+
+Phase 3 (data models) is next.
 
 Poppler note (resolved differently than expected): the Read tool's PDF
 page-image rendering (`pdftoppm`) still isn't visible to the Claude Code

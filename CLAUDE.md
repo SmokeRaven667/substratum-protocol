@@ -13,7 +13,7 @@ guide). Follow the conventions below when scaffolding and building it out.
 `README.md` lists the official Foundry VTT development docs (intro,
 module-development, system-development, API reference). Foundry's APIs
 change meaningfully between major versions — when implementing anything
-where the exact v13 API shape matters (ApplicationV2 lifecycle methods,
+where the exact v14 API shape matters (ApplicationV2 lifecycle methods,
 DataModel field types, `system.json` schema fields, Hooks signatures),
 fetch the relevant page from that list rather than relying on possibly
 outdated training knowledge. Treat the live docs as authoritative over
@@ -22,7 +22,7 @@ assumptions.
 ## Stack
 
 - **Language:** JavaScript (ESM), no TypeScript, no build-step type checking.
-- **Target platform:** Foundry VTT **v13**. Use v13 APIs — `ApplicationV2`,
+- **Target platform:** Foundry VTT **v14**. Use v14 APIs — `ApplicationV2`,
   `foundry.abstract.DataModel` / `TypeDataModel`, the `foundry.applications.*`
   and `foundry.documents.*` namespaces — not the deprecated v1 `Application`/
   `FormApplication` classes or legacy global shortcuts where a namespaced
@@ -74,7 +74,7 @@ packs/                     # Compendium source (if using a build step to compile
   `CONFIG.Item.dataModels` in the init hook.
 - **Register document/sheet classes in the `init` hook**, not `ready`. Use
   `Actor.registerSheet` / `Items.registerSheet` (or the DocumentSheetConfig
-  v13 equivalent) to attach custom sheets, and unregister the core default
+  v14 equivalent) to attach custom sheets, and unregister the core default
   sheet for this system.
 - **No jQuery in new code.** ApplicationV2 passes plain `HTMLElement`s to
   render/action handlers — use native DOM APIs (`querySelector`,
