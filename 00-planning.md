@@ -21,8 +21,12 @@ forward-looking; `phases/` is the archive.
   See `phases/phase-2-scaffolding.md`.
 - **Phase 3 — done.** DataModel schemas for `scientist`/`team` actors and
   the `gear` item type. See `phases/phase-3-data-models.md`.
+- **Phase 4 — done.** Core roll mechanic (`helpers/dice.mjs`) plus the
+  Cards-document-backed deck economy (`helpers/cards.mjs`): draw/compare/
+  discard/step-down, chat card, verified live. See
+  `phases/phase-4-core-roll.md`.
 
-**Phase 4 (core roll mechanic) is next.**
+**Phase 5 (character sheet) is next.**
 
 ## High-level phases
 
@@ -100,12 +104,11 @@ Resolved by user decision (2026-08-09):
 - **Actor types**: two — `scientist` (PC) and `team` (solo-mode combined
   party). No NPC/monster actor type — bestiary stays as flavor
   text/journal content, not stat-bearing actors.
-- **Card deck**: build on Foundry's native `Cards` document (deck/hand/
+- **Card deck**: built on Foundry's native `Cards` document (deck/hand/
   pile) for the draw/discard/hand economy instead of a custom tracker.
-  Needs a live-docs check on the **v14** `Cards`/`CardStack` API shape when
-  Phase 4 gets there (originally noted against v13, corrected to v14 in
-  Phase 2 — don't assume training-data API shape, per `CLAUDE.md`'s
-  API-drift warning).
+  Live-docs-checked against v14 and implemented in Phase 4 — see
+  `phases/phase-4-core-roll.md` for the confirmed API shape
+  (`draw`/`deal`/`pass`/`shuffle`/`recall`, `CONST.CARD_DRAW_MODES`).
 - **Release scope**: public release intended. `system.json` needs a real
   license file, versioning discipline, and a public manifest URL
   (GitHub releases) in mind from the start; Phase 10 isn't just "personal
@@ -120,8 +123,13 @@ Deferred, not yet resolved (see `phases/phase-3-data-models.md`):
 
 ## Next step
 
-Move to **Phase 4 — core roll mechanic**: build `module/helpers/dice.mjs`
-implementing the Skill Check (draw 2 cards, roll+sum 2 Skill dice, compare
-independently, Good/OK/Bad, step down the higher die) as a reusable helper
-producing a Foundry `Roll` and a chat card. Start with a live-docs check on
-the v14 `Cards` document API before wiring up the deck economy.
+Move to **Phase 5 — character sheet**: `ApplicationV2` +
+`HandlebarsApplicationMixin` sheet for the `scientist` actor type —
+display Skills/Stress/Anomaly Influence, roll buttons wired to Phase 4's
+`rollSkillCheck()` (needs a UI for picking the 2 Skills, and for the
+advantage/disadvantage/tiebreak/Stress-spend inputs that `rollSkillCheck`
+already accepts as parameters but nothing supplies yet), and an inventory
+list for `gear` items. Register the sheet in the `init` hook per
+`CLAUDE.md`. A live-docs check on the v14 `ApplicationV2` lifecycle
+methods is warranted before writing it, same as Phase 4's Cards check —
+don't trust a remembered shape.

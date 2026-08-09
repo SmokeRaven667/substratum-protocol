@@ -1,0 +1,34 @@
+<div class="substratum-skill-check">
+  <div class="skill-check-dice">
+    {{#each skills}}
+      <div class="skill-check-die">
+        <span class="skill-label">{{localize this.label}}</span>
+        <span class="skill-die">{{this.die}}</span>
+        <span class="skill-result">
+          {{#if this.original}}<span class="rerolled">{{this.original}}</span> &rarr; {{/if}}{{this.result}}
+        </span>
+      </div>
+    {{/each}}
+  </div>
+
+  <div class="skill-check-modifiers">
+    {{#if stressSpend}}<span class="modifier">{{localize "SUBSTRATUM.StressSpend"}}: +{{stressSpend}}</span>{{/if}}
+    {{#if anomalyPenalty}}<span class="modifier">{{localize "SUBSTRATUM.AnomalyPenalty"}}: {{anomalyPenalty}}</span>{{/if}}
+    <span class="sum">{{localize "SUBSTRATUM.Sum"}}: {{sum}}</span>
+  </div>
+
+  <div class="skill-check-cards">
+    {{#each cards}}
+      <div class="skill-check-card {{#if this.beaten}}beaten{{else}}unbeaten{{/if}}">
+        <span class="card-name">{{this.name}}</span>
+        <span class="card-value">{{this.value}}</span>
+      </div>
+    {{/each}}
+  </div>
+
+  <div class="skill-check-outcome outcome-{{outcome}}">{{localize outcomeLabel}}</div>
+
+  <div class="skill-check-stepdown">
+    {{localize "SUBSTRATUM.StepDown" skill=(localize stepDown.skillLabel) from=stepDown.from to=stepDown.to}}
+  </div>
+</div>
