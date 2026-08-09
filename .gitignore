@@ -1,0 +1,11 @@
+# Commercial rulebook PDF — reference only, not for redistribution.
+# See 01-rulebook-digest.md for the extracted mechanics reference instead.
+848511358-Substratum-Protocol.pdf
+
+# Editor/OS cruft
+.vscode/
+Thumbs.db
+.DS_Store
+
+# Future build tooling, if ever added
+node_modules/
