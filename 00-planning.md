@@ -25,8 +25,14 @@ forward-looking; `phases/` is the archive.
   Cards-document-backed deck economy (`helpers/cards.mjs`): draw/compare/
   discard/step-down, chat card, verified live. See
   `phases/phase-4-core-roll.md`.
+- **Phase 5 — done.** `ScientistSheet` (`ApplicationV2`/`ActorSheetV2` +
+  `HandlebarsApplicationMixin`): header, Skills tab with roll controls
+  wired to `rollSkillCheck()`, Inventory tab (gear create/edit/delete),
+  portrait image picker. Live-verified in a running Foundry world. See
+  `phases/phase-5-character-sheet.md`.
 
-**Phase 5 (character sheet) is next.**
+**Phase 6 (item sheets) is next** — a `gear` item sheet is now the
+blocker for editing an item's die rating from the UI at all.
 
 ## High-level phases
 
@@ -123,13 +129,15 @@ Deferred, not yet resolved (see `phases/phase-3-data-models.md`):
 
 ## Next step
 
-Move to **Phase 5 — character sheet**: `ApplicationV2` +
-`HandlebarsApplicationMixin` sheet for the `scientist` actor type —
-display Skills/Stress/Anomaly Influence, roll buttons wired to Phase 4's
-`rollSkillCheck()` (needs a UI for picking the 2 Skills, and for the
-advantage/disadvantage/tiebreak/Stress-spend inputs that `rollSkillCheck`
-already accepts as parameters but nothing supplies yet), and an inventory
-list for `gear` items. Register the sheet in the `init` hook per
-`CLAUDE.md`. A live-docs check on the v14 `ApplicationV2` lifecycle
-methods is warranted before writing it, same as Phase 4's Cards check —
-don't trust a remembered shape.
+Move to **Phase 6 — item sheets**: an `ApplicationV2`/`DocumentSheetV2` +
+`HandlebarsApplicationMixin` sheet for the `gear` Item type — currently
+the only way to see/edit a gear item's `dieRating`, `narrativeOnly`, and
+`broken` fields is Foundry's core default Item sheet, which doesn't know
+about them. Register it the same way `phases/phase-5-character-sheet.md`
+registered the scientist actor sheet (`Items.registerSheet`/
+`Items.unregisterSheet('core', foundry.appv1.sheets.ItemSheet)`). Reuse
+the same live-docs-first discipline from Phase 5 — and note Phase 5's
+biggest lesson: even a fetched doc summary can be wrong (the
+`selectOptions`-with-a-plain-array bug), so verify anything
+validation-sensitive against actual behavior in a live world, not just
+the docs.

@@ -38,7 +38,38 @@
     "OutcomeGood": "Good",
     "OutcomeOk": "OK",
     "OutcomeBad": "Bad",
-    "StepDown": "{skill} steps down: {from} → {to}"
+    "StepDown": "{skill} steps down: {from} → {to}",
+
+    "Name": "Name",
+    "Specialty": "Specialty",
+    "Pronouns": "Pronouns",
+    "Stress": "Stress",
+    "AnomalyInfluence": "Anomaly Influence",
+
+    "TabSkills": "Skills",
+    "TabInventory": "Inventory",
+
+    "Skill": "Skill",
+    "SkillMax": "Max",
+    "SkillCurrent": "Current",
+    "SkillCheck": "Skill Check",
+    "SkillOne": "Skill 1",
+    "SkillTwo": "Skill 2",
+    "AdvantageMode": "Reroll",
+    "AdvantageNone": "None",
+    "Advantage": "Advantage",
+    "Disadvantage": "Disadvantage",
+    "Tiebreak": "Tiebreak",
+    "RollSkillCheck": "Roll Skill Check",
+    "WarnPickTwoSkills": "Pick two different Skills before rolling.",
+
+    "StorageUnit": "Storage Unit",
+    "AddGear": "Add Gear",
+    "NewGearName": "New Gear",
+    "NarrativeOnly": "Narrative Only",
+    "Broken": "Broken",
+    "DeleteGear": "Delete",
+    "NoGear": "No gear yet."
   },
   "TYPES": {
     "Actor": {
