@@ -1,0 +1,74 @@
+<section class="tab skills-tab {{tab.cssClass}}" data-tab="skills" data-group="primary">
+  <table class="skills-table">
+    <thead>
+      <tr>
+        <th>{{localize "SUBSTRATUM.Skill"}}</th>
+        <th>{{localize "SUBSTRATUM.SkillMax"}}</th>
+        <th>{{localize "SUBSTRATUM.SkillCurrent"}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each skills}}
+        <tr>
+          <td class="skill-label">{{localize this.label}}</td>
+          <td>
+            <select name="system.skills.{{this.key}}.max" {{#unless ../isEditable}}disabled{{/unless}}>
+              {{selectOptions ../dieChainOptions selected=this.max}}
+            </select>
+          </td>
+          <td>
+            <select name="system.skills.{{this.key}}.current" {{#unless ../isEditable}}disabled{{/unless}}>
+              {{selectOptions ../fullDieChainOptions selected=this.current}}
+            </select>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  <fieldset class="substratum-roll-controls">
+    <legend>{{localize "SUBSTRATUM.SkillCheck"}}</legend>
+
+    <div class="roll-row">
+      <label>
+        <span>{{localize "SUBSTRATUM.SkillOne"}}</span>
+        <select data-role="roll-skill-1">
+          {{#each skills}}<option value="{{this.key}}">{{localize this.label}}</option>{{/each}}
+        </select>
+      </label>
+      <label>
+        <span>{{localize "SUBSTRATUM.SkillTwo"}}</span>
+        <select data-role="roll-skill-2">
+          {{#each skills}}<option value="{{this.key}}">{{localize this.label}}</option>{{/each}}
+        </select>
+      </label>
+    </div>
+
+    <div class="roll-row">
+      <label>
+        <span>{{localize "SUBSTRATUM.AdvantageMode"}}</span>
+        <select data-role="roll-advantage">
+          <option value="none">{{localize "SUBSTRATUM.AdvantageNone"}}</option>
+          <option value="advantage">{{localize "SUBSTRATUM.Advantage"}}</option>
+          <option value="disadvantage">{{localize "SUBSTRATUM.Disadvantage"}}</option>
+        </select>
+      </label>
+      <label>
+        <span>{{localize "SUBSTRATUM.StressSpend"}}</span>
+        <input type="number" data-role="roll-stress-spend" min="0" step="1" value="0">
+      </label>
+    </div>
+
+    <div class="roll-row tiebreak-row">
+      <span>{{localize "SUBSTRATUM.Tiebreak"}}</span>
+      {{#each skills}}
+        <label class="tiebreak-option">
+          <input type="radio" data-role="roll-tiebreak" name="roll-tiebreak-{{../actor.id}}" value="{{this.key}}">
+          {{localize this.label}}
+        </label>
+      {{/each}}
+    </div>
+
+    <button type="button" data-action="rollSkillCheck">{{localize "SUBSTRATUM.RollSkillCheck"}}</button>
+  </fieldset>
+</section>

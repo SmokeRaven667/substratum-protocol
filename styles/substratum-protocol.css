@@ -67,3 +67,133 @@
   text-align: center;
   font-style: italic;
 }
+
+/* Scientist actor sheet */
+
+.substratum-protocol.actor.scientist .sheet-header {
+  display: flex;
+  gap: 0.75em;
+  padding: 0.5em;
+}
+
+.substratum-protocol.actor.scientist .profile-img {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border: none;
+  cursor: pointer;
+}
+
+.substratum-protocol.actor.scientist .header-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35em;
+}
+
+.substratum-protocol.actor.scientist .header-fields > input[type='text'] {
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+.substratum-protocol.actor.scientist .header-row {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+}
+
+.substratum-protocol.actor.scientist .header-field {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85em;
+}
+
+.substratum-protocol.actor.scientist .stress-field {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.25em;
+}
+
+.substratum-protocol.actor.scientist .stress-field input {
+  width: 3em;
+}
+
+.substratum-protocol.actor.scientist .anomaly-influence {
+  margin-left: auto;
+  font-weight: bold;
+}
+
+.substratum-protocol.actor.scientist .skills-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 0.75em;
+}
+
+.substratum-protocol.actor.scientist .skills-table th,
+.substratum-protocol.actor.scientist .skills-table td {
+  text-align: left;
+  padding: 0.2em 0.5em;
+}
+
+.substratum-protocol.actor.scientist .substratum-roll-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.substratum-protocol.actor.scientist .roll-row {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.substratum-protocol.actor.scientist .tiebreak-row {
+  font-size: 0.85em;
+}
+
+.substratum-protocol.actor.scientist .inventory-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5em;
+}
+
+.substratum-protocol.actor.scientist .item-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+}
+
+.substratum-protocol.actor.scientist .item-list .item {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.25em;
+}
+
+.substratum-protocol.actor.scientist .item-img {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+}
+
+.substratum-protocol.actor.scientist .item-name {
+  flex: 1;
+  cursor: pointer;
+}
+
+.substratum-protocol.actor.scientist .item-flag {
+  font-size: 0.75em;
+  padding: 0.1em 0.4em;
+  border: 1px solid var(--color-border-light-tertiary, #999);
+  border-radius: 3px;
+}
+
+.substratum-protocol.actor.scientist .item-list-empty {
+  opacity: 0.6;
+  font-style: italic;
+}

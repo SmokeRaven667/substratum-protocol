@@ -1,0 +1,41 @@
+<header class="sheet-header">
+  <img class="profile-img" src="{{actor.img}}" alt="{{actor.name}}"
+    {{#if isEditable}}data-action="editImage"{{/if}}>
+
+  <div class="header-fields">
+    <input type="text" name="name" value="{{actor.name}}" placeholder="{{localize 'SUBSTRATUM.Name'}}"
+      {{#unless isEditable}}disabled{{/unless}}>
+
+    <div class="header-row">
+      <label class="header-field">
+        <span>{{localize "SUBSTRATUM.Specialty"}}</span>
+        <input type="text" name="system.specialty" value="{{system.specialty}}"
+          {{#unless isEditable}}disabled{{/unless}}>
+      </label>
+      <label class="header-field">
+        <span>{{localize "SUBSTRATUM.Pronouns"}}</span>
+        <input type="text" name="system.pronouns" value="{{system.pronouns}}"
+          {{#unless isEditable}}disabled{{/unless}}>
+      </label>
+    </div>
+
+    <div class="header-row stress-row">
+      <label class="header-field stress-field">
+        <span>{{localize "SUBSTRATUM.Stress"}}</span>
+        <input type="number" name="system.stress.value" value="{{system.stress.value}}" min="0"
+          {{#unless isEditable}}disabled{{/unless}}>
+        <span class="stress-sep">/</span>
+        <input type="number" name="system.stress.max" value="{{system.stress.max}}" min="1"
+          {{#unless isEditable}}disabled{{/unless}}>
+      </label>
+
+      <div class="anomaly-influence anomaly-{{system.anomalyInfluence.key}}">
+        <span class="anomaly-label">{{localize "SUBSTRATUM.AnomalyInfluence"}}:</span>
+        <span class="anomaly-tier">{{localize system.anomalyInfluence.label}}</span>
+        {{#if system.anomalyInfluence.skillPenalty}}
+          <span class="anomaly-penalty">({{system.anomalyInfluence.skillPenalty}})</span>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</header>

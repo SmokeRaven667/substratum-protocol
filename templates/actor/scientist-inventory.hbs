@@ -1,0 +1,37 @@
+<section class="tab inventory-tab {{tab.cssClass}}" data-tab="inventory" data-group="primary">
+  <div class="inventory-header">
+    <span class="storage-slots">
+      {{localize "SUBSTRATUM.StorageUnit"}}: {{storageSlotsUsed}} / {{storageSlotsMax}}
+    </span>
+    {{#if isEditable}}
+      <button type="button" data-action="createItem">{{localize "SUBSTRATUM.AddGear"}}</button>
+    {{/if}}
+  </div>
+
+  <ol class="item-list">
+    {{#each items}}
+      <li class="item" data-item-id="{{this.id}}">
+        <img class="item-img" src="{{this.img}}" alt="{{this.name}}">
+        <span class="item-name" data-action="editItem">{{this.name}}</span>
+        <span class="item-die">{{this.system.dieRating}}</span>
+        {{#if this.system.narrativeOnly}}
+          <span class="item-flag narrative-only" title="{{localize 'SUBSTRATUM.NarrativeOnly'}}">
+            {{localize "SUBSTRATUM.NarrativeOnly"}}
+          </span>
+        {{/if}}
+        {{#if this.system.broken}}
+          <span class="item-flag broken" title="{{localize 'SUBSTRATUM.Broken'}}">
+            {{localize "SUBSTRATUM.Broken"}}
+          </span>
+        {{/if}}
+        {{#if ../isEditable}}
+          <button type="button" class="item-delete" data-action="deleteItem" title="{{localize 'SUBSTRATUM.DeleteGear'}}">
+            <i class="fas fa-trash"></i>
+          </button>
+        {{/if}}
+      </li>
+    {{else}}
+      <li class="item-list-empty">{{localize "SUBSTRATUM.NoGear"}}</li>
+    {{/each}}
+  </ol>
+</section>
