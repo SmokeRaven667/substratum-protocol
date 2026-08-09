@@ -1,5 +1,24 @@
 {
   "SUBSTRATUM": {
-    "SystemName": "Substratum Protocol"
+    "SystemName": "Substratum Protocol",
+    "SkillMake": "Make",
+    "SkillBreak": "Break",
+    "SkillDash": "Dash",
+    "SkillEvade": "Evade",
+    "SkillThink": "Think",
+    "SkillSway": "Sway",
+    "AnomalyResistant": "Anomaly Resistant",
+    "AnomalyThrumming": "Thrumming Whispers",
+    "AnomalyFragile": "Fragile Laws",
+    "AnomalyBeyond": "Beyond the Horizon"
+  },
+  "TYPES": {
+    "Actor": {
+      "scientist": "Scientist",
+      "team": "Team"
+    },
+    "Item": {
+      "gear": "Gear"
+    }
   }
 }

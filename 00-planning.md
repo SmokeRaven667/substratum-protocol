@@ -65,7 +65,50 @@ PDF for all mechanic/data-model questions going forward.
   numbered phases in this doc; `main` fast-forwards to the latest phase
   branch as phases complete. Nothing pushed to the remote yet.
 
-Phase 3 (data models) is next.
+**Phase 3 — done.** DataModel schemas in place:
+- `module/helpers/config.mjs` — `SUBSTRATUM` constants: the 6-Skill list,
+  normal die chain (`d4`-`d12`), the "Beyond the Horizon" sub-chain
+  (`d0`/`d2`), Anomaly Influence tier thresholds, storage-unit slot count
+  (3), Stress capacity defaults (Scientist 8, Team 4).
+- `module/data/shared.mjs` — `skillsSchema()` helper (the 6-Skill
+  max/current SchemaField block), reused by both actor types.
+- `module/data/actor-scientist.mjs` — `ScientistData`: specialty, pronouns,
+  stress {value, max}, skills. `prepareDerivedData()` computes
+  `anomalyInfluence` (tier/label/skillPenalty) from current Stress — not a
+  stored field, per the digest ("derived tier, not something a player
+  sets").
+- `module/data/actor-team.mjs` — `TeamData`: stress {value, max}, skills,
+  `deaths` (0-3, team wipe tracking), `deepBreathUsed` (once-per-session
+  flag, manually reset). No Anomaly Influence — explicitly doesn't apply to
+  the Team.
+- `module/data/item-gear.mjs` — `GearData`: description, dieRating,
+  narrativeOnly (free items don't consume a storage slot), broken
+  (d4 items break after use).
+- `system.json` — added `documentTypes` (the v14 mechanism; confirmed via
+  live docs fetch that `template.json` is not needed — `documentTypes` +
+  `CONFIG.Actor/Item.dataModels` is the current approach, superseding the
+  older template.json-only pattern).
+- `module/substratum-protocol.mjs` — registers the three DataModels via
+  `CONFIG.Actor.dataModels` / `CONFIG.Item.dataModels` in the init hook.
+- `lang/en.json` — Skill labels, Anomaly Influence tier labels, and the
+  `TYPES.Actor.*` / `TYPES.Item.*` keys Foundry uses to label sub-types in
+  the Create dialogs.
+- **Verified live**: reloaded the `substratum-protocol` test world, created
+  one Actor of each type (Scientist, Team) and one Item (Gear) via the
+  Create dialogs — correct type names offered, zero console errors on
+  init or create.
+- **Scoped out deliberately**: the shared, party-wide **Anomaly Skill**
+  (Last Hypothesis endgame mechanic, d0-d20+ chain) doesn't cleanly belong
+  to either actor type — non-solo games have multiple Scientists and no
+  unifying Team actor to hold shared state on. It's also not part of the
+  resolved MVP scope (core roll + basic equipment). Deferred rather than
+  guessed; needs a real decision (world-scoped `game.settings`? a
+  dedicated small actor/journal?) if/when the endgame mechanic gets built.
+  No custom `documents/actor.mjs` / `documents/item.mjs` Document
+  subclasses yet either — nothing needs overriding yet (no `getRollData()`
+  etc.); add them in Phase 4 if the roll mechanic needs one.
+
+Phase 4 (core roll mechanic) is next.
 
 Poppler note (resolved differently than expected): the Read tool's PDF
 page-image rendering (`pdftoppm`) still isn't visible to the Claude Code
