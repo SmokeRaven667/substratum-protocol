@@ -26,6 +26,15 @@
       "path": "lang/en.json"
     }
   ],
+  "documentTypes": {
+    "Actor": {
+      "scientist": {},
+      "team": {}
+    },
+    "Item": {
+      "gear": { "htmlFields": ["description"] }
+    }
+  },
   "packs": [],
   "url": "https://github.com/SmokeRaven667/substratum-protocol",
   "manifest": "https://github.com/SmokeRaven667/substratum-protocol/releases/latest/download/system.json",

@@ -1,83 +1,28 @@
 # Substratum Protocol — Foundry System: Planning
 
-Working doc for continuity across sessions. Update as decisions get made or
-steps complete — don't let this go stale. See `CLAUDE.md` for coding
-conventions, `README.md` for dev reference links.
+Working doc for continuity across sessions — the current state and what's
+next. Update as decisions get made or steps complete; don't let this go
+stale. See `CLAUDE.md` for coding conventions, `README.md` for dev
+reference links.
+
+Detailed phase-by-phase history (what was intended vs. what actually
+happened, including dead ends and gotchas) lives in `phases/` — one file
+per phase, named to match its git branch. This doc stays short and
+forward-looking; `phases/` is the archive.
 
 ## Status
 
-**Phase 0 — done.** Rulebook digested into `01-rulebook-digest.md`
-(structured reference: core Skill Check mechanic, Stress/Anomaly Influence,
-Actions table, exosuit abilities, chargen, Anomaly Skill/endgame, Depth
-Sectors, bestiary, solo modes, hazards). Consult that file instead of the
-PDF for all mechanic/data-model questions going forward.
+- **Phase 0 — done.** Rulebook digested. See `phases/phase-0-rulebook-digest.md`.
+  Reference output: `01-rulebook-digest.md` — consult that file instead of
+  the PDF for all mechanic/data-model questions going forward.
+- **Phase 1 — done.** MVP scope settled. See `phases/phase-1-mvp-scope.md`
+  (summary also in Open Decisions below).
+- **Phase 2 — done.** Project scaffolding, local dev loop, git/branch setup.
+  See `phases/phase-2-scaffolding.md`.
+- **Phase 3 — done.** DataModel schemas for `scientist`/`team` actors and
+  the `gear` item type. See `phases/phase-3-data-models.md`.
 
-**Phase 1 — done.** MVP scope settled (see Open decisions below).
-
-**Phase 2 — done.** Scaffolding in place:
-- `system.json` (id `substratum-protocol`, MIT-licensed code, targeting
-  Foundry **v14** (see below), author SmokeRaven667, repo
-  https://github.com/SmokeRaven667/substratum-protocol).
-- `LICENSE` (MIT for code; notes rulebook content stays under Pandion Games'
-  ORC License separately).
-- Directory skeleton: `module/`, `styles/`, `lang/`, `templates/{actor,item,chat}/`,
-  `packs/`.
-- Minimal working stub: `module/substratum-protocol.mjs` (just a Hooks.once('init')
-  console log), empty `styles/substratum-protocol.css`, minimal `lang/en.json`.
-  No build step — plain ESM/Handlebars/CSS needs none, per CLAUDE.md.
-- **Local dev loop — verified working.** The real Foundry user data directory
-  is `C:\u\FoundryVTT` (NOT `C:\Users\smoke\AppData\Local\FoundryVTT` — that
-  path exists too but is a stale/unused install; don't symlink there again).
-  `Data\systems\substratum-protocol` is a **directory junction** (`mklink /J`,
-  not a symlink — see below for why) pointing at this repo. Confirmed by
-  actually creating a test world (`Data\worlds\substratum-protocol`) bound to
-  the system, which loaded `system.json` correctly (`systemVersion: "0.1.0"`
-  recorded in `world.json`), and by a clean log scan with zero errors for
-  `substratum-protocol` across three restarts (only two pre-existing, unrelated
-  broken folders — `forbidden-lands-bkup-2024-05-23`,
-  `morkborg - original working before fixes` — log "Invalid system" errors,
-  not ours).
-  - Foundry only scans `Data/systems` at **boot**, not live — after linking or
-    changing the folder, the app process must be restarted (kill + relaunch),
-    not just have the setup page refreshed.
-  - Junction vs. symlink: started with a symlink, which appeared to fail
-    silently (no log entry at all, not even an error) after one restart, so
-    switched to a junction on the theory that Node's `fs.readdir` reports
-    Windows symlinks-to-directories as `isSymbolicLink()`-only (not
-    `isDirectory()`), which a naive directory-type filter would skip, while
-    junctions report as real directories. **Caveat: inconclusive** — in
-    hindsight the plain symlink may have actually been working too (a restart
-    right before the junction swap did successfully surface the system and
-    let a world get created on the symlink). Kept the junction since it's
-    already in place, tested working, and is the theoretically safer choice
-    either way — no need to revisit unless the junction itself ever causes
-    problems.
-  - This local instance runs **Foundry v14 Build 363**. Decided (2026-08-09):
-    **target v14, not v13** — `system.json` now declares
-    `compatibility: {minimum: "14", verified: "14.363"}`, and `CLAUDE.md`'s
-    Stack section / API-drift note were updated from v13 to v14 throughout so
-    future sessions build against the right API surface from the start.
-- Git: repo initialized (`git init`, default branch renamed `master` → `main`
-  to match GitHub's default and the `system.json`/README links), `origin`
-  remote set to `https://github.com/SmokeRaven667/substratum-protocol.git`.
-  History is split one branch per phase (`phase-0-rulebook-digest` →
-  `phase-1-mvp-scope` → `phase-2-scaffolding`) so branches correlate to the
-  numbered phases in this doc; `main` fast-forwards to the latest phase
-  branch as phases complete. Nothing pushed to the remote yet.
-
-Phase 3 (data models) is next.
-
-Poppler note (resolved differently than expected): the Read tool's PDF
-page-image rendering (`pdftoppm`) still isn't visible to the Claude Code
-process itself — a fresh shell picks up the updated PATH but the running
-Node process doesn't, so **a full app restart (not just a new session) is
-still needed** if page-image rendering is ever required. Worked around it
-for Phase 0 by extracting text directly via `pdftotext -layout`
-(also poppler, but reachable from Bash/PowerShell already) into the
-scratchpad and reading that — no image rendering needed. Good enough for
-all rules text; would still need the restart if we ever need to see art/
-diagrams/table layouts (e.g. the Personnel Folio questionnaire prompts,
-which didn't extract as text — see digest's open-items list).
+**Phase 4 (core roll mechanic) is next.**
 
 ## High-level phases
 
@@ -88,8 +33,6 @@ attributes/stats, skills, character creation rules, combat flow, equipment/
 item categories, conditions/status effects, advancement/leveling, NPC/
 monster stat structure. This drives every data model decision below —
 nothing in Phase 2+ should be guessed instead of pulled from this.
-*Blocker: need poppler-utils installed (for PDF page rendering) or another
-way to get the text/pages out of the PDF.*
 
 ### 1. Define MVP scope
 Decide what "playable" means for v1 — likely: one actor type (character),
@@ -98,8 +41,8 @@ items. Explicitly defer: NPC/monster sheets, active effects/automation,
 compendium content, advancement automation, anything nice-to-have.
 
 ### 2. Project scaffolding
-- `system.json` manifest (id, title, version, compatibility for v13,
-  esmodules, styles, languages).
+- `system.json` manifest (id, title, version, compatibility, esmodules,
+  styles, languages).
 - Local dev loop: symlink (or copy) this repo into a local Foundry
   `Data/systems/` folder so changes are testable in a live world.
 - Decide if any build step is needed at all (plain JS/Handlebars/CSS may
@@ -112,7 +55,10 @@ Phase 0's findings (attributes, resources, equipment slots, etc.).
 ### 4. Core roll mechanic
 Implement the game's dice resolution as a reusable helper (`helpers/dice.mjs`)
 producing a `Roll` and a chat card — this is the single most
-game-defining piece of code in the system.
+game-defining piece of code in the system. Needs a live-docs check on the
+v14 `Cards`/`CardStack` API shape before wiring up the deck economy (see
+Open Decisions below — this was flagged against v13 in Phase 1, before the
+v14 correction in Phase 2, so don't trust that shape from memory).
 
 ### 5. Character sheet
 `ApplicationV2` + Handlebars sheet for the primary actor type: display
@@ -138,7 +84,7 @@ system uses them, styling pass, icons/art.
 Finalize `system.json` versioning/compatibility, decide distribution
 (GitHub releases + manifest URL vs. private use only).
 
-## Open decisions (need user input — rulebook is now digested, see below)
+## Open decisions (settled, kept here as quick reference)
 
 Resolved by the Phase 0 digest (`01-rulebook-digest.md`):
 - Core mechanic: two-Skill dice-pool sum vs. two drawn playing cards
@@ -154,26 +100,28 @@ Resolved by user decision (2026-08-09):
 - **Actor types**: two — `scientist` (PC) and `team` (solo-mode combined
   party). No NPC/monster actor type — bestiary stays as flavor
   text/journal content, not stat-bearing actors.
-- **Card deck**: build on Foundry v13's native `Cards` document
-  (deck/hand/pile) for the draw/discard/hand economy instead of a custom
-  tracker. Needs a live-docs check on the `Cards`/`CardStack`/`Cardsv13`
-  API shape when Phase 2/4 gets there — don't assume training-data API
-  shape given CLAUDE.md's v13-drift warning.
+- **Card deck**: build on Foundry's native `Cards` document (deck/hand/
+  pile) for the draw/discard/hand economy instead of a custom tracker.
+  Needs a live-docs check on the **v14** `Cards`/`CardStack` API shape when
+  Phase 4 gets there (originally noted against v13, corrected to v14 in
+  Phase 2 — don't assume training-data API shape, per `CLAUDE.md`'s
+  API-drift warning).
 - **Release scope**: public release intended. `system.json` needs a real
   license file, versioning discipline, and a public manifest URL
   (GitHub releases) in mind from the start; Phase 10 isn't just "personal
   cleanup."
+- **Foundry version target**: v14 (Build 363 locally), not v13 — see
+  `phases/phase-2-scaffolding.md`.
+
+Deferred, not yet resolved (see `phases/phase-3-data-models.md`):
+- Where the shared, party-wide **Anomaly Skill** (Last Hypothesis endgame
+  die) lives — doesn't cleanly fit the current `scientist`/`team` actor
+  split, and is outside MVP scope for now.
 
 ## Next step
 
-Phase 1 MVP scope is now effectively settled by the decisions above:
-- Actor types: `scientist`, `team`.
-- Item types: single `gear` type (die-rated storage-unit item, per the
-  digest — no separate weapons/armor categories).
-- Core roll mechanic + Foundry `Cards`-backed deck economy.
-- No NPC actor type, no Active Effects, no compendium content for MVP.
-
-Move to **Phase 2 — project scaffolding**: `system.json` manifest (id,
-title, version, v13 compatibility, esmodules/styles/lang entries, `packs`
-left empty for now), decide on a license file (public release), and set up
-the local Foundry `Data/systems/` dev symlink so changes are testable live.
+Move to **Phase 4 — core roll mechanic**: build `module/helpers/dice.mjs`
+implementing the Skill Check (draw 2 cards, roll+sum 2 Skill dice, compare
+independently, Good/OK/Bad, step down the higher die) as a reusable helper
+producing a Foundry `Roll` and a chat card. Start with a live-docs check on
+the v14 `Cards` document API before wiring up the deck economy.
