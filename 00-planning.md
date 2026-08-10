@@ -30,9 +30,17 @@ forward-looking; `phases/` is the archive.
   wired to `rollSkillCheck()`, Inventory tab (gear create/edit/delete),
   portrait image picker. Live-verified in a running Foundry world. See
   `phases/phase-5-character-sheet.md`.
+- **Phase 6 — done.** `GearSheet` (`ApplicationV2`/`ItemSheetV2` +
+  `HandlebarsApplicationMixin`): die rating dropdown, Narrative Only/
+  Broken checkboxes, ProseMirror description editor, portrait image
+  picker. Live-verified in a running Foundry world, no bugs found. See
+  `phases/phase-6-item-sheets.md`.
 
-**Phase 6 (item sheets) is next** — a `gear` item sheet is now the
-blocker for editing an item's die rating from the UI at all.
+**Phase 7 (localization) is next** — largely already satisfied as-you-go
+(every sheet/template string has been routed through `lang/en.json` since
+Phase 4), so this is more an audit pass than new build work: scan for any
+hardcoded strings that slipped through, then move on to Phase 8 (manual
+playtest).
 
 ## High-level phases
 
@@ -129,15 +137,11 @@ Deferred, not yet resolved (see `phases/phase-3-data-models.md`):
 
 ## Next step
 
-Move to **Phase 6 — item sheets**: an `ApplicationV2`/`DocumentSheetV2` +
-`HandlebarsApplicationMixin` sheet for the `gear` Item type — currently
-the only way to see/edit a gear item's `dieRating`, `narrativeOnly`, and
-`broken` fields is Foundry's core default Item sheet, which doesn't know
-about them. Register it the same way `phases/phase-5-character-sheet.md`
-registered the scientist actor sheet (`Items.registerSheet`/
-`Items.unregisterSheet('core', foundry.appv1.sheets.ItemSheet)`). Reuse
-the same live-docs-first discipline from Phase 5 — and note Phase 5's
-biggest lesson: even a fetched doc summary can be wrong (the
-`selectOptions`-with-a-plain-array bug), so verify anything
-validation-sensitive against actual behavior in a live world, not just
-the docs.
+Move to **Phase 7 — localization**: audit for any hardcoded UI strings
+that slipped through Phases 2–6 (grep templates/`.mjs` files for quoted
+English text outside `lang/en.json` lookups) rather than a from-scratch
+build — the convention of routing every string through
+`game.i18n.localize()`/`{{localize}}` has been followed since Phase 4's
+chat card. After that, Phase 8 (manual playtest pass) is the next real
+milestone: character creation, a full Skill Check, and basic inventory
+flow run start-to-finish in a live world.
