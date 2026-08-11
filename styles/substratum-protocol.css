@@ -197,3 +197,58 @@
   opacity: 0.6;
   font-style: italic;
 }
+
+/* Gear item sheet */
+
+.substratum-protocol.item.gear .gear-sheet-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+  padding: 0.5em;
+}
+
+.substratum-protocol.item.gear .sheet-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+}
+
+.substratum-protocol.item.gear .item-img {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border: none;
+  cursor: pointer;
+}
+
+.substratum-protocol.item.gear .sheet-header input[type='text'] {
+  flex: 1;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.substratum-protocol.item.gear .gear-fields {
+  display: flex;
+  gap: 1.5em;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.substratum-protocol.item.gear .gear-field {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85em;
+}
+
+.substratum-protocol.item.gear .checkbox-field {
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+}
+
+.substratum-protocol.item.gear .gear-description {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  flex: 1;
+}

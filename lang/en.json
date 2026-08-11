@@ -69,7 +69,10 @@
     "NarrativeOnly": "Narrative Only",
     "Broken": "Broken",
     "DeleteGear": "Delete",
-    "NoGear": "No gear yet."
+    "NoGear": "No gear yet.",
+
+    "DieRating": "Die Rating",
+    "Description": "Description"
   },
   "TYPES": {
     "Actor": {

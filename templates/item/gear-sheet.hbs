@@ -1,0 +1,35 @@
+<div class="gear-sheet-body">
+  <header class="sheet-header">
+    <img class="item-img" src="{{item.img}}" alt="{{item.name}}"
+      {{#if isEditable}}data-action="editImage"{{/if}}>
+    <input type="text" name="name" value="{{item.name}}" placeholder="{{localize 'SUBSTRATUM.Name'}}"
+      {{#unless isEditable}}disabled{{/unless}}>
+  </header>
+
+  <div class="gear-fields">
+    <label class="gear-field">
+      <span>{{localize "SUBSTRATUM.DieRating"}}</span>
+      <select name="system.dieRating" {{#unless isEditable}}disabled{{/unless}}>
+        {{selectOptions dieChainOptions selected=system.dieRating}}
+      </select>
+    </label>
+
+    <label class="checkbox-field">
+      <input type="checkbox" name="system.narrativeOnly" {{#if system.narrativeOnly}}checked{{/if}}
+        {{#unless isEditable}}disabled{{/unless}}>
+      <span>{{localize "SUBSTRATUM.NarrativeOnly"}}</span>
+    </label>
+
+    <label class="checkbox-field">
+      <input type="checkbox" name="system.broken" {{#if system.broken}}checked{{/if}}
+        {{#unless isEditable}}disabled{{/unless}}>
+      <span>{{localize "SUBSTRATUM.Broken"}}</span>
+    </label>
+  </div>
+
+  <div class="gear-description">
+    <label>{{localize "SUBSTRATUM.Description"}}</label>
+    <prose-mirror name="system.description" value="{{system.description}}"
+      {{#unless isEditable}}disabled{{/unless}}></prose-mirror>
+  </div>
+</div>
