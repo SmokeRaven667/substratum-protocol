@@ -39,8 +39,13 @@ forward-looking; `phases/` is the archive.
   template/JS user-facing string was already routed through
   `lang/en.json`; no hardcoded strings or missing/orphaned keys found.
   See `phases/phase-7-localization.md`.
+- **Phase 8 — done.** Manual playtest pass in a live Foundry world:
+  character creation, gear, a full Skill Check, Stress/Anomaly Influence
+  progression, and inventory edit/delete all exercised end-to-end.
+  Everything worked — no bugs found, no code changes needed. See
+  `phases/phase-8-playtest.md`.
 
-**Phase 8 (manual playtest pass) is next.**
+**Phase 9 (content & polish) is next.**
 
 ## High-level phases
 
@@ -137,11 +142,14 @@ Deferred, not yet resolved (see `phases/phase-3-data-models.md`):
 
 ## Next step
 
-Move to **Phase 8 — manual playtest pass**: run a real session (or solo
-walkthrough) in a live Foundry world exercising character creation (a
-fresh `scientist` actor, assigning Skill dice per chargen rules), a full
-Skill Check via the sheet's roll controls, Stress spend/Anomaly Influence
-progression, and basic inventory flow (add/edit/delete gear, die rating).
-Fix whatever breaks. This is the first phase that exercises the whole
-system end-to-end rather than one layer at a time — treat anything found
-here as a bug in the relevant earlier phase's code, not new scope.
+Move to **Phase 9 — content & polish**. Per the Phase 0 digest, this is
+narrower than the original phase list implies: no Active Effects/
+conditions system exists in the source material (Anomaly Influence is
+already a derived tier, not a stackable effects list — see Open Decisions
+above), and there's no NPC/monster actor type to seed (the Bestiary is
+flavor text, not stat-bearing). What's actually left: a starting
+compendium pack (the 52-card standard deck could ship pre-built instead
+of being generated at runtime by `cards.mjs`, and/or a starter gear
+pack), and a styling/icons pass over the two sheets built in Phases 5–6.
+Decide with the user which of these are worth doing before Phase 10
+(packaging & release) rather than assuming all of them are in scope.
