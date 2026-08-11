@@ -35,12 +35,12 @@ forward-looking; `phases/` is the archive.
   Broken checkboxes, ProseMirror description editor, portrait image
   picker. Live-verified in a running Foundry world, no bugs found. See
   `phases/phase-6-item-sheets.md`.
+- **Phase 7 — done.** Localization audit (no build needed) — every
+  template/JS user-facing string was already routed through
+  `lang/en.json`; no hardcoded strings or missing/orphaned keys found.
+  See `phases/phase-7-localization.md`.
 
-**Phase 7 (localization) is next** — largely already satisfied as-you-go
-(every sheet/template string has been routed through `lang/en.json` since
-Phase 4), so this is more an audit pass than new build work: scan for any
-hardcoded strings that slipped through, then move on to Phase 8 (manual
-playtest).
+**Phase 8 (manual playtest pass) is next.**
 
 ## High-level phases
 
@@ -137,11 +137,11 @@ Deferred, not yet resolved (see `phases/phase-3-data-models.md`):
 
 ## Next step
 
-Move to **Phase 7 — localization**: audit for any hardcoded UI strings
-that slipped through Phases 2–6 (grep templates/`.mjs` files for quoted
-English text outside `lang/en.json` lookups) rather than a from-scratch
-build — the convention of routing every string through
-`game.i18n.localize()`/`{{localize}}` has been followed since Phase 4's
-chat card. After that, Phase 8 (manual playtest pass) is the next real
-milestone: character creation, a full Skill Check, and basic inventory
-flow run start-to-finish in a live world.
+Move to **Phase 8 — manual playtest pass**: run a real session (or solo
+walkthrough) in a live Foundry world exercising character creation (a
+fresh `scientist` actor, assigning Skill dice per chargen rules), a full
+Skill Check via the sheet's roll controls, Stress spend/Anomaly Influence
+progression, and basic inventory flow (add/edit/delete gear, die rating).
+Fix whatever breaks. This is the first phase that exercises the whole
+system end-to-end rather than one layer at a time — treat anything found
+here as a bug in the relevant earlier phase's code, not new scope.
