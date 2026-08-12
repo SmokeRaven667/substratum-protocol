@@ -1,0 +1,31 @@
+{
+  "_id": "MuFuJPpaqyAPft4P",
+  "name": "Anomaly Sensor",
+  "type": "gear",
+  "flags": {},
+  "img": "icons/svg/eye.svg",
+  "effects": [],
+  "_stats": {
+    "coreVersion": "14.363",
+    "systemId": "substratum-protocol",
+    "systemVersion": "0.1.0",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "system": {
+    "description": "<p>A handheld instrument that reads local Anomaly Influence fluctuations. Useful for STUDY actions, unreliable at 8+ Stress like everything else down here.</p>",
+    "dieRating": "d10",
+    "narrativeOnly": false,
+    "broken": false
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!items!MuFuJPpaqyAPft4P"
+}

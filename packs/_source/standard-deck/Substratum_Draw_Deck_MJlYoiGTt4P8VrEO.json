@@ -1,0 +1,2114 @@
+{
+  "name": "Substratum Draw Deck",
+  "type": "deck",
+  "cards": [
+    {
+      "name": "Ace of Spades",
+      "suit": "spades",
+      "value": 1,
+      "faces": [
+        {
+          "name": "Ace of Spades",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "rnVsMrpJJ671eoke",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.rnVsMrpJJ671eoke",
+      "cards": []
+    },
+    {
+      "name": "2 of Spades",
+      "suit": "spades",
+      "value": 2,
+      "faces": [
+        {
+          "name": "2 of Spades",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "TKzCxqVv9ym8HPYj",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.TKzCxqVv9ym8HPYj",
+      "cards": []
+    },
+    {
+      "name": "3 of Spades",
+      "suit": "spades",
+      "value": 3,
+      "faces": [
+        {
+          "name": "3 of Spades",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "imNGWpTqli6CKyPt",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": true,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.imNGWpTqli6CKyPt",
+      "cards": []
+    },
+    {
+      "name": "4 of Spades",
+      "suit": "spades",
+      "value": 4,
+      "faces": [
+        {
+          "name": "4 of Spades",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "LorlnqW4eUvSNqyo",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.LorlnqW4eUvSNqyo",
+      "cards": []
+    },
+    {
+      "name": "5 of Spades",
+      "suit": "spades",
+      "value": 5,
+      "faces": [
+        {
+          "name": "5 of Spades",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "zK9uytN8P08RuNyH",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.zK9uytN8P08RuNyH",
+      "cards": []
+    },
+    {
+      "name": "6 of Spades",
+      "suit": "spades",
+      "value": 6,
+      "faces": [
+        {
+          "name": "6 of Spades",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "mgQqzu5suzJTjuOS",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.mgQqzu5suzJTjuOS",
+      "cards": []
+    },
+    {
+      "name": "7 of Spades",
+      "suit": "spades",
+      "value": 7,
+      "faces": [
+        {
+          "name": "7 of Spades",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "u4O0s6oSRLugEkn7",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.u4O0s6oSRLugEkn7",
+      "cards": []
+    },
+    {
+      "name": "8 of Spades",
+      "suit": "spades",
+      "value": 8,
+      "faces": [
+        {
+          "name": "8 of Spades",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "KhDuxWCY313irZB7",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.KhDuxWCY313irZB7",
+      "cards": []
+    },
+    {
+      "name": "9 of Spades",
+      "suit": "spades",
+      "value": 9,
+      "faces": [
+        {
+          "name": "9 of Spades",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "N4Pprrw8HzGRlDTP",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.N4Pprrw8HzGRlDTP",
+      "cards": []
+    },
+    {
+      "name": "10 of Spades",
+      "suit": "spades",
+      "value": 10,
+      "faces": [
+        {
+          "name": "10 of Spades",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "Nzq0tPNMlYO1xiuP",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.Nzq0tPNMlYO1xiuP",
+      "cards": []
+    },
+    {
+      "name": "Jack of Spades",
+      "suit": "spades",
+      "value": 11,
+      "faces": [
+        {
+          "name": "Jack of Spades",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "xyAjg1hqrlNmvAIS",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.xyAjg1hqrlNmvAIS",
+      "cards": []
+    },
+    {
+      "name": "Queen of Spades",
+      "suit": "spades",
+      "value": 12,
+      "faces": [
+        {
+          "name": "Queen of Spades",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "ficnupPTClkPK3BG",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.ficnupPTClkPK3BG",
+      "cards": []
+    },
+    {
+      "name": "King of Spades",
+      "suit": "spades",
+      "value": 13,
+      "faces": [
+        {
+          "name": "King of Spades",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "7B0yO7uu5niQgJSi",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.7B0yO7uu5niQgJSi",
+      "cards": []
+    },
+    {
+      "name": "Ace of Hearts",
+      "suit": "hearts",
+      "value": 1,
+      "faces": [
+        {
+          "name": "Ace of Hearts",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "2PmSuYvAJtPdqQmP",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.2PmSuYvAJtPdqQmP",
+      "cards": []
+    },
+    {
+      "name": "2 of Hearts",
+      "suit": "hearts",
+      "value": 2,
+      "faces": [
+        {
+          "name": "2 of Hearts",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "lQ4pYbYpIq1ylfn6",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.lQ4pYbYpIq1ylfn6",
+      "cards": []
+    },
+    {
+      "name": "3 of Hearts",
+      "suit": "hearts",
+      "value": 3,
+      "faces": [
+        {
+          "name": "3 of Hearts",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "P90pggvfW9Wks3tW",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": true,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.P90pggvfW9Wks3tW",
+      "cards": []
+    },
+    {
+      "name": "4 of Hearts",
+      "suit": "hearts",
+      "value": 4,
+      "faces": [
+        {
+          "name": "4 of Hearts",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "M8UXsMBslTfWLJ6A",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.M8UXsMBslTfWLJ6A",
+      "cards": []
+    },
+    {
+      "name": "5 of Hearts",
+      "suit": "hearts",
+      "value": 5,
+      "faces": [
+        {
+          "name": "5 of Hearts",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "kTbL2HWY2ZC0abXR",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.kTbL2HWY2ZC0abXR",
+      "cards": []
+    },
+    {
+      "name": "6 of Hearts",
+      "suit": "hearts",
+      "value": 6,
+      "faces": [
+        {
+          "name": "6 of Hearts",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "mS2LXBYt3eGU5X8b",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.mS2LXBYt3eGU5X8b",
+      "cards": []
+    },
+    {
+      "name": "7 of Hearts",
+      "suit": "hearts",
+      "value": 7,
+      "faces": [
+        {
+          "name": "7 of Hearts",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "Q474AH956ZnYcTex",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.Q474AH956ZnYcTex",
+      "cards": []
+    },
+    {
+      "name": "8 of Hearts",
+      "suit": "hearts",
+      "value": 8,
+      "faces": [
+        {
+          "name": "8 of Hearts",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "1QPWuQSzrQuv338q",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.1QPWuQSzrQuv338q",
+      "cards": []
+    },
+    {
+      "name": "9 of Hearts",
+      "suit": "hearts",
+      "value": 9,
+      "faces": [
+        {
+          "name": "9 of Hearts",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "J8EcJb49rMu30vLi",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.J8EcJb49rMu30vLi",
+      "cards": []
+    },
+    {
+      "name": "10 of Hearts",
+      "suit": "hearts",
+      "value": 10,
+      "faces": [
+        {
+          "name": "10 of Hearts",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "OEBbEgdEyv5TTCzd",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.OEBbEgdEyv5TTCzd",
+      "cards": []
+    },
+    {
+      "name": "Jack of Hearts",
+      "suit": "hearts",
+      "value": 11,
+      "faces": [
+        {
+          "name": "Jack of Hearts",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "KlycYykBDk1mPDGK",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.KlycYykBDk1mPDGK",
+      "cards": []
+    },
+    {
+      "name": "Queen of Hearts",
+      "suit": "hearts",
+      "value": 12,
+      "faces": [
+        {
+          "name": "Queen of Hearts",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "J5x6cv6jx935Jvht",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.J5x6cv6jx935Jvht",
+      "cards": []
+    },
+    {
+      "name": "King of Hearts",
+      "suit": "hearts",
+      "value": 13,
+      "faces": [
+        {
+          "name": "King of Hearts",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "cvdbL1bQBVmWSBEr",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.cvdbL1bQBVmWSBEr",
+      "cards": []
+    },
+    {
+      "name": "Ace of Diamonds",
+      "suit": "diamonds",
+      "value": 1,
+      "faces": [
+        {
+          "name": "Ace of Diamonds",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "FGLSfS0Ujj5ebeqJ",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.FGLSfS0Ujj5ebeqJ",
+      "cards": []
+    },
+    {
+      "name": "2 of Diamonds",
+      "suit": "diamonds",
+      "value": 2,
+      "faces": [
+        {
+          "name": "2 of Diamonds",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "aQnqARYMXRGdY9cS",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.aQnqARYMXRGdY9cS",
+      "cards": []
+    },
+    {
+      "name": "3 of Diamonds",
+      "suit": "diamonds",
+      "value": 3,
+      "faces": [
+        {
+          "name": "3 of Diamonds",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "K51qeuDZFeYpvqFj",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.K51qeuDZFeYpvqFj",
+      "cards": []
+    },
+    {
+      "name": "4 of Diamonds",
+      "suit": "diamonds",
+      "value": 4,
+      "faces": [
+        {
+          "name": "4 of Diamonds",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "lsWfOgJIbbokE0lQ",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.lsWfOgJIbbokE0lQ",
+      "cards": []
+    },
+    {
+      "name": "5 of Diamonds",
+      "suit": "diamonds",
+      "value": 5,
+      "faces": [
+        {
+          "name": "5 of Diamonds",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "ErPmEjJJ4ApSAQPc",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.ErPmEjJJ4ApSAQPc",
+      "cards": []
+    },
+    {
+      "name": "6 of Diamonds",
+      "suit": "diamonds",
+      "value": 6,
+      "faces": [
+        {
+          "name": "6 of Diamonds",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "HjgJRlMF13aC8XMv",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.HjgJRlMF13aC8XMv",
+      "cards": []
+    },
+    {
+      "name": "7 of Diamonds",
+      "suit": "diamonds",
+      "value": 7,
+      "faces": [
+        {
+          "name": "7 of Diamonds",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "I915yTohh4UZa1eX",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.I915yTohh4UZa1eX",
+      "cards": []
+    },
+    {
+      "name": "8 of Diamonds",
+      "suit": "diamonds",
+      "value": 8,
+      "faces": [
+        {
+          "name": "8 of Diamonds",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "5YOdd6nhWesrlelG",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.5YOdd6nhWesrlelG",
+      "cards": []
+    },
+    {
+      "name": "9 of Diamonds",
+      "suit": "diamonds",
+      "value": 9,
+      "faces": [
+        {
+          "name": "9 of Diamonds",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "emFaamW75zB9IOex",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.emFaamW75zB9IOex",
+      "cards": []
+    },
+    {
+      "name": "10 of Diamonds",
+      "suit": "diamonds",
+      "value": 10,
+      "faces": [
+        {
+          "name": "10 of Diamonds",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "djrh4fxaT1UNygtz",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.djrh4fxaT1UNygtz",
+      "cards": []
+    },
+    {
+      "name": "Jack of Diamonds",
+      "suit": "diamonds",
+      "value": 11,
+      "faces": [
+        {
+          "name": "Jack of Diamonds",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "wZJL5slPrU2VZ0dT",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.wZJL5slPrU2VZ0dT",
+      "cards": []
+    },
+    {
+      "name": "Queen of Diamonds",
+      "suit": "diamonds",
+      "value": 12,
+      "faces": [
+        {
+          "name": "Queen of Diamonds",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "BgbIBl1DVQ6dSZaS",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.BgbIBl1DVQ6dSZaS",
+      "cards": []
+    },
+    {
+      "name": "King of Diamonds",
+      "suit": "diamonds",
+      "value": 13,
+      "faces": [
+        {
+          "name": "King of Diamonds",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "bxTN4PCBoeaAQ9aW",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": true,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.bxTN4PCBoeaAQ9aW",
+      "cards": []
+    },
+    {
+      "name": "Ace of Clubs",
+      "suit": "clubs",
+      "value": 1,
+      "faces": [
+        {
+          "name": "Ace of Clubs",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "uGTct6ksfZ7faNKa",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.uGTct6ksfZ7faNKa",
+      "cards": []
+    },
+    {
+      "name": "2 of Clubs",
+      "suit": "clubs",
+      "value": 2,
+      "faces": [
+        {
+          "name": "2 of Clubs",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "Y1hFlbxNFIWtowT3",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": true,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.Y1hFlbxNFIWtowT3",
+      "cards": []
+    },
+    {
+      "name": "3 of Clubs",
+      "suit": "clubs",
+      "value": 3,
+      "faces": [
+        {
+          "name": "3 of Clubs",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "12Nuh2C6hJehHpSv",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.12Nuh2C6hJehHpSv",
+      "cards": []
+    },
+    {
+      "name": "4 of Clubs",
+      "suit": "clubs",
+      "value": 4,
+      "faces": [
+        {
+          "name": "4 of Clubs",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "XNH9sscU2ZXalhw2",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.XNH9sscU2ZXalhw2",
+      "cards": []
+    },
+    {
+      "name": "5 of Clubs",
+      "suit": "clubs",
+      "value": 5,
+      "faces": [
+        {
+          "name": "5 of Clubs",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "snogjiwO5pmp9ynD",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.snogjiwO5pmp9ynD",
+      "cards": []
+    },
+    {
+      "name": "6 of Clubs",
+      "suit": "clubs",
+      "value": 6,
+      "faces": [
+        {
+          "name": "6 of Clubs",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "MBlHLmNjx4KrxN1h",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.MBlHLmNjx4KrxN1h",
+      "cards": []
+    },
+    {
+      "name": "7 of Clubs",
+      "suit": "clubs",
+      "value": 7,
+      "faces": [
+        {
+          "name": "7 of Clubs",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "nHNTZTsQruOJbqy5",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.nHNTZTsQruOJbqy5",
+      "cards": []
+    },
+    {
+      "name": "8 of Clubs",
+      "suit": "clubs",
+      "value": 8,
+      "faces": [
+        {
+          "name": "8 of Clubs",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "qxdry576nm4ZYElw",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.qxdry576nm4ZYElw",
+      "cards": []
+    },
+    {
+      "name": "9 of Clubs",
+      "suit": "clubs",
+      "value": 9,
+      "faces": [
+        {
+          "name": "9 of Clubs",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "tHEJmX5J4wZQwLFx",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.tHEJmX5J4wZQwLFx",
+      "cards": []
+    },
+    {
+      "name": "10 of Clubs",
+      "suit": "clubs",
+      "value": 10,
+      "faces": [
+        {
+          "name": "10 of Clubs",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "PUB41V3MLGLqEmJN",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.PUB41V3MLGLqEmJN",
+      "cards": []
+    },
+    {
+      "name": "Jack of Clubs",
+      "suit": "clubs",
+      "value": 11,
+      "faces": [
+        {
+          "name": "Jack of Clubs",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "GcFZ62r20K3jYkLe",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.GcFZ62r20K3jYkLe",
+      "cards": []
+    },
+    {
+      "name": "Queen of Clubs",
+      "suit": "clubs",
+      "value": 12,
+      "faces": [
+        {
+          "name": "Queen of Clubs",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "WhvbGUQLEg6aGFww",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.WhvbGUQLEg6aGFww",
+      "cards": []
+    },
+    {
+      "name": "King of Clubs",
+      "suit": "clubs",
+      "value": 13,
+      "faces": [
+        {
+          "name": "King of Clubs",
+          "text": "",
+          "img": "icons/svg/card-joker.svg"
+        }
+      ],
+      "face": 0,
+      "back": {
+        "name": "Substratum Protocol",
+        "text": "",
+        "img": null
+      },
+      "_id": "J9gTTqnbXpbt6iVU",
+      "description": "",
+      "type": "base",
+      "system": {},
+      "drawn": false,
+      "origin": null,
+      "rotation": 0,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "14.363",
+        "systemId": "substratum-protocol",
+        "systemVersion": "0.1.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!cards.cards!MJlYoiGTt4P8VrEO.J9gTTqnbXpbt6iVU",
+      "cards": []
+    }
+  ],
+  "flags": {
+    "substratum-protocol": {
+      "deck": true
+    }
+  },
+  "_id": "MJlYoiGTt4P8VrEO",
+  "description": "",
+  "img": "icons/svg/card-hand.svg",
+  "system": {},
+  "rotation": 0,
+  "displayCount": false,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "coreVersion": "14.363",
+    "systemId": "substratum-protocol",
+    "systemVersion": "0.1.0",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!cards!MJlYoiGTt4P8VrEO"
+}

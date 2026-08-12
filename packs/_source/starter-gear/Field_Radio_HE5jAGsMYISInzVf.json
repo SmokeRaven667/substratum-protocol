@@ -1,0 +1,31 @@
+{
+  "_id": "HE5jAGsMYISInzVf",
+  "name": "Field Radio",
+  "type": "gear",
+  "flags": {},
+  "img": "icons/svg/sound.svg",
+  "effects": [],
+  "_stats": {
+    "coreVersion": "14.363",
+    "systemId": "substratum-protocol",
+    "systemVersion": "0.1.0",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "system": {
+    "description": "<p>Short-range comms unit, hardened against Anomaly interference. Reception gets worse the deeper into a Depth Sector you go.</p>",
+    "dieRating": "d6",
+    "narrativeOnly": false,
+    "broken": false
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!items!HE5jAGsMYISInzVf"
+}

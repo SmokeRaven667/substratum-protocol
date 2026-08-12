@@ -44,8 +44,15 @@ forward-looking; `phases/` is the archive.
   progression, and inventory edit/delete all exercised end-to-end.
   Everything worked — no bugs found, no code changes needed. See
   `phases/phase-8-playtest.md`.
+- **Phase 9 — done.** Compendium pack build tooling (`@foundryvtt/
+  foundryvtt-cli`, `npm run build:packs`) plus two packs (standard-deck
+  Cards, starter-gear Items), both built from real Foundry-exported
+  document shapes rather than guessed and live-verified loading with no
+  errors. Styling/icons pass on the Phase 5/6 sheets (tab icons,
+  color-coded Anomaly Influence, active-tab underline). See
+  `phases/phase-9-content-polish.md`.
 
-**Phase 9 (content & polish) is next.**
+**Phase 10 (packaging & release) is next.**
 
 ## High-level phases
 
@@ -142,14 +149,19 @@ Deferred, not yet resolved (see `phases/phase-3-data-models.md`):
 
 ## Next step
 
-Move to **Phase 9 — content & polish**. Per the Phase 0 digest, this is
-narrower than the original phase list implies: no Active Effects/
-conditions system exists in the source material (Anomaly Influence is
-already a derived tier, not a stackable effects list — see Open Decisions
-above), and there's no NPC/monster actor type to seed (the Bestiary is
-flavor text, not stat-bearing). What's actually left: a starting
-compendium pack (the 52-card standard deck could ship pre-built instead
-of being generated at runtime by `cards.mjs`, and/or a starter gear
-pack), and a styling/icons pass over the two sheets built in Phases 5–6.
-Decide with the user which of these are worth doing before Phase 10
-(packaging & release) rather than assuming all of them are in scope.
+Move to **Phase 10 — packaging & release**: finalize `system.json`
+versioning/compatibility and decide distribution (GitHub releases +
+manifest URL, per the "public release intended" decision above, vs.
+private use only). Concretely this means: bump `version` off `0.1.0` to
+whatever the first real release should be, cut an actual GitHub Release
+with a built `system.zip` so the `download`/`manifest` URLs in
+`system.json` resolve to something real instead of 404ing (the "No
+system manifest found" warning seen in every phase's live-testing log
+since Phase 2 is this exact gap). Note `packs/*` (the compiled LevelDB
+output) is gitignored as of Phase 9 — only `packs/_source/` is committed,
+matching the real convention used by systems like dnd5e — so
+`npm run build:packs` **must** run as an explicit release-packaging step
+before zipping `system.zip`, or the shipped package will be missing both
+compendium packs entirely. Confirm with the user
+whether a first public release is actually wanted now or if more content/
+mechanics work should land first.

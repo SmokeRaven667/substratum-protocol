@@ -1,0 +1,31 @@
+{
+  "_id": "LHTWb8QR57JMFxSy",
+  "name": "Multitool",
+  "type": "gear",
+  "flags": {},
+  "img": "icons/svg/item-bag.svg",
+  "effects": [],
+  "_stats": {
+    "coreVersion": "14.363",
+    "systemId": "substratum-protocol",
+    "systemVersion": "0.1.0",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "system": {
+    "description": "<p>A rugged, field-serviceable tool rig built for exosuit maintenance and improvised fabrication. Covers most MAKE and BREAK tasks a scientist runs into outside the lab.</p>",
+    "dieRating": "d10",
+    "narrativeOnly": false,
+    "broken": false
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!items!LHTWb8QR57JMFxSy"
+}

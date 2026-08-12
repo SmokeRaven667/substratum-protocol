@@ -1,0 +1,13 @@
+{
+  "name": "substratum-protocol",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Build tooling for the Substratum Protocol Foundry VTT system's compendium packs.",
+  "scripts": {
+    "build:packs": "node scripts/build-packs.mjs pack",
+    "clean:packs": "node scripts/build-packs.mjs unpack"
+  },
+  "devDependencies": {
+    "@foundryvtt/foundryvtt-cli": "^3.0.4"
+  }
+}
