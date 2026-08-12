@@ -30,8 +30,8 @@ export default class ScientistSheet extends HandlebarsApplicationMixin(ActorShee
   static TABS = {
     primary: {
       tabs: [
-        { id: 'skills', label: 'SUBSTRATUM.TabSkills' },
-        { id: 'inventory', label: 'SUBSTRATUM.TabInventory' }
+        { id: 'skills', label: 'SUBSTRATUM.TabSkills', icon: 'fas fa-dice' },
+        { id: 'inventory', label: 'SUBSTRATUM.TabInventory', icon: 'fas fa-suitcase' }
       ],
       initial: 'skills',
       labelPrefix: 'SUBSTRATUM'

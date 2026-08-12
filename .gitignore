@@ -7,5 +7,11 @@
 Thumbs.db
 .DS_Store
 
-# Future build tooling, if ever added
+# Build tooling
 node_modules/
+
+# Compiled compendium packs (LevelDB) — built from packs/_source/ via
+# `npm run build:packs`, not committed (avoids binary diffs and LOCK/LOG
+# runtime-only files); source JSON in packs/_source/ is the real content.
+packs/*
+!packs/_source/

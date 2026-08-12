@@ -1,6 +1,7 @@
 <nav class="sheet-tabs tabs" data-group="primary">
   {{#each tabs}}
     <a class="item {{this.cssClass}}" data-action="tab" data-tab="{{this.id}}" data-group="{{this.group}}">
+      {{#if this.icon}}<i class="{{this.icon}}"></i>{{/if}}
       {{localize this.label}}
     </a>
   {{/each}}

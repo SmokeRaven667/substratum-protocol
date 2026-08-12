@@ -35,7 +35,22 @@
       "gear": { "htmlFields": ["description"] }
     }
   },
-  "packs": [],
+  "packs": [
+    {
+      "name": "standard-deck",
+      "label": "Standard Deck",
+      "system": "substratum-protocol",
+      "path": "packs/standard-deck",
+      "type": "Cards"
+    },
+    {
+      "name": "starter-gear",
+      "label": "Starter Gear",
+      "system": "substratum-protocol",
+      "path": "packs/starter-gear",
+      "type": "Item"
+    }
+  ],
   "url": "https://github.com/SmokeRaven667/substratum-protocol",
   "manifest": "https://github.com/SmokeRaven667/substratum-protocol/releases/latest/download/system.json",
   "download": "https://github.com/SmokeRaven667/substratum-protocol/releases/download/v0.1.0/system.zip",

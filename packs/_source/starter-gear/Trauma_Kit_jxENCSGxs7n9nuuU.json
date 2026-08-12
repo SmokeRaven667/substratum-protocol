@@ -1,0 +1,31 @@
+{
+  "_id": "jxENCSGxs7n9nuuU",
+  "name": "Trauma Kit",
+  "type": "gear",
+  "flags": {},
+  "img": "icons/svg/heal.svg",
+  "effects": [],
+  "_stats": {
+    "coreVersion": "14.363",
+    "systemId": "substratum-protocol",
+    "systemVersion": "0.1.0",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "system": {
+    "description": "<p>A sealed field-medical kit: sutures, stim injectors, and burn dressing sized for exosuit breach injuries.</p>",
+    "dieRating": "d8",
+    "narrativeOnly": false,
+    "broken": false
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!items!jxENCSGxs7n9nuuU"
+}

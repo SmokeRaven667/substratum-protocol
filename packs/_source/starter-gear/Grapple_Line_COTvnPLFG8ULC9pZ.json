@@ -1,0 +1,31 @@
+{
+  "_id": "COTvnPLFG8ULC9pZ",
+  "name": "Grapple Line",
+  "type": "gear",
+  "flags": {},
+  "img": "icons/svg/anchor.svg",
+  "effects": [],
+  "_stats": {
+    "coreVersion": "14.363",
+    "systemId": "substratum-protocol",
+    "systemVersion": "0.1.0",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "system": {
+    "description": "<p>A compressed-air line launcher with a magnetic anchor head. Standard-issue for crossing chasms, scaling ruins, and hauling teammates out of trouble.</p>",
+    "dieRating": "d8",
+    "narrativeOnly": false,
+    "broken": false
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!items!COTvnPLFG8ULC9pZ"
+}
