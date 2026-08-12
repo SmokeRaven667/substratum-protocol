@@ -51,8 +51,17 @@ forward-looking; `phases/` is the archive.
   errors. Styling/icons pass on the Phase 5/6 sheets (tab icons,
   color-coded Anomaly Influence, active-tab underline). See
   `phases/phase-9-content-polish.md`.
+- **Phase 10 — done (packaging plumbing only, no release cut).** Version
+  bumped to `0.2.0`. `scripts/build-release.mjs` (`npm run build:release`)
+  assembles the real shippable file set into `system.zip`, verified by
+  extracting it and letting Foundry's own package scanner judge it (came
+  back clean). User explicitly held off on cutting an actual GitHub
+  Release — Team sheet/exosuit abilities aren't built yet. See
+  `phases/phase-10-packaging-release.md`.
 
-**Phase 10 (packaging & release) is next.**
+**No phase is currently "next"** — Phases 0–10 (the original roadmap)
+are all done. See Open Decisions and the Next step note below for what's
+actually left before this is a complete, released system.
 
 ## High-level phases
 
@@ -149,19 +158,28 @@ Deferred, not yet resolved (see `phases/phase-3-data-models.md`):
 
 ## Next step
 
-Move to **Phase 10 — packaging & release**: finalize `system.json`
-versioning/compatibility and decide distribution (GitHub releases +
-manifest URL, per the "public release intended" decision above, vs.
-private use only). Concretely this means: bump `version` off `0.1.0` to
-whatever the first real release should be, cut an actual GitHub Release
-with a built `system.zip` so the `download`/`manifest` URLs in
-`system.json` resolve to something real instead of 404ing (the "No
-system manifest found" warning seen in every phase's live-testing log
-since Phase 2 is this exact gap). Note `packs/*` (the compiled LevelDB
-output) is gitignored as of Phase 9 — only `packs/_source/` is committed,
-matching the real convention used by systems like dnd5e — so
-`npm run build:packs` **must** run as an explicit release-packaging step
-before zipping `system.zip`, or the shipped package will be missing both
-compendium packs entirely. Confirm with the user
-whether a first public release is actually wanted now or if more content/
-mechanics work should land first.
+The original 11-phase roadmap (0–10) is complete. What's left is real
+game-content work the rulebook defines but nothing has built yet —
+pick whichever the user wants to tackle next, there's no forced order:
+
+- **Team actor sheet** — the `team` DataModel (Phase 3) has had no sheet
+  since Phase 5 explicitly scoped it out; still falls back to no
+  registered sheet at all.
+- **Exosuit abilities** (Repair & Heal, Boost Actions, 3D Printer, Radio
+  the Fracture Observatory, Sensor Deployment, Flashback, Systems
+  Upgrade) — universal per-scientist actions that spend collected hand
+  cards; noted as deferred since Phase 4.
+- **Overclock** and **Deep Breath** as actual sheet buttons — the
+  mechanics are understood (`01-rulebook-digest.md`) but nothing on the
+  scientist sheet triggers them yet.
+- **Simplified Solo** resolution variant (single Skill Check, no
+  two-card comparison) — a distinct resolution path `rollSkillCheck()`
+  doesn't currently support.
+- **Cut the actual first release**: run `npm run build:release` (with
+  Foundry closed — the dev junction means a running Foundry locks the
+  pack files being rebuilt), tag `v0.2.0`, create a GitHub Release, and
+  attach both `system.zip` and a standalone `system.json` as release
+  assets so the `manifest`/`download` URLs in `system.json` resolve to
+  something real (the "No system manifest found" warning seen in every
+  phase's live-testing log since Phase 2 is this exact gap). The user
+  explicitly held off on this in Phase 10 pending the above.

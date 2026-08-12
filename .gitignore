@@ -15,3 +15,7 @@ node_modules/
 # runtime-only files); source JSON in packs/_source/ is the real content.
 packs/*
 !packs/_source/
+
+# Built release artifact — produced by `npm run build:release`, uploaded
+# to GitHub Releases, not committed to the repo.
+system.zip
