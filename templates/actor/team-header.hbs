@@ -1,0 +1,33 @@
+<header class="sheet-header">
+  <img class="profile-img" src="{{actor.img}}" alt="{{actor.name}}"
+    {{#if isEditable}}data-action="editImage"{{/if}}>
+
+  <div class="header-fields">
+    <input type="text" name="name" value="{{actor.name}}" placeholder="{{localize 'SUBSTRATUM.Name'}}"
+      {{#unless isEditable}}disabled{{/unless}}>
+
+    <div class="header-row stress-row">
+      <label class="header-field stress-field">
+        <span>{{localize "SUBSTRATUM.Stress"}}</span>
+        <input type="number" name="system.stress.value" value="{{system.stress.value}}" min="0"
+          {{#unless isEditable}}disabled{{/unless}}>
+        <span class="stress-sep">/</span>
+        <input type="number" name="system.stress.max" value="{{system.stress.max}}" min="1"
+          {{#unless isEditable}}disabled{{/unless}}>
+      </label>
+
+      <label class="header-field stress-field">
+        <span>{{localize "SUBSTRATUM.Deaths"}}</span>
+        <input type="number" name="system.deaths" value="{{system.deaths}}" min="0" max="3"
+          {{#unless isEditable}}disabled{{/unless}}>
+        <span class="stress-sep">/ 3</span>
+      </label>
+    </div>
+
+    <label class="header-field checkbox-field">
+      <input type="checkbox" name="system.deepBreathUsed" {{#if system.deepBreathUsed}}checked{{/if}}
+        {{#unless isEditable}}disabled{{/unless}}>
+      <span>{{localize "SUBSTRATUM.DeepBreathUsed"}}</span>
+    </label>
+  </div>
+</header>

@@ -4,24 +4,24 @@ import { rollSkillCheck } from '../helpers/dice.mjs';
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
 
-/** ApplicationV2 sheet for the `scientist` Actor type. */
-export default class ScientistSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
+/** ApplicationV2 sheet for the `team` Actor type — the solo-mode combined party. */
+export default class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   static DEFAULT_OPTIONS = {
-    classes: ['substratum-protocol', 'sheet', 'actor', 'scientist'],
-    position: { width: 620, height: 680 },
+    classes: ['substratum-protocol', 'sheet', 'actor', 'team'],
+    position: { width: 620, height: 640 },
     window: { resizable: true },
     form: { submitOnChange: true },
     actions: {
-      rollSkillCheck: ScientistSheet.#onRollSkillCheck,
-      createItem: ScientistSheet.#onCreateItem,
-      editItem: ScientistSheet.#onEditItem,
-      deleteItem: ScientistSheet.#onDeleteItem,
-      editImage: ScientistSheet.#onEditImage
+      rollSkillCheck: TeamSheet.#onRollSkillCheck,
+      createItem: TeamSheet.#onCreateItem,
+      editItem: TeamSheet.#onEditItem,
+      deleteItem: TeamSheet.#onDeleteItem,
+      editImage: TeamSheet.#onEditImage
     }
   };
 
   static PARTS = {
-    header: { template: 'systems/substratum-protocol/templates/actor/scientist-header.hbs' },
+    header: { template: 'systems/substratum-protocol/templates/actor/team-header.hbs' },
     tabs: { template: 'systems/substratum-protocol/templates/actor/tab-navigation.hbs' },
     skills: { template: 'systems/substratum-protocol/templates/actor/actor-skills.hbs' },
     inventory: { template: 'systems/substratum-protocol/templates/actor/actor-inventory.hbs' }
