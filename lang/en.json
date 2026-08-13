@@ -48,8 +48,13 @@
     "Deaths": "Deaths",
     "DeepBreathUsed": "Deep Breath Used This Session",
 
+    "TabMembers": "Members",
     "TabSkills": "Skills",
     "TabInventory": "Inventory",
+
+    "Member2Label": "Member 02 — Name, Pronouns, Scientific Specialty",
+    "Member3Label": "Member 03 — Name, Pronouns, Scientific Specialty",
+    "Member4Label": "Member 04 — Name, Pronouns, Scientific Specialty",
 
     "Skill": "Skill",
     "SkillMax": "Max",

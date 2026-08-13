@@ -21,6 +21,14 @@ export default class TeamData extends foundry.abstract.TypeDataModel {
         })
       }),
       skills: skillsSchema(),
+      // Free-text roster for the other 3 Team members (Team Folio, source
+      // rulebook) — the lead Scientist is Member 01 and is tracked as their
+      // own `scientist` actor, not part of this list.
+      members: new fields.SchemaField({
+        member2: new fields.StringField({ required: true, blank: true, initial: '' }),
+        member3: new fields.StringField({ required: true, blank: true, initial: '' }),
+        member4: new fields.StringField({ required: true, blank: true, initial: '' })
+      }),
       // Team hitting max Stress = a member dies; after the 3rd death the
       // Team is wiped.
       deaths: new fields.NumberField({ required: true, integer: true, min: 0, max: 3, initial: 0 }),
