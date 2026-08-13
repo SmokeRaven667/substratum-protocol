@@ -8,8 +8,8 @@
             {{#unless ../isEditable}}disabled{{/unless}}>
         </label>
         <label class="member-dead-field">
-          <input type="checkbox" name="system.members.{{this.key}}.dead" {{#if this.dead}}checked{{/if}}
-            {{#unless ../isEditable}}disabled{{/unless}}>
+          <input type="checkbox" data-action="toggleMemberDead" data-member-key="{{this.key}}"
+            {{#if this.dead}}checked{{/if}} {{#unless ../isEditable}}disabled{{/unless}}>
           <span>{{localize "SUBSTRATUM.MemberDead"}}</span>
         </label>
       </li>

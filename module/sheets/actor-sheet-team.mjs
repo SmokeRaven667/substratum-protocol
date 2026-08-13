@@ -15,6 +15,7 @@ export default class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     actions: {
       rollSkillCheck: TeamSheet.#onRollSkillCheck,
       recordDeath: TeamSheet.#onRecordDeath,
+      toggleMemberDead: TeamSheet.#onToggleMemberDead,
       createItem: TeamSheet.#onCreateItem,
       editItem: TeamSheet.#onEditItem,
       deleteItem: TeamSheet.#onDeleteItem,
@@ -118,6 +119,22 @@ export default class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     const panel = target.closest('.substratum-death-controls');
     const skillKey = panel.querySelector('[data-role="death-skill"]').value;
     await recordTeamDeath(this.actor, skillKey);
+  }
+
+  /**
+   * The Dead checkbox isn't a document-bound `name="..."` field (unlike the
+   * rest of the sheet) so this can bundle the Stress clear into the same
+   * update as the flag flip when marking someone dead — matches Record
+   * Death's behavior instead of needing a separate reactive hook to catch a
+   * plain form submission. Reviving a member (unchecking) does not clear
+   * Stress; only dying does.
+   */
+  static async #onToggleMemberDead(event, target) {
+    const memberKey = target.dataset.memberKey;
+    const dead = target.checked;
+    const updateData = { [`system.members.${memberKey}.dead`]: dead };
+    if (dead) updateData['system.stress.value'] = 0;
+    await this.actor.update(updateData);
   }
 
   static async #onCreateItem() {
