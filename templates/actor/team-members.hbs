@@ -1,0 +1,13 @@
+<section class="tab members-tab {{tab.cssClass}}" data-tab="members" data-group="primary">
+  <ol class="member-list">
+    {{#each members}}
+      <li class="member-row">
+        <label class="member-field">
+          <span>{{localize this.labelKey}}</span>
+          <input type="text" name="system.members.{{this.key}}" value="{{this.value}}"
+            {{#unless ../isEditable}}disabled{{/unless}}>
+        </label>
+      </li>
+    {{/each}}
+  </ol>
+</section>

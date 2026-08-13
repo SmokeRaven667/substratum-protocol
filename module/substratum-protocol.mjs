@@ -6,6 +6,7 @@ import ScientistData from './data/actor-scientist.mjs';
 import TeamData from './data/actor-team.mjs';
 import GearData from './data/item-gear.mjs';
 import ScientistSheet from './sheets/actor-sheet-scientist.mjs';
+import TeamSheet from './sheets/actor-sheet-team.mjs';
 import GearSheet from './sheets/item-sheet-gear.mjs';
 
 Hooks.once('init', () => {
@@ -23,6 +24,10 @@ Hooks.once('init', () => {
   Actors.unregisterSheet('core', foundry.appv1.sheets.ActorSheet);
   Actors.registerSheet('substratum-protocol', ScientistSheet, {
     types: ['scientist'],
+    makeDefault: true
+  });
+  Actors.registerSheet('substratum-protocol', TeamSheet, {
+    types: ['team'],
     makeDefault: true
   });
 

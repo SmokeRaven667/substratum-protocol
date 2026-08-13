@@ -68,15 +68,15 @@
   font-style: italic;
 }
 
-/* Scientist actor sheet */
+/* Actor sheets (shared: scientist + team) */
 
-.substratum-protocol.actor.scientist .sheet-header {
+.substratum-protocol.actor .sheet-header {
   display: flex;
   gap: 0.75em;
   padding: 0.5em;
 }
 
-.substratum-protocol.actor.scientist .profile-img {
+.substratum-protocol.actor .profile-img {
   width: 96px;
   height: 96px;
   object-fit: cover;
@@ -84,38 +84,44 @@
   cursor: pointer;
 }
 
-.substratum-protocol.actor.scientist .header-fields {
+.substratum-protocol.actor .header-fields {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 0.35em;
 }
 
-.substratum-protocol.actor.scientist .header-fields > input[type='text'] {
+.substratum-protocol.actor .header-fields > input[type='text'] {
   font-size: 1.4em;
   font-weight: bold;
 }
 
-.substratum-protocol.actor.scientist .header-row {
+.substratum-protocol.actor .header-row {
   display: flex;
   gap: 1em;
   align-items: center;
 }
 
-.substratum-protocol.actor.scientist .header-field {
+.substratum-protocol.actor .header-field {
   display: flex;
   flex-direction: column;
   font-size: 0.85em;
 }
 
-.substratum-protocol.actor.scientist .stress-field {
+.substratum-protocol.actor .stress-field {
   flex-direction: row;
   align-items: center;
   gap: 0.25em;
 }
 
-.substratum-protocol.actor.scientist .stress-field input {
+.substratum-protocol.actor .stress-field input {
   width: 3em;
+}
+
+.substratum-protocol.actor .checkbox-field {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.35em;
 }
 
 .substratum-protocol.actor.scientist .anomaly-influence {
@@ -141,63 +147,87 @@
   color: #c62828;
 }
 
-.substratum-protocol.actor.scientist .sheet-tabs {
+.substratum-protocol.actor .sheet-tabs {
   gap: 1em;
   margin-bottom: 0.5em;
 }
 
-.substratum-protocol.actor.scientist .sheet-tabs .item {
+.substratum-protocol.actor .sheet-tabs .item {
   display: inline-flex;
   align-items: center;
   gap: 0.35em;
 }
 
-.substratum-protocol.actor.scientist .sheet-tabs .item.active {
+.substratum-protocol.actor .sheet-tabs .item.active {
   font-weight: bold;
   border-bottom: 2px solid var(--color-border-highlight, #ff6400);
 }
 
-.substratum-protocol.actor.scientist .skills-table {
+.substratum-protocol.actor .member-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+}
+
+.substratum-protocol.actor .member-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+}
+
+.substratum-protocol.actor .member-field span {
+  font-size: 0.85em;
+  opacity: 0.8;
+}
+
+.substratum-protocol.actor .member-field input[type='text'] {
+  font-size: 1em;
+}
+
+.substratum-protocol.actor .skills-table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 0.75em;
 }
 
-.substratum-protocol.actor.scientist .skills-table th,
-.substratum-protocol.actor.scientist .skills-table td {
+.substratum-protocol.actor .skills-table th,
+.substratum-protocol.actor .skills-table td {
   text-align: left;
   padding: 0.2em 0.5em;
 }
 
-.substratum-protocol.actor.scientist .skills-table tbody tr:hover {
+.substratum-protocol.actor .skills-table tbody tr:hover {
   background: var(--color-bg-option, rgba(127, 127, 127, 0.1));
 }
 
-.substratum-protocol.actor.scientist .substratum-roll-controls {
+.substratum-protocol.actor .substratum-roll-controls {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
 }
 
-.substratum-protocol.actor.scientist .roll-row {
+.substratum-protocol.actor .roll-row {
   display: flex;
   gap: 1em;
   align-items: center;
   flex-wrap: wrap;
 }
 
-.substratum-protocol.actor.scientist .tiebreak-row {
+.substratum-protocol.actor .tiebreak-row {
   font-size: 0.85em;
 }
 
-.substratum-protocol.actor.scientist .inventory-header {
+.substratum-protocol.actor .inventory-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.5em;
 }
 
-.substratum-protocol.actor.scientist .item-list {
+.substratum-protocol.actor .item-list {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -206,39 +236,39 @@
   gap: 0.25em;
 }
 
-.substratum-protocol.actor.scientist .item-list .item {
+.substratum-protocol.actor .item-list .item {
   display: flex;
   align-items: center;
   gap: 0.5em;
   padding: 0.25em;
 }
 
-.substratum-protocol.actor.scientist .item-img {
+.substratum-protocol.actor .item-img {
   width: 32px;
   height: 32px;
   object-fit: cover;
 }
 
-.substratum-protocol.actor.scientist .item-name {
+.substratum-protocol.actor .item-name {
   flex: 1;
   cursor: pointer;
 }
 
-.substratum-protocol.actor.scientist .item-die {
+.substratum-protocol.actor .item-die {
   font-weight: bold;
   padding: 0.1em 0.5em;
   border: 1px solid var(--color-border-light-tertiary, #999);
   border-radius: 3px;
 }
 
-.substratum-protocol.actor.scientist .item-flag {
+.substratum-protocol.actor .item-flag {
   font-size: 0.75em;
   padding: 0.1em 0.4em;
   border: 1px solid var(--color-border-light-tertiary, #999);
   border-radius: 3px;
 }
 
-.substratum-protocol.actor.scientist .item-list-empty {
+.substratum-protocol.actor .item-list-empty {
   opacity: 0.6;
   font-style: italic;
 }

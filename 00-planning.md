@@ -59,6 +59,11 @@ forward-looking; `phases/` is the archive.
   Release — Team sheet/exosuit abilities aren't built yet. See
   `phases/phase-10-packaging-release.md`.
 
+- **Team actor sheet — done.** `TeamSheet`: Members tab (roster free-text
+  for the other 3 team members), Skills tab (reuses the same roll-check
+  controls/`rollSkillCheck()` as the Scientist sheet), Inventory tab
+  (Team's 3-slot storage unit). See `phases/team-actor-sheet.md`.
+
 **No phase is currently "next"** — Phases 0–10 (the original roadmap)
 are all done. See Open Decisions and the Next step note below for what's
 actually left before this is a complete, released system.
@@ -162,9 +167,10 @@ The original 11-phase roadmap (0–10) is complete. What's left is real
 game-content work the rulebook defines but nothing has built yet —
 pick whichever the user wants to tackle next, there's no forced order:
 
-- **Team actor sheet** — the `team` DataModel (Phase 3) has had no sheet
-  since Phase 5 explicitly scoped it out; still falls back to no
-  registered sheet at all.
+- **Team death automation** — hitting max Stress steps down a Team max
+  Skill and clears Stress, tracked as a plain `deaths` field on the new
+  Team sheet with no automation behind it yet. See
+  `phases/team-actor-sheet.md`.
 - **Exosuit abilities** (Repair & Heal, Boost Actions, 3D Printer, Radio
   the Fracture Observatory, Sensor Deployment, Flashback, Systems
   Upgrade) — universal per-scientist actions that spend collected hand
