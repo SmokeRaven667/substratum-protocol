@@ -16,12 +16,11 @@
           {{#unless isEditable}}disabled{{/unless}}>
       </label>
 
-      <label class="header-field stress-field">
+      <div class="header-field stress-field">
         <span>{{localize "SUBSTRATUM.Deaths"}}</span>
-        <input type="number" name="system.deaths" value="{{system.deaths}}" min="0" max="3"
-          {{#unless isEditable}}disabled{{/unless}}>
+        <span class="deaths-value">{{system.deaths}}</span>
         <span class="stress-sep">/ 3</span>
-      </label>
+      </div>
     </div>
 
     <label class="header-field checkbox-field">

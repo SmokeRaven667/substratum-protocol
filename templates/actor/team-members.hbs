@@ -1,11 +1,16 @@
 <section class="tab members-tab {{tab.cssClass}}" data-tab="members" data-group="primary">
   <ol class="member-list">
     {{#each members}}
-      <li class="member-row">
+      <li class="member-row {{#if this.dead}}member-dead{{/if}}">
         <label class="member-field">
           <span>{{localize this.labelKey}}</span>
-          <input type="text" name="system.members.{{this.key}}" value="{{this.value}}"
+          <input type="text" name="system.members.{{this.key}}.name" value="{{this.name}}"
             {{#unless ../isEditable}}disabled{{/unless}}>
+        </label>
+        <label class="member-dead-field">
+          <input type="checkbox" name="system.members.{{this.key}}.dead" {{#if this.dead}}checked{{/if}}
+            {{#unless ../isEditable}}disabled{{/unless}}>
+          <span>{{localize "SUBSTRATUM.MemberDead"}}</span>
         </label>
       </li>
     {{/each}}

@@ -54,7 +54,8 @@ export default class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     context.members = ['member2', 'member3', 'member4'].map((key, index) => ({
       key,
       labelKey: `SUBSTRATUM.Member${index + 2}Label`,
-      value: actor.system.members[key]
+      name: actor.system.members[key].name,
+      dead: actor.system.members[key].dead
     }));
 
     context.skills = Object.entries(SUBSTRATUM.skills).map(([key, { label }]) => ({
@@ -114,7 +115,6 @@ export default class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
   }
 
   static async #onRecordDeath(event, target) {
-    if (this.actor.system.deaths >= 3) return;
     const panel = target.closest('.substratum-death-controls');
     const skillKey = panel.querySelector('[data-role="death-skill"]').value;
     await recordTeamDeath(this.actor, skillKey);

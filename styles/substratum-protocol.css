@@ -160,6 +160,10 @@
   padding: 0.25em;
 }
 
+.substratum-protocol.actor.team .deaths-value {
+  font-weight: bold;
+}
+
 .substratum-protocol.actor.scientist .anomaly-influence {
   margin-left: auto;
   font-weight: bold;
@@ -208,7 +212,14 @@
   gap: 0.75em;
 }
 
+.substratum-protocol.actor .member-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+}
+
 .substratum-protocol.actor .member-field {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 0.2em;
@@ -221,6 +232,19 @@
 
 .substratum-protocol.actor .member-field input[type='text'] {
   font-size: 1em;
+}
+
+.substratum-protocol.actor .member-dead-field {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  font-size: 0.85em;
+  white-space: nowrap;
+}
+
+.substratum-protocol.actor .member-row.member-dead .member-field input[type='text'] {
+  text-decoration: line-through;
+  opacity: 0.6;
 }
 
 .substratum-protocol.actor .skills-table {

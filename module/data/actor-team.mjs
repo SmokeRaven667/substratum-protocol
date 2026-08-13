@@ -3,6 +3,13 @@ import { skillsSchema } from './shared.mjs';
 
 const fields = foundry.data.fields;
 
+function memberSchema() {
+  return new fields.SchemaField({
+    name: new fields.StringField({ required: true, blank: true, initial: '' }),
+    dead: new fields.BooleanField({ required: true, initial: false })
+  });
+}
+
 /**
  * DataModel for the `team` Actor type — the combined party used in solo
  * play modes. Anomaly Influence does not apply to the Team (01-rulebook-digest.md),
@@ -23,18 +30,28 @@ export default class TeamData extends foundry.abstract.TypeDataModel {
       skills: skillsSchema(),
       // Free-text roster for the other 3 Team members (Team Folio, source
       // rulebook) — the lead Scientist is Member 01 and is tracked as their
-      // own `scientist` actor, not part of this list.
+      // own `scientist` actor, not part of this list. Each member also
+      // tracks whether they've died.
       members: new fields.SchemaField({
-        member2: new fields.StringField({ required: true, blank: true, initial: '' }),
-        member3: new fields.StringField({ required: true, blank: true, initial: '' }),
-        member4: new fields.StringField({ required: true, blank: true, initial: '' })
+        member2: memberSchema(),
+        member3: memberSchema(),
+        member4: memberSchema()
       }),
-      // Team hitting max Stress = a member dies; after the 3rd death the
-      // Team is wiped.
-      deaths: new fields.NumberField({ required: true, integer: true, min: 0, max: 3, initial: 0 }),
       // The Team can Deep Breath only once per session — GM/player resets
       // this manually at session start.
       deepBreathUsed: new fields.BooleanField({ required: true, initial: false })
     };
+  }
+
+  /**
+   * Deaths is derived from which members are marked dead, not a value set
+   * directly — this keeps the manual per-member "Dead" checkbox and the
+   * automatic Record Death button structurally in sync with no separate
+   * counter to drift (01-rulebook-digest.md: Team hitting max Stress = a
+   * member dies; after the 3rd, the Team is wiped).
+   */
+  prepareDerivedData() {
+    const memberKeys = ['member2', 'member3', 'member4'];
+    this.deaths = memberKeys.filter((key) => this.members[key].dead).length;
   }
 }
