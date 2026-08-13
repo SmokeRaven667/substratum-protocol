@@ -1,6 +1,6 @@
 import { SUBSTRATUM } from '../helpers/config.mjs';
 import { rollSkillCheck } from '../helpers/dice.mjs';
-import { recordTeamDeath } from '../helpers/team.mjs';
+import { recordTeamDeath, applyMemberDeath } from '../helpers/team.mjs';
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
@@ -123,18 +123,21 @@ export default class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
 
   /**
    * The Dead checkbox isn't a document-bound `name="..."` field (unlike the
-   * rest of the sheet) so this can bundle the Stress clear into the same
-   * update as the flag flip when marking someone dead — matches Record
-   * Death's behavior instead of needing a separate reactive hook to catch a
-   * plain form submission. Reviving a member (unchecking) does not clear
-   * Stress; only dying does.
+   * rest of the sheet) so this can route through the same `applyMemberDeath`
+   * helper Record Death uses — same Skill step-down, Stress clear, and chat
+   * card, using whichever Skill is currently picked in the header's "Skill
+   * to Step Down" control (shared across tabs, so it's always available
+   * here even while the Members tab is active). Reviving a member
+   * (unchecking) is just a flag flip — no consequence, no chat card.
    */
   static async #onToggleMemberDead(event, target) {
     const memberKey = target.dataset.memberKey;
-    const dead = target.checked;
-    const updateData = { [`system.members.${memberKey}.dead`]: dead };
-    if (dead) updateData['system.stress.value'] = 0;
-    await this.actor.update(updateData);
+    if (!target.checked) {
+      await this.actor.update({ [`system.members.${memberKey}.dead`]: false });
+      return;
+    }
+    const skillKey = this.element.querySelector('[data-role="death-skill"]').value;
+    await applyMemberDeath(this.actor, memberKey, skillKey);
   }
 
   static async #onCreateItem() {
