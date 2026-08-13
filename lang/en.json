@@ -47,6 +47,10 @@
     "AnomalyInfluence": "Anomaly Influence",
     "Deaths": "Deaths",
     "DeepBreathUsed": "Deep Breath Used This Session",
+    "SkillToStepDown": "Skill to Step Down",
+    "RecordDeath": "Record Death",
+    "TeamDeathHeadline": "A member of the Team has died.",
+    "TeamWiped": "The Team has been wiped.",
 
     "TabMembers": "Members",
     "TabSkills": "Skills",

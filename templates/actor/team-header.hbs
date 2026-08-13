@@ -29,5 +29,23 @@
         {{#unless isEditable}}disabled{{/unless}}>
       <span>{{localize "SUBSTRATUM.DeepBreathUsed"}}</span>
     </label>
+
+    {{#if isEditable}}
+      <div class="header-row substratum-death-controls">
+        <label class="header-field">
+          <span>{{localize "SUBSTRATUM.SkillToStepDown"}}</span>
+          <select data-role="death-skill">
+            {{#each skills}}<option value="{{this.key}}">{{localize this.label}}</option>{{/each}}
+          </select>
+        </label>
+        <button type="button" data-action="recordDeath" {{#if teamWiped}}disabled{{/if}}>
+          <i class="fas fa-skull"></i> {{localize "SUBSTRATUM.RecordDeath"}}
+        </button>
+      </div>
+    {{/if}}
+
+    {{#if teamWiped}}
+      <div class="team-wiped-banner">{{localize "SUBSTRATUM.TeamWiped"}}</div>
+    {{/if}}
   </div>
 </header>

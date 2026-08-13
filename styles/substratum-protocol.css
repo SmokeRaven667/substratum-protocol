@@ -68,6 +68,28 @@
   font-style: italic;
 }
 
+.substratum-team-death {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+  text-align: center;
+}
+
+.substratum-team-death .team-death-headline {
+  font-weight: bold;
+  color: #c62828;
+}
+
+.substratum-team-death .team-death-stepdown {
+  font-style: italic;
+}
+
+.substratum-team-death .team-death-wiped {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #c62828;
+}
+
 /* Actor sheets (shared: scientist + team) */
 
 .substratum-protocol.actor .sheet-header {
@@ -122,6 +144,20 @@
   flex-direction: row;
   align-items: center;
   gap: 0.35em;
+}
+
+.substratum-protocol.actor.team .substratum-death-controls {
+  align-items: flex-end;
+}
+
+.substratum-protocol.actor.team .team-wiped-banner {
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  color: #c62828;
+  border: 1px solid #c62828;
+  border-radius: 3px;
+  padding: 0.25em;
 }
 
 .substratum-protocol.actor.scientist .anomaly-influence {

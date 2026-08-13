@@ -1,5 +1,6 @@
 import { SUBSTRATUM } from '../helpers/config.mjs';
 import { rollSkillCheck } from '../helpers/dice.mjs';
+import { recordTeamDeath } from '../helpers/team.mjs';
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
@@ -13,6 +14,7 @@ export default class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     form: { submitOnChange: true },
     actions: {
       rollSkillCheck: TeamSheet.#onRollSkillCheck,
+      recordDeath: TeamSheet.#onRecordDeath,
       createItem: TeamSheet.#onCreateItem,
       editItem: TeamSheet.#onEditItem,
       deleteItem: TeamSheet.#onDeleteItem,
@@ -71,6 +73,8 @@ export default class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     context.storageSlotsUsed = context.items.filter((item) => !item.system.narrativeOnly).length;
     context.storageSlotsMax = SUBSTRATUM.storageUnitSlots;
 
+    context.teamWiped = actor.system.deaths >= 3;
+
     return context;
   }
 
@@ -107,6 +111,13 @@ export default class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       disadvantage: advantageMode === 'disadvantage',
       tiebreakSkill
     });
+  }
+
+  static async #onRecordDeath(event, target) {
+    if (this.actor.system.deaths >= 3) return;
+    const panel = target.closest('.substratum-death-controls');
+    const skillKey = panel.querySelector('[data-role="death-skill"]').value;
+    await recordTeamDeath(this.actor, skillKey);
   }
 
   static async #onCreateItem() {
