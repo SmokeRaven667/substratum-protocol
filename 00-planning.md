@@ -63,6 +63,11 @@ forward-looking; `phases/` is the archive.
   for the other 3 team members), Skills tab (reuses the same roll-check
   controls/`rollSkillCheck()` as the Scientist sheet), Inventory tab
   (Team's 3-slot storage unit). See `phases/team-actor-sheet.md`.
+- **Team death automation — done.** Record Death button (Skill picker +
+  Skill step-down + Stress clear + chat card) and a per-member Dead
+  checkbox on the Members tab that produces the identical consequence;
+  `deaths` is now derived from dead-member count rather than a
+  separately-tracked field. See `phases/team-death-automation.md`.
 
 **No phase is currently "next"** — Phases 0–10 (the original roadmap)
 are all done. See Open Decisions and the Next step note below for what's
@@ -167,10 +172,6 @@ The original 11-phase roadmap (0–10) is complete. What's left is real
 game-content work the rulebook defines but nothing has built yet —
 pick whichever the user wants to tackle next, there's no forced order:
 
-- **Team death automation** — hitting max Stress steps down a Team max
-  Skill and clears Stress, tracked as a plain `deaths` field on the new
-  Team sheet with no automation behind it yet. See
-  `phases/team-actor-sheet.md`.
 - **Exosuit abilities** (Repair & Heal, Boost Actions, 3D Printer, Radio
   the Fracture Observatory, Sensor Deployment, Flashback, Systems
   Upgrade) — universal per-scientist actions that spend collected hand
