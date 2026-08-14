@@ -21,7 +21,7 @@
   },
   "system": {
     "description": "<p>A compressed-air line launcher with a magnetic anchor head. Standard-issue for crossing chasms, scaling ruins, and hauling teammates out of trouble.</p>",
-    "dieRating": "d8",
+    "dieRating": { "max": "d8", "current": "d8" },
     "narrativeOnly": false,
     "broken": false
   },

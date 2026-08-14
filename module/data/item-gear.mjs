@@ -10,10 +10,12 @@ export default class GearData extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     return {
       description: new fields.HTMLField({ required: false, blank: true, initial: '' }),
-      dieRating: new fields.StringField({
-        required: true,
-        choices: SUBSTRATUM.dieChain,
-        initial: 'd4'
+      // Mirrors the Skill max/current split (shared.mjs): max is the item's
+      // ceiling (set at creation/chargen), current steps down with use and
+      // is what Repair & Heal (helpers/exosuit.mjs) resets back to max.
+      dieRating: new fields.SchemaField({
+        max: new fields.StringField({ required: true, choices: SUBSTRATUM.dieChain, initial: 'd4' }),
+        current: new fields.StringField({ required: true, choices: SUBSTRATUM.dieChain, initial: 'd4' })
       }),
       // Narrative-only items are free-form and don't consume a storage slot.
       narrativeOnly: new fields.BooleanField({ required: true, initial: false }),

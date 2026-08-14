@@ -1,6 +1,17 @@
 import { SUBSTRATUM } from '../helpers/config.mjs';
 import { rollSkillCheck } from '../helpers/dice.mjs';
 import { recordTeamDeath, applyMemberDeath } from '../helpers/team.mjs';
+import { getActorHandCards } from '../helpers/cards.mjs';
+import {
+  repairAndHeal,
+  boostActions,
+  printItem,
+  radioObservatory,
+  radioObservatorySolo,
+  sensorDeployment,
+  flashback,
+  systemsUpgrade
+} from '../helpers/exosuit.mjs';
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
@@ -19,7 +30,14 @@ export default class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       createItem: TeamSheet.#onCreateItem,
       editItem: TeamSheet.#onEditItem,
       deleteItem: TeamSheet.#onDeleteItem,
-      editImage: TeamSheet.#onEditImage
+      editImage: TeamSheet.#onEditImage,
+      repairHeal: TeamSheet.#onRepairHeal,
+      boostActions: TeamSheet.#onBoostActions,
+      printItem: TeamSheet.#onPrintItem,
+      radioObservatory: TeamSheet.#onRadioObservatory,
+      sensorDeployment: TeamSheet.#onSensorDeployment,
+      flashback: TeamSheet.#onFlashback,
+      systemsUpgrade: TeamSheet.#onSystemsUpgrade
     }
   };
 
@@ -28,7 +46,8 @@ export default class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     tabs: { template: 'systems/substratum-protocol/templates/actor/tab-navigation.hbs' },
     members: { template: 'systems/substratum-protocol/templates/actor/team-members.hbs' },
     skills: { template: 'systems/substratum-protocol/templates/actor/actor-skills.hbs' },
-    inventory: { template: 'systems/substratum-protocol/templates/actor/actor-inventory.hbs' }
+    inventory: { template: 'systems/substratum-protocol/templates/actor/actor-inventory.hbs' },
+    exosuit: { template: 'systems/substratum-protocol/templates/actor/actor-exosuit.hbs' }
   };
 
   static TABS = {
@@ -36,12 +55,16 @@ export default class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       tabs: [
         { id: 'members', label: 'SUBSTRATUM.TabMembers', icon: 'fas fa-users' },
         { id: 'skills', label: 'SUBSTRATUM.TabSkills', icon: 'fas fa-dice' },
-        { id: 'inventory', label: 'SUBSTRATUM.TabInventory', icon: 'fas fa-suitcase' }
+        { id: 'inventory', label: 'SUBSTRATUM.TabInventory', icon: 'fas fa-suitcase' },
+        { id: 'exosuit', label: 'SUBSTRATUM.TabExosuit', icon: 'fas fa-user-astronaut' }
       ],
       initial: 'members',
       labelPrefix: 'SUBSTRATUM'
     }
   };
+
+  /** Last-picked roll Skills, kept across re-render (UI state, not actor data). */
+  lastRollSkills = null;
 
   async _prepareContext(options) {
     const context = await super._prepareContext(options);
@@ -77,6 +100,16 @@ export default class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
 
     context.teamWiped = actor.system.deaths >= 3;
 
+    context.boostBonus = actor.system.boostBonus;
+    context.lastRollSkills = this.lastRollSkills;
+
+    context.hand = await getActorHandCards(actor);
+    const otherActors = game.actors.filter((a) => a.id !== actor.id && ['scientist', 'team'].includes(a.type));
+    context.boostTargets = [
+      { id: actor.id, name: game.i18n.format('SUBSTRATUM.ExosuitBoostSelf', { name: actor.name }) },
+      ...otherActors.map((a) => ({ id: a.id, name: a.name }))
+    ];
+
     return context;
   }
 
@@ -93,26 +126,122 @@ export default class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     const skill2 = panel.querySelector('[data-role="roll-skill-2"]').value;
     const advantageMode = panel.querySelector('[data-role="roll-advantage"]').value;
     const stressSpend = Number(panel.querySelector('[data-role="roll-stress-spend"]').value) || 0;
+    const bonus = Number(panel.querySelector('[data-role="roll-bonus"]').value) || 0;
     const tiebreakChecked = panel.querySelector('[data-role="roll-tiebreak"]:checked');
     const tiebreakSkill =
       tiebreakChecked && [skill1, skill2].includes(tiebreakChecked.value) ? tiebreakChecked.value : null;
-    return { skill1, skill2, advantageMode, stressSpend, tiebreakSkill };
+    return { skill1, skill2, advantageMode, stressSpend, bonus, tiebreakSkill };
+  }
+
+  #readSelectedCardIds() {
+    return Array.from(this.element.querySelectorAll('[data-role="hand-card"]:checked')).map((el) => el.value);
+  }
+
+  #readSelectedCardSuits() {
+    return Array.from(this.element.querySelectorAll('[data-role="hand-card"]:checked')).map((el) => el.dataset.suit);
   }
 
   static async #onRollSkillCheck(event, target) {
-    const { skill1, skill2, advantageMode, stressSpend, tiebreakSkill } = this.#readRollControls(target);
+    const { skill1, skill2, advantageMode, stressSpend, bonus, tiebreakSkill } = this.#readRollControls(target);
     if (skill1 === skill2) {
       ui.notifications.warn(game.i18n.localize('SUBSTRATUM.WarnPickTwoSkills'));
       return;
     }
+    this.lastRollSkills = { skill1, skill2 };
     await rollSkillCheck({
       actor: this.actor,
       skills: [skill1, skill2],
       stressSpend,
+      bonus,
       advantage: advantageMode === 'advantage',
       disadvantage: advantageMode === 'disadvantage',
       tiebreakSkill
     });
+    await this.render();
+  }
+
+  static async #onRepairHeal(event, target) {
+    const cardIds = this.#readSelectedCardIds();
+    if (cardIds.length !== 2) {
+      ui.notifications.warn(game.i18n.localize('SUBSTRATUM.WarnPickTwoCards'));
+      return;
+    }
+    const repairTarget = this.element.querySelector('[data-role="repair-target"]').value;
+    await repairAndHeal(this.actor, { cardIds, target: repairTarget });
+    await this.render();
+  }
+
+  static async #onBoostActions(event, target) {
+    const cardIds = this.#readSelectedCardIds();
+    const suits = new Set(this.#readSelectedCardSuits());
+    if (cardIds.length < 2 || cardIds.length % 2 !== 0) {
+      ui.notifications.warn(game.i18n.localize('SUBSTRATUM.WarnPickEvenCards'));
+      return;
+    }
+    if (suits.size > 1) {
+      ui.notifications.warn(game.i18n.localize('SUBSTRATUM.WarnPickSameSuit'));
+      return;
+    }
+    const targetActorId = this.element.querySelector('[data-role="boost-target"]').value;
+    await boostActions(this.actor, { cardIds, targetActorId });
+    await this.render();
+  }
+
+  static async #onPrintItem(event, target) {
+    const cardIds = this.#readSelectedCardIds();
+    if (cardIds.length < 1) {
+      ui.notifications.warn(game.i18n.localize('SUBSTRATUM.WarnPickAtLeastOneCard'));
+      return;
+    }
+    await printItem(this.actor, { cardIds });
+    await this.render();
+  }
+
+  static async #onRadioObservatory(event, target) {
+    const solo = this.element.querySelector('[data-role="radio-solo"]').checked;
+    if (solo) {
+      await radioObservatorySolo(this.actor);
+      await this.render();
+      return;
+    }
+    const cardIds = this.#readSelectedCardIds();
+    if (cardIds.length !== 1) {
+      ui.notifications.warn(game.i18n.localize('SUBSTRATUM.WarnPickOneCard'));
+      return;
+    }
+    await radioObservatory(this.actor, { cardId: cardIds[0] });
+    await this.render();
+  }
+
+  static async #onSensorDeployment(event, target) {
+    const cardIds = this.#readSelectedCardIds();
+    if (cardIds.length !== 1) {
+      ui.notifications.warn(game.i18n.localize('SUBSTRATUM.WarnPickOneCard'));
+      return;
+    }
+    await sensorDeployment(this.actor, { cardId: cardIds[0] });
+    await this.render();
+  }
+
+  static async #onFlashback(event, target) {
+    const cardIds = this.#readSelectedCardIds();
+    if (cardIds.length !== 1) {
+      ui.notifications.warn(game.i18n.localize('SUBSTRATUM.WarnPickOneCard'));
+      return;
+    }
+    await flashback(this.actor, { cardId: cardIds[0] });
+    await this.render();
+  }
+
+  static async #onSystemsUpgrade(event, target) {
+    const cardIds = this.#readSelectedCardIds();
+    if (cardIds.length !== 8) {
+      ui.notifications.warn(game.i18n.localize('SUBSTRATUM.WarnPickEightCards'));
+      return;
+    }
+    const skillKey = this.element.querySelector('[data-role="upgrade-skill"]').value;
+    await systemsUpgrade(this.actor, { cardIds, skillKey });
+    await this.render();
   }
 
   static async #onRecordDeath(event, target) {

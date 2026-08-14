@@ -21,7 +21,7 @@
   },
   "system": {
     "description": "<p>A sealed field-medical kit: sutures, stim injectors, and burn dressing sized for exosuit breach injuries.</p>",
-    "dieRating": "d8",
+    "dieRating": { "max": "d8", "current": "d8" },
     "narrativeOnly": false,
     "broken": false
   },

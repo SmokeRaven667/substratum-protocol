@@ -29,17 +29,25 @@
   <fieldset class="substratum-roll-controls">
     <legend>{{localize "SUBSTRATUM.SkillCheck"}}</legend>
 
+    {{#if boostBonus}}
+      <p class="boost-bonus-banked">{{localize "SUBSTRATUM.BoostBonusAvailable"}}: +{{boostBonus}}</p>
+    {{/if}}
+
     <div class="roll-row">
       <label>
         <span>{{localize "SUBSTRATUM.SkillOne"}}</span>
         <select data-role="roll-skill-1">
-          {{#each skills}}<option value="{{this.key}}">{{localize this.label}}</option>{{/each}}
+          {{#each skills}}
+            <option value="{{this.key}}" {{#if (eq this.key ../lastRollSkills.skill1)}}selected{{/if}}>{{localize this.label}}</option>
+          {{/each}}
         </select>
       </label>
       <label>
         <span>{{localize "SUBSTRATUM.SkillTwo"}}</span>
         <select data-role="roll-skill-2">
-          {{#each skills}}<option value="{{this.key}}">{{localize this.label}}</option>{{/each}}
+          {{#each skills}}
+            <option value="{{this.key}}" {{#if (eq this.key ../lastRollSkills.skill2)}}selected{{/if}}>{{localize this.label}}</option>
+          {{/each}}
         </select>
       </label>
     </div>
@@ -56,6 +64,10 @@
       <label>
         <span>{{localize "SUBSTRATUM.StressSpend"}}</span>
         <input type="number" data-role="roll-stress-spend" min="0" step="1" value="0">
+      </label>
+      <label>
+        <span>{{localize "SUBSTRATUM.Bonus"}}</span>
+        <input type="number" data-role="roll-bonus" min="0" step="1" value="0">
       </label>
     </div>
 

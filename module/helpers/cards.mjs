@@ -77,7 +77,7 @@ export async function ensureActorHand(actor) {
  * pile back into the deck; only if that's still not enough (every card is
  * out in players' hands) reclaim from wherever the rest are via recall().
  */
-async function ensureDrawable(deck, discard, needed) {
+export async function ensureDrawable(deck, discard, needed) {
   if (deck.availableCards.length >= needed) return;
 
   if (discard.cards.size > 0) {
@@ -108,4 +108,30 @@ export async function drawSkillCheckCards(actor) {
 /** Move a card that wasn't beaten from an actor's hand to the discard pile. */
 export async function discardCard(hand, discard, card) {
   await hand.pass(discard, [card.id]);
+}
+
+/** The actor's current hand, as plain {id, name, suit, value} for sheet display. */
+export async function getActorHandCards(actor) {
+  const hand = await ensureActorHand(actor);
+  return hand.cards.contents
+    .map((card) => ({ id: card.id, name: card.name, suit: card.suit, value: card.value }))
+    .sort((a, b) => a.suit.localeCompare(b.suit) || a.value - b.value);
+}
+
+/**
+ * Exosuit abilities' "lay down a card vs MC" (848511358-Substratum-Protocol.pdf
+ * p.29): the player lays a card from their hand, MC draws the top card of the
+ * shared draw deck, values compared (player wins on >=), both cards end up in
+ * the discard pile regardless of outcome.
+ */
+export async function layCardVsMC(actor, cardId) {
+  const { deck, discard } = await ensureDeckEconomy();
+  await ensureDrawable(deck, discard, 1);
+
+  const hand = await ensureActorHand(actor);
+  const playedCard = hand.cards.get(cardId);
+  const [mcCard] = await discard.draw(deck, 1, { how: CONST.CARD_DRAW_MODES.TOP });
+  await discardCard(hand, discard, playedCard);
+
+  return { playedCard, mcCard, win: playedCard.value >= mcCard.value };
 }

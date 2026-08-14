@@ -21,7 +21,7 @@
   },
   "system": {
     "description": "<p>A rugged, field-serviceable tool rig built for exosuit maintenance and improvised fabrication. Covers most MAKE and BREAK tasks a scientist runs into outside the lab.</p>",
-    "dieRating": "d10",
+    "dieRating": { "max": "d10", "current": "d10" },
     "narrativeOnly": false,
     "broken": false
   },

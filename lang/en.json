@@ -33,6 +33,7 @@
     "DiscardPileName": "Substratum Discard Pile",
     "ActorHandName": "{name}'s Hand",
     "StressSpend": "Stress Spend",
+    "Bonus": "Bonus",
     "AnomalyPenalty": "Anomaly Penalty",
     "Sum": "Sum",
     "OutcomeGood": "Good",
@@ -55,6 +56,7 @@
     "TabMembers": "Members",
     "TabSkills": "Skills",
     "TabInventory": "Inventory",
+    "TabExosuit": "Exosuit",
 
     "Member2Label": "Member 02 — Name, Pronouns, Scientific Specialty",
     "Member3Label": "Member 03 — Name, Pronouns, Scientific Specialty",
@@ -84,7 +86,67 @@
     "NoGear": "No gear yet.",
 
     "DieRating": "Die Rating",
-    "Description": "Description"
+    "MaxDieRating": "Max Die Rating",
+    "Description": "Description",
+
+    "ExosuitHand": "Hand",
+    "ExosuitNoCards": "No cards collected yet — beat a card during a Skill Check to add it to your hand.",
+    "Vs": "vs",
+    "OutcomeWin": "Win",
+    "OutcomeLose": "Lose",
+
+    "ExosuitRepairHeal": "Repair & Heal",
+    "ExosuitRepairHealHint": "Discard 2 cards: clear 1 Stress, or repair an item back to its max die.",
+    "ExosuitRepairTarget": "Target",
+    "ExosuitRepairStress": "Cleared 1 Stress.",
+    "ExosuitRepairItem": "Repaired {name} to {die}.",
+
+    "ExosuitBoostActions": "Boost Actions",
+    "ExosuitBoostActionsHint": "Before a Skill Check, discard 2 same-suit cards to add +1 to the result. Stacks per extra 2 cards.",
+    "ExosuitBoostTarget": "Applies To",
+    "ExosuitBoostSelf": "{name} (Self)",
+    "ExosuitBoostSummary": "+{bonus} to {target}'s next Skill Check.",
+    "BoostBonusAvailable": "Boost Actions Available",
+
+    "Exosuit3DPrinter": "3D Printer",
+    "Exosuit3DPrinterHint": "Lay down cards vs MC, up to your hand max. Each win makes the printed item more powerful.",
+    "ExosuitPrintedItemName": "Printed Item",
+    "ExosuitPrintSummary": "{wins} win(s) — printed a {die} item.",
+    "ExosuitComplication": "The item arrives with a complication.",
+
+    "ExosuitRadio": "Radio the Fracture Observatory",
+    "ExosuitRadioHint": "Lay 1 card vs MC to ask Mission Control a question.",
+    "ExosuitRadioSolo": "Solo (roll 2d6 instead)",
+    "RadioRoll2d6": "2d6",
+    "RadioWin": "Mission Control hears you — a conversation begins.",
+    "RadioLose": "The connection is garbled. Only a few words come through.",
+    "RadioAnswerNoAnd": "The answer is no, and…",
+    "RadioAnswerNo": "The answer is no.",
+    "RadioAnswerYesBut": "The answer is yes, but…",
+    "RadioAnswerYes": "The answer is yes.",
+    "RadioAnswerYesAnd": "The answer is yes, and…",
+
+    "ExosuitSensorDeployment": "Sensor Deployment",
+    "ExosuitSensorDeploymentHint": "Lay 1 card vs MC. Your stated answer about the scene becomes canon.",
+    "SensorWin": "Your answer becomes fact, and…",
+    "SensorLose": "Your answer becomes fact, but…",
+
+    "ExosuitFlashback": "Flashback",
+    "ExosuitFlashbackHint": "Lay 1 card vs MC. Win for advantage, lose for disadvantage on your next Skill Check.",
+    "FlashbackWin": "Describe the flashback — advantage on your next Skill Check.",
+    "FlashbackLose": "Describe a negative flashback — disadvantage on your next Skill Check.",
+
+    "ExosuitSystemsUpgrade": "Systems Upgrade",
+    "ExosuitSystemsUpgradeHint": "Discard 8 cards: clear all Stress, +1 Stress capacity, reset all Skills to max, +1 step to one Skill's max die.",
+    "ExosuitUpgradeSkill": "Skill to Increase",
+    "ExosuitUpgradeSummary": "{skill}'s max die increased to {max}.",
+
+    "WarnPickTwoCards": "Select exactly 2 cards from your hand.",
+    "WarnPickEvenCards": "Select an even number of cards (2 or more), all the same suit.",
+    "WarnPickSameSuit": "Selected cards must all be the same suit.",
+    "WarnPickAtLeastOneCard": "Select at least 1 card from your hand.",
+    "WarnPickOneCard": "Select exactly 1 card from your hand.",
+    "WarnPickEightCards": "Select exactly 8 cards from your hand."
   },
   "TYPES": {
     "Actor": {

@@ -21,7 +21,7 @@
   },
   "system": {
     "description": "<p>Short-range comms unit, hardened against Anomaly interference. Reception gets worse the deeper into a Depth Sector you go.</p>",
-    "dieRating": "d6",
+    "dieRating": { "max": "d6", "current": "d6" },
     "narrativeOnly": false,
     "broken": false
   },

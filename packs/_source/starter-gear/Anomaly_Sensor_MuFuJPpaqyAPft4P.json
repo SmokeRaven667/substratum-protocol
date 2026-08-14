@@ -21,7 +21,7 @@
   },
   "system": {
     "description": "<p>A handheld instrument that reads local Anomaly Influence fluctuations. Useful for STUDY actions, unreliable at 8+ Stress like everything else down here.</p>",
-    "dieRating": "d10",
+    "dieRating": { "max": "d10", "current": "d10" },
     "narrativeOnly": false,
     "broken": false
   },
