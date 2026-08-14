@@ -1,0 +1,10 @@
+<div class="substratum-team-death">
+  <div class="team-death-headline">{{localize "SUBSTRATUM.TeamDeathHeadline"}}</div>
+  <div class="team-death-stepdown">
+    {{localize "SUBSTRATUM.StepDown" skill=(localize skillLabel) from=fromMax to=newMax}}
+  </div>
+  <div class="team-death-count">{{localize "SUBSTRATUM.Deaths"}}: {{deaths}} / 3</div>
+  {{#if wiped}}
+    <div class="team-death-wiped">{{localize "SUBSTRATUM.TeamWiped"}}</div>
+  {{/if}}
+</div>

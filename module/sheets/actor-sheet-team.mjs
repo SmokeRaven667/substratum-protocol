@@ -1,5 +1,6 @@
 import { SUBSTRATUM } from '../helpers/config.mjs';
 import { rollSkillCheck } from '../helpers/dice.mjs';
+import { recordTeamDeath, applyMemberDeath } from '../helpers/team.mjs';
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
@@ -13,6 +14,8 @@ export default class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     form: { submitOnChange: true },
     actions: {
       rollSkillCheck: TeamSheet.#onRollSkillCheck,
+      recordDeath: TeamSheet.#onRecordDeath,
+      toggleMemberDead: TeamSheet.#onToggleMemberDead,
       createItem: TeamSheet.#onCreateItem,
       editItem: TeamSheet.#onEditItem,
       deleteItem: TeamSheet.#onDeleteItem,
@@ -52,7 +55,8 @@ export default class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     context.members = ['member2', 'member3', 'member4'].map((key, index) => ({
       key,
       labelKey: `SUBSTRATUM.Member${index + 2}Label`,
-      value: actor.system.members[key]
+      name: actor.system.members[key].name,
+      dead: actor.system.members[key].dead
     }));
 
     context.skills = Object.entries(SUBSTRATUM.skills).map(([key, { label }]) => ({
@@ -70,6 +74,8 @@ export default class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     context.items = actor.items.filter((item) => item.type === 'gear');
     context.storageSlotsUsed = context.items.filter((item) => !item.system.narrativeOnly).length;
     context.storageSlotsMax = SUBSTRATUM.storageUnitSlots;
+
+    context.teamWiped = actor.system.deaths >= 3;
 
     return context;
   }
@@ -107,6 +113,31 @@ export default class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       disadvantage: advantageMode === 'disadvantage',
       tiebreakSkill
     });
+  }
+
+  static async #onRecordDeath(event, target) {
+    const panel = target.closest('.substratum-death-controls');
+    const skillKey = panel.querySelector('[data-role="death-skill"]').value;
+    await recordTeamDeath(this.actor, skillKey);
+  }
+
+  /**
+   * The Dead checkbox isn't a document-bound `name="..."` field (unlike the
+   * rest of the sheet) so this can route through the same `applyMemberDeath`
+   * helper Record Death uses — same Skill step-down, Stress clear, and chat
+   * card, using whichever Skill is currently picked in the header's "Skill
+   * to Step Down" control (shared across tabs, so it's always available
+   * here even while the Members tab is active). Reviving a member
+   * (unchecking) is just a flag flip — no consequence, no chat card.
+   */
+  static async #onToggleMemberDead(event, target) {
+    const memberKey = target.dataset.memberKey;
+    if (!target.checked) {
+      await this.actor.update({ [`system.members.${memberKey}.dead`]: false });
+      return;
+    }
+    const skillKey = this.element.querySelector('[data-role="death-skill"]').value;
+    await applyMemberDeath(this.actor, memberKey, skillKey);
   }
 
   static async #onCreateItem() {

@@ -16,12 +16,11 @@
           {{#unless isEditable}}disabled{{/unless}}>
       </label>
 
-      <label class="header-field stress-field">
+      <div class="header-field stress-field">
         <span>{{localize "SUBSTRATUM.Deaths"}}</span>
-        <input type="number" name="system.deaths" value="{{system.deaths}}" min="0" max="3"
-          {{#unless isEditable}}disabled{{/unless}}>
+        <span class="deaths-value">{{system.deaths}}</span>
         <span class="stress-sep">/ 3</span>
-      </label>
+      </div>
     </div>
 
     <label class="header-field checkbox-field">
@@ -29,5 +28,23 @@
         {{#unless isEditable}}disabled{{/unless}}>
       <span>{{localize "SUBSTRATUM.DeepBreathUsed"}}</span>
     </label>
+
+    {{#if isEditable}}
+      <div class="header-row substratum-death-controls">
+        <label class="header-field">
+          <span>{{localize "SUBSTRATUM.SkillToStepDown"}}</span>
+          <select data-role="death-skill">
+            {{#each skills}}<option value="{{this.key}}">{{localize this.label}}</option>{{/each}}
+          </select>
+        </label>
+        <button type="button" data-action="recordDeath" {{#if teamWiped}}disabled{{/if}}>
+          <i class="fas fa-skull"></i> {{localize "SUBSTRATUM.RecordDeath"}}
+        </button>
+      </div>
+    {{/if}}
+
+    {{#if teamWiped}}
+      <div class="team-wiped-banner">{{localize "SUBSTRATUM.TeamWiped"}}</div>
+    {{/if}}
   </div>
 </header>

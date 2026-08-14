@@ -47,6 +47,10 @@
     "AnomalyInfluence": "Anomaly Influence",
     "Deaths": "Deaths",
     "DeepBreathUsed": "Deep Breath Used This Session",
+    "SkillToStepDown": "Skill to Step Down",
+    "RecordDeath": "Record Death",
+    "TeamDeathHeadline": "A member of the Team has died.",
+    "TeamWiped": "The Team has been wiped.",
 
     "TabMembers": "Members",
     "TabSkills": "Skills",
@@ -55,6 +59,7 @@
     "Member2Label": "Member 02 — Name, Pronouns, Scientific Specialty",
     "Member3Label": "Member 03 — Name, Pronouns, Scientific Specialty",
     "Member4Label": "Member 04 — Name, Pronouns, Scientific Specialty",
+    "MemberDead": "Dead",
 
     "Skill": "Skill",
     "SkillMax": "Max",

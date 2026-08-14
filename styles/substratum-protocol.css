@@ -68,6 +68,28 @@
   font-style: italic;
 }
 
+.substratum-team-death {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+  text-align: center;
+}
+
+.substratum-team-death .team-death-headline {
+  font-weight: bold;
+  color: #c62828;
+}
+
+.substratum-team-death .team-death-stepdown {
+  font-style: italic;
+}
+
+.substratum-team-death .team-death-wiped {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #c62828;
+}
+
 /* Actor sheets (shared: scientist + team) */
 
 .substratum-protocol.actor .sheet-header {
@@ -124,6 +146,24 @@
   gap: 0.35em;
 }
 
+.substratum-protocol.actor.team .substratum-death-controls {
+  align-items: flex-end;
+}
+
+.substratum-protocol.actor.team .team-wiped-banner {
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  color: #c62828;
+  border: 1px solid #c62828;
+  border-radius: 3px;
+  padding: 0.25em;
+}
+
+.substratum-protocol.actor.team .deaths-value {
+  font-weight: bold;
+}
+
 .substratum-protocol.actor.scientist .anomaly-influence {
   margin-left: auto;
   font-weight: bold;
@@ -172,7 +212,14 @@
   gap: 0.75em;
 }
 
+.substratum-protocol.actor .member-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+}
+
 .substratum-protocol.actor .member-field {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 0.2em;
@@ -185,6 +232,19 @@
 
 .substratum-protocol.actor .member-field input[type='text'] {
   font-size: 1em;
+}
+
+.substratum-protocol.actor .member-dead-field {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  font-size: 0.85em;
+  white-space: nowrap;
+}
+
+.substratum-protocol.actor .member-row.member-dead .member-field input[type='text'] {
+  text-decoration: line-through;
+  opacity: 0.6;
 }
 
 .substratum-protocol.actor .skills-table {
