@@ -31,6 +31,16 @@ export const SUBSTRATUM = {
 
   storageUnitSlots: 3,
 
+  // Radio the Fracture Observatory, Solo-mode 2d6 oracle table
+  // (848511358-Substratum-Protocol.pdf p.30).
+  radioAnswerTable: [
+    { min: 2, max: 3, label: 'SUBSTRATUM.RadioAnswerNoAnd' },
+    { min: 4, max: 6, label: 'SUBSTRATUM.RadioAnswerNo' },
+    { min: 7, max: 7, label: 'SUBSTRATUM.RadioAnswerYesBut' },
+    { min: 8, max: 10, label: 'SUBSTRATUM.RadioAnswerYes' },
+    { min: 11, max: 12, label: 'SUBSTRATUM.RadioAnswerYesAnd' }
+  ],
+
   scientistDefaults: { stressCapacity: 8 },
   teamDefaults: { stressCapacity: 4 },
 

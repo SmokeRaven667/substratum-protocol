@@ -1,0 +1,28 @@
+<div class="substratum-exosuit-action">
+  <div class="exosuit-action-headline">{{localize abilityLabel}}</div>
+
+  {{#if comparisons}}
+    <div class="skill-check-cards exosuit-comparisons">
+      {{#each comparisons}}
+        <div class="exosuit-comparison {{#if this.win}}beaten{{else}}unbeaten{{/if}}">
+          <span class="card-name">{{this.played.name}}</span>
+          <span class="vs">{{localize "SUBSTRATUM.Vs"}}</span>
+          <span class="card-name">{{this.mc.name}}</span>
+          <span class="exosuit-comparison-outcome">
+            {{#if this.win}}{{localize "SUBSTRATUM.OutcomeWin"}}{{else}}{{localize "SUBSTRATUM.OutcomeLose"}}{{/if}}
+          </span>
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
+
+  {{#if tableRoll}}
+    <div class="exosuit-table-roll">{{localize "SUBSTRATUM.RadioRoll2d6"}}: {{tableRoll}}</div>
+  {{/if}}
+
+  <div class="exosuit-action-summary">{{summary}}</div>
+
+  {{#if complication}}
+    <div class="exosuit-action-complication">{{localize "SUBSTRATUM.ExosuitComplication"}}</div>
+  {{/if}}
+</div>

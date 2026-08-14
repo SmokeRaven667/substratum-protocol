@@ -68,6 +68,17 @@ forward-looking; `phases/` is the archive.
   checkbox on the Members tab that produces the identical consequence;
   `deaths` is now derived from dead-member count rather than a
   separately-tracked field. See `phases/team-death-automation.md`.
+- **Exosuit abilities — done.** All 7 (Repair & Heal, Boost Actions, 3D
+  Printer, Radio the Fracture Observatory, Sensor Deployment, Flashback,
+  Systems Upgrade), live-verified by the user. Along the way: gear items
+  gained a Skill-style `{max, current}` die rating so Repair & Heal has a
+  real max to repair to; Boost Actions now banks onto
+  `system.boostBonus` and auto-applies/clears on the target's next Skill
+  Check instead of requiring manual entry; and a real bug was found and
+  fixed where every actor sheet tab rendered stacked at once (Foundry's
+  core CSS doesn't hide inactive custom-sheet tabs on its own) — this
+  also added independent scrolling per tab. See
+  `phases/exosuit-abilities.md`.
 
 **No phase is currently "next"** — Phases 0–10 (the original roadmap)
 are all done. See Open Decisions and the Next step note below for what's
@@ -172,10 +183,6 @@ The original 11-phase roadmap (0–10) is complete. What's left is real
 game-content work the rulebook defines but nothing has built yet —
 pick whichever the user wants to tackle next, there's no forced order:
 
-- **Exosuit abilities** (Repair & Heal, Boost Actions, 3D Printer, Radio
-  the Fracture Observatory, Sensor Deployment, Flashback, Systems
-  Upgrade) — universal per-scientist actions that spend collected hand
-  cards; noted as deferred since Phase 4.
 - **Overclock** and **Deep Breath** as actual sheet buttons — the
   mechanics are understood (`01-rulebook-digest.md`) but nothing on the
   scientist sheet triggers them yet.

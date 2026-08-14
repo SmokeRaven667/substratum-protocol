@@ -39,7 +39,11 @@ export default class TeamData extends foundry.abstract.TypeDataModel {
       }),
       // The Team can Deep Breath only once per session — GM/player resets
       // this manually at session start.
-      deepBreathUsed: new fields.BooleanField({ required: true, initial: false })
+      deepBreathUsed: new fields.BooleanField({ required: true, initial: false }),
+      // Boost Actions (helpers/exosuit.mjs) banks a +N here when spent on
+      // someone else (or oneself) rather than applying immediately; the
+      // next Skill Check this actor rolls consumes it automatically.
+      boostBonus: new fields.NumberField({ required: true, integer: true, min: 0, initial: 0 })
     };
   }
 

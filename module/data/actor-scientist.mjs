@@ -18,7 +18,11 @@ export default class ScientistData extends foundry.abstract.TypeDataModel {
           initial: SUBSTRATUM.scientistDefaults.stressCapacity
         })
       }),
-      skills: skillsSchema()
+      skills: skillsSchema(),
+      // Boost Actions (helpers/exosuit.mjs) banks a +N here when spent on
+      // someone else (or oneself) rather than applying immediately; the
+      // next Skill Check this actor rolls consumes it automatically.
+      boostBonus: new fields.NumberField({ required: true, integer: true, min: 0, initial: 0 })
     };
   }
 

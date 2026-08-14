@@ -68,6 +68,52 @@
   font-style: italic;
 }
 
+.substratum-exosuit-action {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+}
+
+.substratum-exosuit-action .exosuit-action-headline {
+  font-weight: bold;
+  text-align: center;
+}
+
+.substratum-exosuit-action .exosuit-comparisons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+}
+
+.substratum-exosuit-action .exosuit-comparison {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  padding: 0.15em 0.5em;
+  border: 1px solid var(--color-border-light-tertiary, #999);
+  border-radius: 3px;
+}
+
+.substratum-exosuit-action .exosuit-comparison.unbeaten {
+  opacity: 0.6;
+}
+
+.substratum-exosuit-action .exosuit-comparison-outcome {
+  font-weight: bold;
+}
+
+.substratum-exosuit-action .exosuit-table-roll,
+.substratum-exosuit-action .exosuit-action-summary {
+  text-align: center;
+}
+
+.substratum-exosuit-action .exosuit-action-complication {
+  text-align: center;
+  font-style: italic;
+  opacity: 0.8;
+}
+
 .substratum-team-death {
   display: flex;
   flex-direction: column;
@@ -203,6 +249,35 @@
   border-bottom: 2px solid var(--color-border-highlight, #ff6400);
 }
 
+/*
+ * Foundry's core CSS only hides inactive `.tab` panels for its own
+ * built-in sheets (form config apps, scene config, etc.) — custom system
+ * sheets have to supply this themselves, or every tab's content renders
+ * stacked at once. The active tab also owns the sheet's only scrollbar,
+ * since core's `.window-content` is `overflow: hidden` by default and the
+ * header/tab-nav above it should stay put while the body scrolls.
+ */
+.substratum-protocol.actor .window-content {
+  overflow: hidden;
+}
+
+.substratum-protocol.actor .tab {
+  display: none;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.substratum-protocol.actor .tab.active {
+  display: block;
+}
+
+.substratum-protocol.actor .tab.exosuit-tab.active {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+}
+
 .substratum-protocol.actor .member-list {
   list-style: none;
   margin: 0;
@@ -276,6 +351,12 @@
   flex-wrap: wrap;
 }
 
+.substratum-protocol.actor .boost-bonus-banked {
+  margin: 0;
+  font-weight: bold;
+  color: var(--color-text-hyperlink, #ff6400);
+}
+
 .substratum-protocol.actor .tiebreak-row {
   font-size: 0.85em;
 }
@@ -331,6 +412,34 @@
 .substratum-protocol.actor .item-list-empty {
   opacity: 0.6;
   font-style: italic;
+}
+
+.substratum-protocol.actor .substratum-exosuit-hand .item-list {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.substratum-protocol.actor .hand-card label {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  padding: 0.15em 0.5em;
+  border: 1px solid var(--color-border-light-tertiary, #999);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.substratum-protocol.actor .exosuit-ability-hint {
+  font-size: 0.85em;
+  opacity: 0.75;
+  margin: 0 0 0.4em;
+}
+
+.substratum-protocol.actor .exosuit-solo-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+  font-size: 0.9em;
 }
 
 /* Gear item sheet */

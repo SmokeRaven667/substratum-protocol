@@ -13,7 +13,12 @@
       <li class="item" data-item-id="{{this.id}}">
         <img class="item-img" src="{{this.img}}" alt="{{this.name}}">
         <span class="item-name" data-action="editItem">{{this.name}}</span>
-        <span class="item-die">{{this.system.dieRating}}</span>
+        <span class="item-die">
+          {{this.system.dieRating.current}}
+          {{#unless (eq this.system.dieRating.current this.system.dieRating.max)}}
+            <span class="item-die-max">/ {{this.system.dieRating.max}}</span>
+          {{/unless}}
+        </span>
         {{#if this.system.narrativeOnly}}
           <span class="item-flag narrative-only" title="{{localize 'SUBSTRATUM.NarrativeOnly'}}">
             {{localize "SUBSTRATUM.NarrativeOnly"}}

@@ -21,7 +21,7 @@
   },
   "system": {
     "description": "<p>A single-use magnesium flare, bright enough to be seen from orbit for about ninety seconds. Breaks after one use like any d4 item.</p>",
-    "dieRating": "d4",
+    "dieRating": { "max": "d4", "current": "d4" },
     "narrativeOnly": false,
     "broken": false
   },

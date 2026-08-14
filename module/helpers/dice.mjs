@@ -28,6 +28,18 @@ export function stepDownDie(currentDie, { beyondHorizon = false } = {}) {
   return FULL_DIE_CHAIN[nextIndex];
 }
 
+/**
+ * Step a die up one notch, capped at the top of the normal chain (d12) —
+ * used by Systems Upgrade, which only ever raises a Skill's *max* die and
+ * never touches the Beyond Horizon sub-chain.
+ */
+export function stepUpDie(currentDie) {
+  const ceilIndex = FULL_DIE_CHAIN.indexOf(SUBSTRATUM.dieChain.at(-1));
+  const currentIndex = FULL_DIE_CHAIN.indexOf(currentDie);
+  const nextIndex = Math.min(ceilIndex, currentIndex + 1);
+  return FULL_DIE_CHAIN[nextIndex];
+}
+
 /** Compare a Skill Check sum against 2 drawn card values. Pure/testable. */
 export function resolveSkillCheck(sum, cardValues) {
   const beaten = cardValues.map((value) => sum >= value);
@@ -67,6 +79,7 @@ export async function rollSkillCheck({
   actor,
   skills,
   stressSpend = 0,
+  bonus = 0,
   advantage = false,
   disadvantage = false,
   tiebreakSkill = null
@@ -91,7 +104,8 @@ export async function rollSkillCheck({
   }
 
   const anomalyPenalty = actor.system.anomalyInfluence?.skillPenalty ?? 0;
-  const sum = dice[key1].result + dice[key2].result + stressSpend + anomalyPenalty;
+  const boostBonus = actor.system.boostBonus ?? 0;
+  const sum = dice[key1].result + dice[key2].result + stressSpend + bonus + boostBonus + anomalyPenalty;
 
   const { discard, hand, card1, card2 } = await drawSkillCheckCards(actor);
   const cards = [card1, card2];
@@ -114,6 +128,7 @@ export async function rollSkillCheck({
       actor.system.stress.value + stressSpend
     );
   }
+  if (boostBonus > 0) updateData['system.boostBonus'] = 0;
   await actor.update(updateData);
 
   const rolls = [dice[key1].roll, dice[key2].roll].filter(Boolean);
@@ -131,6 +146,8 @@ export async function rollSkillCheck({
         original: dice[key].original ?? null
       })),
       stressSpend,
+      bonus,
+      boostBonus,
       anomalyPenalty,
       sum,
       cards: cards.map((card, i) => ({ name: card.name, value: card.value, suit: card.suit, beaten: beaten[i] })),

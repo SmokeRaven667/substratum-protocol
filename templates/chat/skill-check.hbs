@@ -13,6 +13,8 @@
 
   <div class="skill-check-modifiers">
     {{#if stressSpend}}<span class="modifier">{{localize "SUBSTRATUM.StressSpend"}}: +{{stressSpend}}</span>{{/if}}
+    {{#if bonus}}<span class="modifier">{{localize "SUBSTRATUM.Bonus"}}: +{{bonus}}</span>{{/if}}
+    {{#if boostBonus}}<span class="modifier">{{localize "SUBSTRATUM.ExosuitBoostActions"}}: +{{boostBonus}}</span>{{/if}}
     {{#if anomalyPenalty}}<span class="modifier">{{localize "SUBSTRATUM.AnomalyPenalty"}}: {{anomalyPenalty}}</span>{{/if}}
     <span class="sum">{{localize "SUBSTRATUM.Sum"}}: {{sum}}</span>
   </div>

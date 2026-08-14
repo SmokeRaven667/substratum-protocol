@@ -1,0 +1,89 @@
+<section class="tab exosuit-tab {{tab.cssClass}}" data-tab="exosuit" data-group="primary">
+  <fieldset class="substratum-exosuit-hand">
+    <legend>{{localize "SUBSTRATUM.ExosuitHand"}}</legend>
+    <ol class="item-list">
+      {{#each hand}}
+        <li class="item hand-card">
+          <label>
+            <input type="checkbox" data-role="hand-card" value="{{this.id}}" data-suit="{{this.suit}}">
+            <span class="card-name">{{this.name}}</span>
+            <span class="card-value">({{this.value}})</span>
+          </label>
+        </li>
+      {{else}}
+        <li class="item-list-empty">{{localize "SUBSTRATUM.ExosuitNoCards"}}</li>
+      {{/each}}
+    </ol>
+  </fieldset>
+
+  <fieldset class="substratum-roll-controls">
+    <legend>{{localize "SUBSTRATUM.ExosuitRepairHeal"}}</legend>
+    <p class="exosuit-ability-hint">{{localize "SUBSTRATUM.ExosuitRepairHealHint"}}</p>
+    <div class="roll-row">
+      <label>
+        <span>{{localize "SUBSTRATUM.ExosuitRepairTarget"}}</span>
+        <select data-role="repair-target">
+          <option value="stress">{{localize "SUBSTRATUM.Stress"}}</option>
+          {{#each items}}<option value="{{this.id}}">{{this.name}}</option>{{/each}}
+        </select>
+      </label>
+    </div>
+    <button type="button" data-action="repairHeal">{{localize "SUBSTRATUM.ExosuitRepairHeal"}}</button>
+  </fieldset>
+
+  <fieldset class="substratum-roll-controls">
+    <legend>{{localize "SUBSTRATUM.ExosuitBoostActions"}}</legend>
+    <p class="exosuit-ability-hint">{{localize "SUBSTRATUM.ExosuitBoostActionsHint"}}</p>
+    <div class="roll-row">
+      <label>
+        <span>{{localize "SUBSTRATUM.ExosuitBoostTarget"}}</span>
+        <select data-role="boost-target">
+          {{#each boostTargets}}<option value="{{this.id}}">{{this.name}}</option>{{/each}}
+        </select>
+      </label>
+    </div>
+    <button type="button" data-action="boostActions">{{localize "SUBSTRATUM.ExosuitBoostActions"}}</button>
+  </fieldset>
+
+  <fieldset class="substratum-roll-controls">
+    <legend>{{localize "SUBSTRATUM.Exosuit3DPrinter"}}</legend>
+    <p class="exosuit-ability-hint">{{localize "SUBSTRATUM.Exosuit3DPrinterHint"}}</p>
+    <button type="button" data-action="printItem">{{localize "SUBSTRATUM.Exosuit3DPrinter"}}</button>
+  </fieldset>
+
+  <fieldset class="substratum-roll-controls">
+    <legend>{{localize "SUBSTRATUM.ExosuitRadio"}}</legend>
+    <p class="exosuit-ability-hint">{{localize "SUBSTRATUM.ExosuitRadioHint"}}</p>
+    <label class="exosuit-solo-toggle">
+      <input type="checkbox" data-role="radio-solo">
+      {{localize "SUBSTRATUM.ExosuitRadioSolo"}}
+    </label>
+    <button type="button" data-action="radioObservatory">{{localize "SUBSTRATUM.ExosuitRadio"}}</button>
+  </fieldset>
+
+  <fieldset class="substratum-roll-controls">
+    <legend>{{localize "SUBSTRATUM.ExosuitSensorDeployment"}}</legend>
+    <p class="exosuit-ability-hint">{{localize "SUBSTRATUM.ExosuitSensorDeploymentHint"}}</p>
+    <button type="button" data-action="sensorDeployment">{{localize "SUBSTRATUM.ExosuitSensorDeployment"}}</button>
+  </fieldset>
+
+  <fieldset class="substratum-roll-controls">
+    <legend>{{localize "SUBSTRATUM.ExosuitFlashback"}}</legend>
+    <p class="exosuit-ability-hint">{{localize "SUBSTRATUM.ExosuitFlashbackHint"}}</p>
+    <button type="button" data-action="flashback">{{localize "SUBSTRATUM.ExosuitFlashback"}}</button>
+  </fieldset>
+
+  <fieldset class="substratum-roll-controls">
+    <legend>{{localize "SUBSTRATUM.ExosuitSystemsUpgrade"}}</legend>
+    <p class="exosuit-ability-hint">{{localize "SUBSTRATUM.ExosuitSystemsUpgradeHint"}}</p>
+    <div class="roll-row">
+      <label>
+        <span>{{localize "SUBSTRATUM.ExosuitUpgradeSkill"}}</span>
+        <select data-role="upgrade-skill">
+          {{#each skills}}<option value="{{this.key}}">{{localize this.label}}</option>{{/each}}
+        </select>
+      </label>
+    </div>
+    <button type="button" data-action="systemsUpgrade">{{localize "SUBSTRATUM.ExosuitSystemsUpgrade"}}</button>
+  </fieldset>
+</section>
