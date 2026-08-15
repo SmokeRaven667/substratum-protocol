@@ -186,13 +186,12 @@ Deferred, not yet resolved (see `phases/phase-3-data-models.md`):
 
 ## Next step
 
-The original 11-phase roadmap (0–10) is complete. What's left is real
-game-content work the rulebook defines but nothing has built yet —
-pick whichever the user wants to tackle next, there's no forced order:
+The original 11-phase roadmap (0–10) is complete.
 
 - **Simplified Solo** resolution variant (single Skill Check, no
-  two-card comparison) — a distinct resolution path `rollSkillCheck()`
-  doesn't currently support.
+  two-card comparison) — user decided to skip this rather than build it.
+  Noted as a known limitation in `README.md` so anyone installing the
+  system knows that resolution path isn't supported.
 - **Cut the actual first release**: run `npm run build:release` (with
   Foundry closed — the dev junction means a running Foundry locks the
   pack files being rebuilt), tag `v0.2.0`, create a GitHub Release, and
