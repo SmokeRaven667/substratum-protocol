@@ -2,7 +2,7 @@
   "id": "substratum-protocol",
   "title": "Substratum Protocol",
   "description": "An unofficial Foundry VTT system for Substratum Protocol, a Solo+ apocalyptic mystery TTRPG by Pandion Games. Rulebook content (setting, adventure, artwork) remains Licensed Material under Pandion Games' ORC License; this system's code is provided separately under the MIT License (see LICENSE).",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "compatibility": {
     "minimum": "14",
     "verified": "14.363"
@@ -53,7 +53,7 @@
   ],
   "url": "https://github.com/SmokeRaven667/substratum-protocol",
   "manifest": "https://github.com/SmokeRaven667/substratum-protocol/releases/latest/download/system.json",
-  "download": "https://github.com/SmokeRaven667/substratum-protocol/releases/download/v0.3.0/system.zip",
+  "download": "https://github.com/SmokeRaven667/substratum-protocol/releases/download/v0.4.0/system.zip",
   "bugs": "https://github.com/SmokeRaven667/substratum-protocol/issues",
   "readme": "https://github.com/SmokeRaven667/substratum-protocol/blob/main/README.md",
   "license": "LICENSE"
