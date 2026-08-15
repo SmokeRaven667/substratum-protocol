@@ -4,7 +4,10 @@
  * Roll the current die of two chosen Skills, sum them (+ Stress spend +
  * Anomaly Influence penalty), compare independently against 2 drawn cards,
  * step down whichever Skill die showed the higher face, and report
- * Good/OK/Bad. The card draw/discard side of this lives in cards.mjs.
+ * Good/OK/Bad. The card draw/discard side of this lives in cards.mjs. Also
+ * covers the Skill-die mechanics that hang directly off a Skill Check —
+ * Overclock (a d12 substitution) and Deep Breath (the Skill reset that
+ * refreshes it).
  */
 import { SUBSTRATUM } from './config.mjs';
 import { drawSkillCheckCards, discardCard } from './cards.mjs';
@@ -29,12 +32,13 @@ export function stepDownDie(currentDie, { beyondHorizon = false } = {}) {
 }
 
 /**
- * Step a die up one notch, capped at the top of the normal chain (d12) —
- * used by Systems Upgrade, which only ever raises a Skill's *max* die and
- * never touches the Beyond Horizon sub-chain.
+ * Step a die up one notch, capped at `ceiling` (defaults to the top of the
+ * normal chain, d12 — Systems Upgrade's use, raising a Skill's *max* die).
+ * Deep Breath's partial (Beyond the Horizon) restore passes the Skill's own
+ * max as the ceiling instead, so current can't step past it.
  */
-export function stepUpDie(currentDie) {
-  const ceilIndex = FULL_DIE_CHAIN.indexOf(SUBSTRATUM.dieChain.at(-1));
+export function stepUpDie(currentDie, { ceiling = SUBSTRATUM.dieChain.at(-1) } = {}) {
+  const ceilIndex = FULL_DIE_CHAIN.indexOf(ceiling);
   const currentIndex = FULL_DIE_CHAIN.indexOf(currentDie);
   const nextIndex = Math.min(ceilIndex, currentIndex + 1);
   return FULL_DIE_CHAIN[nextIndex];
@@ -82,13 +86,16 @@ export async function rollSkillCheck({
   bonus = 0,
   advantage = false,
   disadvantage = false,
-  tiebreakSkill = null
+  tiebreakSkill = null,
+  overclockSkill = null
 }) {
   const [key1, key2] = skills;
   const dice = {};
   for (const key of [key1, key2]) {
+    const overclocked = key === overclockSkill;
     const currentDie = actor.system.skills[key].current;
-    dice[key] = { die: currentDie, ...(await rollSkillDie(dieFaces(currentDie))) };
+    const rollDie = overclocked ? SUBSTRATUM.dieChain.at(-1) : currentDie;
+    dice[key] = { die: rollDie, overclocked, ...(await rollSkillDie(dieFaces(rollDie))) };
   }
 
   if ((advantage || disadvantage) && dice[key1].roll && dice[key2].roll) {
@@ -129,6 +136,35 @@ export async function rollSkillCheck({
     );
   }
   if (boostBonus > 0) updateData['system.boostBonus'] = 0;
+
+  // Overclock (01-rulebook-digest.md p.93): substituting a d12 costs the
+  // banked use regardless of outcome; an OK/Bad result on top of that also
+  // steps the overclocked Skill's *max* down one (current follows if the
+  // normal step-down above already left it higher than the new max), or
+  // marks 2 Stress instead if that max was already floored at d4.
+  let overclock = null;
+  if (overclockSkill) {
+    overclock = { skillLabel: SUBSTRATUM.skills[overclockSkill].label };
+    updateData['system.overclockAvailable'] = false;
+    if (outcome !== 'good') {
+      const overclockMax = actor.system.skills[overclockSkill].max;
+      if (overclockMax === 'd4') {
+        const stressAfterSpend = updateData['system.stress.value'] ?? actor.system.stress.value;
+        updateData['system.stress.value'] = Math.min(actor.system.stress.max, stressAfterSpend + 2);
+        overclock.stressMarked = 2;
+      } else {
+        const newMax = stepDownDie(overclockMax);
+        const pendingCurrent =
+          updateData[`system.skills.${overclockSkill}.current`] ?? actor.system.skills[overclockSkill].current;
+        const newCurrent = dieFaces(pendingCurrent) > dieFaces(newMax) ? newMax : pendingCurrent;
+        updateData[`system.skills.${overclockSkill}.max`] = newMax;
+        updateData[`system.skills.${overclockSkill}.current`] = newCurrent;
+        overclock.fromMax = overclockMax;
+        overclock.newMax = newMax;
+      }
+    }
+  }
+
   await actor.update(updateData);
 
   const rolls = [dice[key1].roll, dice[key2].roll].filter(Boolean);
@@ -148,6 +184,7 @@ export async function rollSkillCheck({
       stressSpend,
       bonus,
       boostBonus,
+      overclock,
       anomalyPenalty,
       sum,
       cards: cards.map((card, i) => ({ name: card.name, value: card.value, suit: card.suit, beaten: beaten[i] })),
@@ -167,5 +204,48 @@ export async function rollSkillCheck({
     content
   });
 
-  return { outcome, sum, cards, beaten, stepDown: { skill: stepDownKey, from: fromDie, to: toDie } };
+  return {
+    outcome,
+    sum,
+    cards,
+    beaten,
+    stepDown: { skill: stepDownKey, from: fromDie, to: toDie },
+    overclock
+  };
+}
+
+/**
+ * Deep Breath (01-rulebook-digest.md p.88): reset every Skill's current
+ * die to its max, and refresh this actor's banked Overclock use. At 8+
+ * Stress (Beyond the Horizon), only steps current up by 1 instead of a
+ * full reset — Team never has an Anomaly Influence tier, so it always
+ * gets the full reset. For a Team specifically, also flips the
+ * once-per-session `deepBreathUsed` flag (p.212) — the sheet's own
+ * checkbox stays there for the GM/player to manually reset at session
+ * start, or override, but taking the action itself always marks it used.
+ */
+export async function deepBreath(actor) {
+  const beyondHorizon = actor.system.anomalyInfluence?.key === 'beyond';
+  const updateData = { 'system.overclockAvailable': true };
+  if (actor.type === 'team') updateData['system.deepBreathUsed'] = true;
+  const changes = [];
+  for (const key of Object.keys(SUBSTRATUM.skills)) {
+    const { max, current } = actor.system.skills[key];
+    const newCurrent = beyondHorizon ? stepUpDie(current, { ceiling: max }) : max;
+    if (newCurrent !== current) {
+      updateData[`system.skills.${key}.current`] = newCurrent;
+      changes.push({ skillLabel: SUBSTRATUM.skills[key].label, from: current, to: newCurrent });
+    }
+  }
+  await actor.update(updateData);
+
+  const { renderTemplate } = foundry.applications.handlebars;
+  const content = await renderTemplate('systems/substratum-protocol/templates/chat/deep-breath.hbs', {
+    actor,
+    partial: beyondHorizon,
+    changes
+  });
+  await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content });
+
+  return { partial: beyondHorizon, changes };
 }

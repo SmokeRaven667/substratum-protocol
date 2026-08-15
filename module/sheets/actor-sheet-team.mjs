@@ -1,5 +1,5 @@
 import { SUBSTRATUM } from '../helpers/config.mjs';
-import { rollSkillCheck } from '../helpers/dice.mjs';
+import { rollSkillCheck, deepBreath } from '../helpers/dice.mjs';
 import { recordTeamDeath, applyMemberDeath } from '../helpers/team.mjs';
 import { getActorHandCards } from '../helpers/cards.mjs';
 import {
@@ -31,6 +31,7 @@ export default class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       editItem: TeamSheet.#onEditItem,
       deleteItem: TeamSheet.#onDeleteItem,
       editImage: TeamSheet.#onEditImage,
+      deepBreath: TeamSheet.#onDeepBreath,
       repairHeal: TeamSheet.#onRepairHeal,
       boostActions: TeamSheet.#onBoostActions,
       printItem: TeamSheet.#onPrintItem,
@@ -101,6 +102,7 @@ export default class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     context.teamWiped = actor.system.deaths >= 3;
 
     context.boostBonus = actor.system.boostBonus;
+    context.overclockAvailable = actor.system.overclockAvailable;
     context.lastRollSkills = this.lastRollSkills;
 
     context.hand = await getActorHandCards(actor);
@@ -127,10 +129,12 @@ export default class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     const advantageMode = panel.querySelector('[data-role="roll-advantage"]').value;
     const stressSpend = Number(panel.querySelector('[data-role="roll-stress-spend"]').value) || 0;
     const bonus = Number(panel.querySelector('[data-role="roll-bonus"]').value) || 0;
+    const overclock1 = panel.querySelector('[data-role="roll-overclock-1"]').checked;
+    const overclock2 = panel.querySelector('[data-role="roll-overclock-2"]').checked;
     const tiebreakChecked = panel.querySelector('[data-role="roll-tiebreak"]:checked');
     const tiebreakSkill =
       tiebreakChecked && [skill1, skill2].includes(tiebreakChecked.value) ? tiebreakChecked.value : null;
-    return { skill1, skill2, advantageMode, stressSpend, bonus, tiebreakSkill };
+    return { skill1, skill2, advantageMode, stressSpend, bonus, overclock1, overclock2, tiebreakSkill };
   }
 
   #readSelectedCardIds() {
@@ -142,9 +146,19 @@ export default class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
   }
 
   static async #onRollSkillCheck(event, target) {
-    const { skill1, skill2, advantageMode, stressSpend, bonus, tiebreakSkill } = this.#readRollControls(target);
+    const { skill1, skill2, advantageMode, stressSpend, bonus, overclock1, overclock2, tiebreakSkill } =
+      this.#readRollControls(target);
     if (skill1 === skill2) {
       ui.notifications.warn(game.i18n.localize('SUBSTRATUM.WarnPickTwoSkills'));
+      return;
+    }
+    if (overclock1 && overclock2) {
+      ui.notifications.warn(game.i18n.localize('SUBSTRATUM.WarnOverclockBothSkills'));
+      return;
+    }
+    const overclockSkill = overclock1 ? skill1 : overclock2 ? skill2 : null;
+    if (overclockSkill && !this.actor.system.overclockAvailable) {
+      ui.notifications.warn(game.i18n.localize('SUBSTRATUM.WarnOverclockUnavailable'));
       return;
     }
     this.lastRollSkills = { skill1, skill2 };
@@ -155,8 +169,14 @@ export default class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       bonus,
       advantage: advantageMode === 'advantage',
       disadvantage: advantageMode === 'disadvantage',
-      tiebreakSkill
+      tiebreakSkill,
+      overclockSkill
     });
+    await this.render();
+  }
+
+  static async #onDeepBreath() {
+    await deepBreath(this.actor);
     await this.render();
   }
 

@@ -77,6 +77,20 @@
     "RollSkillCheck": "Roll Skill Check",
     "WarnPickTwoSkills": "Pick two different Skills before rolling.",
 
+    "DeepBreath": "Deep Breath",
+    "DeepBreathFullReset": "All Skills reset to their max die.",
+    "DeepBreathPartialReset": "Beyond the Horizon — Skills only step up 1 step (not a full reset).",
+    "DeepBreathComplication": "The MC introduces a new complication.",
+
+    "Overclock": "Overclock",
+    "OverclockAvailable": "Overclock Available",
+    "OverclockUnavailable": "Overclock already used — take a Deep Breath to refresh it.",
+    "OverclockUsed": "{skill} Overclocked (d12).",
+    "OverclockMaxStepDown": "{skill}'s max die steps down: {from} → {to}",
+    "OverclockStressMark": "Max die already at d4 — marked +{amount} Stress instead.",
+    "WarnOverclockBothSkills": "Only one Skill can be Overclocked per Check.",
+    "WarnOverclockUnavailable": "Overclock has already been used since the last Deep Breath.",
+
     "StorageUnit": "Storage Unit",
     "AddGear": "Add Gear",
     "NewGearName": "New Gear",

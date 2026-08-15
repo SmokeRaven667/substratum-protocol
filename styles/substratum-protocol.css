@@ -68,6 +68,41 @@
   font-style: italic;
 }
 
+.substratum-skill-check .skill-check-overclock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+  text-align: center;
+}
+
+.substratum-skill-check .overclock-consequence {
+  font-style: italic;
+  opacity: 0.85;
+}
+
+.substratum-deep-breath {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+  text-align: center;
+}
+
+.substratum-deep-breath .deep-breath-headline {
+  font-weight: bold;
+}
+
+.substratum-deep-breath .deep-breath-changes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  justify-content: center;
+}
+
+.substratum-deep-breath .deep-breath-complication {
+  font-style: italic;
+  opacity: 0.8;
+}
+
 .substratum-exosuit-action {
   display: flex;
   flex-direction: column;
@@ -355,6 +390,25 @@
   margin: 0;
   font-weight: bold;
   color: var(--color-text-hyperlink, #ff6400);
+}
+
+.substratum-protocol.actor .overclock-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  font-size: 0.9em;
+}
+
+.substratum-protocol.actor .overclock-status {
+  margin: 0;
+  font-weight: bold;
+  color: var(--color-text-hyperlink, #ff6400);
+}
+
+.substratum-protocol.actor .overclock-status.unavailable {
+  font-weight: normal;
+  opacity: 0.6;
+  color: inherit;
 }
 
 .substratum-protocol.actor .tiebreak-row {

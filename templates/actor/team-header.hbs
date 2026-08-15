@@ -23,11 +23,18 @@
       </div>
     </div>
 
-    <label class="header-field checkbox-field">
-      <input type="checkbox" name="system.deepBreathUsed" {{#if system.deepBreathUsed}}checked{{/if}}
-        {{#unless isEditable}}disabled{{/unless}}>
-      <span>{{localize "SUBSTRATUM.DeepBreathUsed"}}</span>
-    </label>
+    <div class="header-row">
+      <label class="header-field checkbox-field">
+        <input type="checkbox" name="system.deepBreathUsed" {{#if system.deepBreathUsed}}checked{{/if}}
+          {{#unless isEditable}}disabled{{/unless}}>
+        <span>{{localize "SUBSTRATUM.DeepBreathUsed"}}</span>
+      </label>
+      {{#if isEditable}}
+        <button type="button" data-action="deepBreath" {{#if system.deepBreathUsed}}disabled{{/if}}>
+          <i class="fas fa-wind"></i> {{localize "SUBSTRATUM.DeepBreath"}}
+        </button>
+      {{/if}}
+    </div>
 
     {{#if isEditable}}
       <div class="header-row substratum-death-controls">

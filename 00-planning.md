@@ -79,6 +79,13 @@ forward-looking; `phases/` is the archive.
   core CSS doesn't hide inactive custom-sheet tabs on its own) — this
   also added independent scrolling per tab. See
   `phases/exosuit-abilities.md`.
+- **Overclock / Deep Breath — done.** Deep Breath button on both actor
+  headers (full Skill reset, or 1-step at 8+ Stress; also wires up
+  Team's previously-inert once-per-session `deepBreathUsed` flag).
+  Overclock checkboxes on the roll panel (d12 substitution for one
+  Skill, consumed on use, with an OK/Bad result stepping that Skill's
+  max down one or marking +2 Stress at the d4 floor). Live-verified by
+  the user. See `phases/overclock-deep-breath.md`.
 
 **No phase is currently "next"** — Phases 0–10 (the original roadmap)
 are all done. See Open Decisions and the Next step note below for what's
@@ -183,9 +190,6 @@ The original 11-phase roadmap (0–10) is complete. What's left is real
 game-content work the rulebook defines but nothing has built yet —
 pick whichever the user wants to tackle next, there's no forced order:
 
-- **Overclock** and **Deep Breath** as actual sheet buttons — the
-  mechanics are understood (`01-rulebook-digest.md`) but nothing on the
-  scientist sheet triggers them yet.
 - **Simplified Solo** resolution variant (single Skill Check, no
   two-card comparison) — a distinct resolution path `rollSkillCheck()`
   doesn't currently support.
