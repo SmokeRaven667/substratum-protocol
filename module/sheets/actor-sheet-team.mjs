@@ -104,6 +104,12 @@ export default class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     context.boostBonus = actor.system.boostBonus;
     context.overclockAvailable = actor.system.overclockAvailable;
     context.lastRollSkills = this.lastRollSkills;
+    // Usable in place of a Skill on a Check (01-rulebook-digest.md p.98) —
+    // narrative-only items aren't die-rated for mechanical use, and a
+    // broken item obviously can't stand in for anything.
+    context.usableItems = context.items
+      .filter((item) => !item.system.narrativeOnly && !item.system.broken)
+      .map((item) => ({ id: item.id, name: item.name, die: item.system.dieRating.current }));
 
     context.hand = await getActorHandCards(actor);
     const otherActors = game.actors.filter((a) => a.id !== actor.id && ['scientist', 'team'].includes(a.type));
@@ -131,10 +137,12 @@ export default class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     const bonus = Number(panel.querySelector('[data-role="roll-bonus"]').value) || 0;
     const overclock1 = panel.querySelector('[data-role="roll-overclock-1"]').checked;
     const overclock2 = panel.querySelector('[data-role="roll-overclock-2"]').checked;
+    const item1 = panel.querySelector('[data-role="roll-item-1"]').value || null;
+    const item2 = panel.querySelector('[data-role="roll-item-2"]').value || null;
     const tiebreakChecked = panel.querySelector('[data-role="roll-tiebreak"]:checked');
     const tiebreakSkill =
       tiebreakChecked && [skill1, skill2].includes(tiebreakChecked.value) ? tiebreakChecked.value : null;
-    return { skill1, skill2, advantageMode, stressSpend, bonus, overclock1, overclock2, tiebreakSkill };
+    return { skill1, skill2, advantageMode, stressSpend, bonus, overclock1, overclock2, item1, item2, tiebreakSkill };
   }
 
   #readSelectedCardIds() {
@@ -146,9 +154,13 @@ export default class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
   }
 
   static async #onRollSkillCheck(event, target) {
-    const { skill1, skill2, advantageMode, stressSpend, bonus, overclock1, overclock2, tiebreakSkill } =
+    const { skill1, skill2, advantageMode, stressSpend, bonus, overclock1, overclock2, item1, item2, tiebreakSkill } =
       this.#readRollControls(target);
-    if (skill1 === skill2) {
+    // A slot with an item substituted has its Skill picker locked (see
+    // _onRender's #wireItemSubstitutionToggles) rather than required to
+    // differ from the other slot's Skill — only the actual Skill-vs-Skill
+    // case needs two distinct picks.
+    if (skill1 === skill2 && !item1 && !item2) {
       ui.notifications.warn(game.i18n.localize('SUBSTRATUM.WarnPickTwoSkills'));
       return;
     }
@@ -156,8 +168,12 @@ export default class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       ui.notifications.warn(game.i18n.localize('SUBSTRATUM.WarnOverclockBothSkills'));
       return;
     }
-    const overclockSkill = overclock1 ? skill1 : overclock2 ? skill2 : null;
-    if (overclockSkill && !this.actor.system.overclockAvailable) {
+    if ((overclock1 && item1) || (overclock2 && item2)) {
+      ui.notifications.warn(game.i18n.localize('SUBSTRATUM.WarnItemOverclockConflict'));
+      return;
+    }
+    const overclockSlot = overclock1 ? 0 : overclock2 ? 1 : null;
+    if (overclockSlot !== null && !this.actor.system.overclockAvailable) {
       ui.notifications.warn(game.i18n.localize('SUBSTRATUM.WarnOverclockUnavailable'));
       return;
     }
@@ -170,9 +186,45 @@ export default class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
       advantage: advantageMode === 'advantage',
       disadvantage: advantageMode === 'disadvantage',
       tiebreakSkill,
-      overclockSkill
+      overclockSlot,
+      itemForSlot: [item1, item2]
     });
     await this.render();
+  }
+
+  /**
+   * Enforce the "Use Item Instead" business rules live, not just on
+   * submit: picking an item for a slot locks that slot's Skill picker
+   * (its value no longer needs to differ from the other slot's — see the
+   * itemForSlot doc on rollSkillCheck) and forces the *other* slot's item
+   * picker back to "— Skill —" and locked, since only one slot can be
+   * item-substituted per Check. Reverting either item picker to
+   * "— Skill —" re-enables both the matching Skill picker and the other
+   * item picker.
+   */
+  #wireItemSubstitutionToggles() {
+    const panel = this.element.querySelector('.substratum-roll-controls');
+    const skill1 = panel?.querySelector('[data-role="roll-skill-1"]');
+    const skill2 = panel?.querySelector('[data-role="roll-skill-2"]');
+    const item1 = panel?.querySelector('[data-role="roll-item-1"]');
+    const item2 = panel?.querySelector('[data-role="roll-item-2"]');
+    if (!skill1 || !skill2 || !item1 || !item2) return;
+
+    item1.addEventListener('change', () => {
+      skill1.disabled = !!item1.value;
+      if (item1.value) item2.value = '';
+      item2.disabled = !!item1.value;
+    });
+    item2.addEventListener('change', () => {
+      skill2.disabled = !!item2.value;
+      if (item2.value) item1.value = '';
+      item1.disabled = !!item2.value;
+    });
+  }
+
+  async _onRender(context, options) {
+    await super._onRender(context, options);
+    this.#wireItemSubstitutionToggles();
   }
 
   static async #onDeepBreath() {
