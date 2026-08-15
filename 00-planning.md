@@ -91,10 +91,22 @@ forward-looking; `phases/` is the archive.
   `system.json` attached — the `manifest`/`download` URLs in
   `system.json` resolve to something real for the first time. See
   `phases/first-release.md`.
+- **Item substitution — done.** Gear can stand in for either chosen
+  Skill's die on a Check (01-rulebook-digest.md p.98) via a "Use Item
+  Instead" dropdown per roll slot; the item takes the step-down/break
+  consequence instead of the Skill when it wins. Found and fixed a real
+  bug along the way — `rollSkillCheck()` used to index its working state
+  by Skill key, which silently broke once two roll slots could share a
+  Skill (exactly what happens once one slot locks to an item);
+  restructured around slot position instead. `README.md` gained a
+  "Skill Check tiebreaks" section documenting the no-tiebreak-picked
+  default. See `phases/item-substitution.md`.
 
-**Released.** `v0.3.0` is live on GitHub. Simplified Solo is intentionally
-unbuilt (see `README.md`'s Known Limitations) — everything else on the
-original roadmap plus all post-roadmap game-content work is done.
+**Released.** `v0.3.0` is live on GitHub; the item-substitution work above
+landed after it and is queued for the next version bump. Simplified Solo
+is intentionally unbuilt (see `README.md`'s Known Limitations) —
+everything else on the original roadmap plus all post-roadmap
+game-content work is done.
 
 ## High-level phases
 

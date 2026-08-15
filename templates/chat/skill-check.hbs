@@ -2,7 +2,9 @@
   <div class="skill-check-dice">
     {{#each skills}}
       <div class="skill-check-die">
-        <span class="skill-label">{{localize this.label}}</span>
+        <span class="skill-label">
+          {{#if this.itemName}}{{this.itemName}}{{else}}{{localize this.label}}{{/if}}
+        </span>
         <span class="skill-die">{{this.die}}</span>
         <span class="skill-result">
           {{#if this.original}}<span class="rerolled">{{this.original}}</span> &rarr; {{/if}}{{this.result}}
@@ -31,7 +33,15 @@
   <div class="skill-check-outcome outcome-{{outcome}}">{{localize outcomeLabel}}</div>
 
   <div class="skill-check-stepdown">
-    {{localize "SUBSTRATUM.StepDown" skill=(localize stepDown.skillLabel) from=stepDown.from to=stepDown.to}}
+    {{#if stepDown.itemName}}
+      {{#if stepDown.broken}}
+        {{localize "SUBSTRATUM.ItemBroken" item=stepDown.itemName}}
+      {{else}}
+        {{localize "SUBSTRATUM.ItemStepDown" item=stepDown.itemName from=stepDown.from to=stepDown.to}}
+      {{/if}}
+    {{else}}
+      {{localize "SUBSTRATUM.StepDown" skill=(localize stepDown.skillLabel) from=stepDown.from to=stepDown.to}}
+    {{/if}}
   </div>
 
   {{#if overclock}}

@@ -399,6 +399,12 @@
   font-size: 0.9em;
 }
 
+.substratum-protocol.actor .use-item-toggle {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85em;
+}
+
 .substratum-protocol.actor .overclock-status {
   margin: 0;
   font-weight: bold;

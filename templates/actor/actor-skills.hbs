@@ -54,6 +54,13 @@
         <input type="checkbox" data-role="roll-overclock-1" {{#unless overclockAvailable}}disabled{{/unless}}>
         {{localize "SUBSTRATUM.Overclock"}}
       </label>
+      <label class="use-item-toggle">
+        <span>{{localize "SUBSTRATUM.UseItem"}}</span>
+        <select data-role="roll-item-1">
+          <option value="">{{localize "SUBSTRATUM.UseItemNone"}}</option>
+          {{#each usableItems}}<option value="{{this.id}}">{{this.name}} ({{this.die}})</option>{{/each}}
+        </select>
+      </label>
       <label>
         <span>{{localize "SUBSTRATUM.SkillTwo"}}</span>
         <select data-role="roll-skill-2">
@@ -65,6 +72,13 @@
       <label class="overclock-toggle">
         <input type="checkbox" data-role="roll-overclock-2" {{#unless overclockAvailable}}disabled{{/unless}}>
         {{localize "SUBSTRATUM.Overclock"}}
+      </label>
+      <label class="use-item-toggle">
+        <span>{{localize "SUBSTRATUM.UseItem"}}</span>
+        <select data-role="roll-item-2">
+          <option value="">{{localize "SUBSTRATUM.UseItemNone"}}</option>
+          {{#each usableItems}}<option value="{{this.id}}">{{this.name}} ({{this.die}})</option>{{/each}}
+        </select>
       </label>
     </div>
 

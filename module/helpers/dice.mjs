@@ -53,16 +53,16 @@ export function resolveSkillCheck(sum, cardValues) {
 }
 
 /**
- * Which Skill steps down: whichever rolled die showed the higher face
- * value. Ties are the player's call (01-rulebook-digest.md) — resolved by
- * `tiebreakSkill` if given, else defaults to the first listed Skill.
+ * Which rolled slot (0 or 1) steps down: whichever showed the higher
+ * face. Ties are the player's call (01-rulebook-digest.md) — resolved by
+ * matching `tiebreakSkill` against a slot's Skill, defaulting to slot 0
+ * when ambiguous (both slots share the same Skill because one is
+ * item-substituted — see `itemForSlot` on `rollSkillCheck`).
  */
-export function determineStepDownSkill(skillKeys, dieResults, tiebreakSkill) {
-  const [key1, key2] = skillKeys;
-  const result1 = dieResults[key1];
-  const result2 = dieResults[key2];
-  if (result1 === result2) return tiebreakSkill ?? key1;
-  return result1 > result2 ? key1 : key2;
+export function determineStepDownSlot(dice, tiebreakSkill) {
+  const [slot0, slot1] = dice;
+  if (slot0.result !== slot1.result) return slot0.result > slot1.result ? 0 : 1;
+  return tiebreakSkill && slot1.skillKey === tiebreakSkill && slot0.skillKey !== tiebreakSkill ? 1 : 0;
 }
 
 async function rollSkillDie(faces) {
@@ -72,12 +72,25 @@ async function rollSkillDie(faces) {
 }
 
 /**
- * Run a full Skill Check for `actor` using the two given Skill keys:
- * rolls both Skill dice (+ optional advantage/disadvantage reroll), draws
- * 2 cards into the actor's hand, resolves Good/OK/Bad, discards unbeaten
- * cards, steps down the winning die, applies any Stress spend, and posts
- * a chat card. Returns a summary object for callers that want it (e.g. a
- * future sheet listener).
+ * Run a full Skill Check for `actor` using the two given Skill keys (as
+ * `skills[0]`/`skills[1]` — "slot 0"/"slot 1" below): rolls both dice (+
+ * optional advantage/disadvantage reroll), draws 2 cards into the actor's
+ * hand, resolves Good/OK/Bad, discards unbeaten cards, steps down the
+ * winning die, applies any Stress spend, and posts a chat card.
+ *
+ * `itemForSlot` (01-rulebook-digest.md p.98: `[itemId|null, itemId|null]`,
+ * positional per slot) lets an unbroken, non-narrative-only gear item
+ * stand in for that slot's Skill die — the item steps down instead of the
+ * Skill if it's the slot that wins the step-down, breaking outright if it
+ * was already at d4 rather than stepping further. `overclockSlot` (0 or 1)
+ * is likewise positional, not keyed by Skill, since both let the caller
+ * legitimately pick the *same* Skill for both slots (the sheet locks a
+ * slot's Skill picker once that slot has an item substituted, which would
+ * otherwise collide with the other slot's Skill) — tracking by slot index
+ * throughout keeps that case from colliding internally.
+ *
+ * Returns a summary object for callers that want it (e.g. a future sheet
+ * listener).
  */
 export async function rollSkillCheck({
   actor,
@@ -87,32 +100,43 @@ export async function rollSkillCheck({
   advantage = false,
   disadvantage = false,
   tiebreakSkill = null,
-  overclockSkill = null
+  overclockSlot = null,
+  itemForSlot = [null, null]
 }) {
-  const [key1, key2] = skills;
-  const dice = {};
-  for (const key of [key1, key2]) {
-    const overclocked = key === overclockSkill;
-    const currentDie = actor.system.skills[key].current;
+  const dice = [];
+  for (let i = 0; i < 2; i++) {
+    const skillKey = skills[i];
+    const overclocked = i === overclockSlot;
+    const item = itemForSlot[i] ? actor.items.get(itemForSlot[i]) : null;
+    const currentDie = item ? item.system.dieRating.current : actor.system.skills[skillKey].current;
     const rollDie = overclocked ? SUBSTRATUM.dieChain.at(-1) : currentDie;
-    dice[key] = { die: rollDie, overclocked, ...(await rollSkillDie(dieFaces(rollDie))) };
+    dice.push({
+      skillKey,
+      itemId: item?.id ?? null,
+      itemName: item?.name ?? null,
+      overclocked,
+      die: rollDie,
+      ...(await rollSkillDie(dieFaces(rollDie)))
+    });
   }
 
-  if ((advantage || disadvantage) && dice[key1].roll && dice[key2].roll) {
-    const lower = dice[key1].result <= dice[key2].result ? key1 : key2;
-    const higher = lower === key1 ? key2 : key1;
-    let target = advantage ? lower : higher;
-    if (dice[key1].result === dice[key2].result) target = tiebreakSkill ?? key1;
+  if ((advantage || disadvantage) && dice[0].roll && dice[1].roll) {
+    const lowerIdx = dice[0].result <= dice[1].result ? 0 : 1;
+    const higherIdx = lowerIdx === 0 ? 1 : 0;
+    let targetIdx = advantage ? lowerIdx : higherIdx;
+    if (dice[0].result === dice[1].result) {
+      targetIdx = tiebreakSkill && dice[1].skillKey === tiebreakSkill && dice[0].skillKey !== tiebreakSkill ? 1 : 0;
+    }
 
-    const reroll = await rollSkillDie(dieFaces(dice[target].die));
-    dice[target].original = dice[target].result;
-    dice[target].roll = reroll.roll;
-    dice[target].result = reroll.result;
+    const reroll = await rollSkillDie(dieFaces(dice[targetIdx].die));
+    dice[targetIdx].original = dice[targetIdx].result;
+    dice[targetIdx].roll = reroll.roll;
+    dice[targetIdx].result = reroll.result;
   }
 
   const anomalyPenalty = actor.system.anomalyInfluence?.skillPenalty ?? 0;
   const boostBonus = actor.system.boostBonus ?? 0;
-  const sum = dice[key1].result + dice[key2].result + stressSpend + bonus + boostBonus + anomalyPenalty;
+  const sum = dice[0].result + dice[1].result + stressSpend + bonus + boostBonus + anomalyPenalty;
 
   const { discard, hand, card1, card2 } = await drawSkillCheckCards(actor);
   const cards = [card1, card2];
@@ -122,13 +146,22 @@ export async function rollSkillCheck({
     if (!beaten[i]) await discardCard(hand, discard, cards[i]);
   }
 
-  const dieResults = { [key1]: dice[key1].result, [key2]: dice[key2].result };
-  const stepDownKey = determineStepDownSkill(skills, dieResults, tiebreakSkill);
+  const stepDownIndex = determineStepDownSlot(dice, tiebreakSkill);
+  const stepDownSlot = dice[stepDownIndex];
   const beyondHorizon = actor.system.anomalyInfluence?.key === 'beyond';
-  const fromDie = actor.system.skills[stepDownKey].current;
-  const toDie = stepDownDie(fromDie, { beyondHorizon });
 
-  const updateData = { [`system.skills.${stepDownKey}.current`]: toDie };
+  // If the step-down slot was an item standing in for its Skill
+  // (01-rulebook-digest.md p.98), the item takes the consequence instead
+  // of the Skill: it steps down the same way, but breaks outright on use
+  // rather than stepping past d4 (items have no Beyond Horizon sub-chain).
+  const stepDownItem = stepDownSlot.itemId ? actor.items.get(stepDownSlot.itemId) : null;
+  const fromDie = stepDownItem
+    ? stepDownItem.system.dieRating.current
+    : actor.system.skills[stepDownSlot.skillKey].current;
+  const itemBreaks = stepDownItem && fromDie === 'd4';
+  const toDie = itemBreaks ? fromDie : stepDownDie(fromDie, { beyondHorizon: stepDownItem ? false : beyondHorizon });
+
+  const updateData = stepDownItem ? {} : { [`system.skills.${stepDownSlot.skillKey}.current`]: toDie };
   if (stressSpend > 0) {
     updateData['system.stress.value'] = Math.min(
       actor.system.stress.max,
@@ -143,7 +176,8 @@ export async function rollSkillCheck({
   // normal step-down above already left it higher than the new max), or
   // marks 2 Stress instead if that max was already floored at d4.
   let overclock = null;
-  if (overclockSkill) {
+  if (overclockSlot !== null) {
+    const overclockSkill = dice[overclockSlot].skillKey;
     overclock = { skillLabel: SUBSTRATUM.skills[overclockSkill].label };
     updateData['system.overclockAvailable'] = false;
     if (outcome !== 'good') {
@@ -166,20 +200,23 @@ export async function rollSkillCheck({
   }
 
   await actor.update(updateData);
+  if (stepDownItem) {
+    await stepDownItem.update(itemBreaks ? { 'system.broken': true } : { 'system.dieRating.current': toDie });
+  }
 
-  const rolls = [dice[key1].roll, dice[key2].roll].filter(Boolean);
+  const rolls = [dice[0].roll, dice[1].roll].filter(Boolean);
 
   const { renderTemplate } = foundry.applications.handlebars;
   const content = await renderTemplate(
     'systems/substratum-protocol/templates/chat/skill-check.hbs',
     {
       actor,
-      skills: skills.map((key) => ({
-        key,
-        label: SUBSTRATUM.skills[key].label,
-        die: dice[key].die,
-        result: dice[key].result,
-        original: dice[key].original ?? null
+      skills: dice.map((slot) => ({
+        label: SUBSTRATUM.skills[slot.skillKey].label,
+        itemName: slot.itemName,
+        die: slot.die,
+        result: slot.result,
+        original: slot.original ?? null
       })),
       stressSpend,
       bonus,
@@ -190,11 +227,9 @@ export async function rollSkillCheck({
       cards: cards.map((card, i) => ({ name: card.name, value: card.value, suit: card.suit, beaten: beaten[i] })),
       outcome,
       outcomeLabel: `SUBSTRATUM.Outcome${outcome.charAt(0).toUpperCase()}${outcome.slice(1)}`,
-      stepDown: {
-        skillLabel: SUBSTRATUM.skills[stepDownKey].label,
-        from: fromDie,
-        to: toDie
-      }
+      stepDown: stepDownItem
+        ? { itemName: stepDownItem.name, from: fromDie, to: toDie, broken: itemBreaks }
+        : { skillLabel: SUBSTRATUM.skills[stepDownSlot.skillKey].label, from: fromDie, to: toDie }
     }
   );
 
@@ -209,7 +244,13 @@ export async function rollSkillCheck({
     sum,
     cards,
     beaten,
-    stepDown: { skill: stepDownKey, from: fromDie, to: toDie },
+    stepDown: {
+      skill: stepDownItem ? null : stepDownSlot.skillKey,
+      item: stepDownItem?.id ?? null,
+      from: fromDie,
+      to: toDie,
+      broken: itemBreaks
+    },
     overclock
   };
 }
