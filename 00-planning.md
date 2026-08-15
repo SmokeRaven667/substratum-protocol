@@ -86,10 +86,15 @@ forward-looking; `phases/` is the archive.
   Skill, consumed on use, with an OK/Bad result stepping that Skill's
   max down one or marking +2 Stress at the d4 floor). Live-verified by
   the user. See `phases/overclock-deep-breath.md`.
+- **First release — done.** Version bumped `0.2.0` → `0.3.0`, tagged and
+  published as a real GitHub Release with `system.zip` and a standalone
+  `system.json` attached — the `manifest`/`download` URLs in
+  `system.json` resolve to something real for the first time. See
+  `phases/first-release.md`.
 
-**No phase is currently "next"** — Phases 0–10 (the original roadmap)
-are all done. See Open Decisions and the Next step note below for what's
-actually left before this is a complete, released system.
+**Released.** `v0.3.0` is live on GitHub. Simplified Solo is intentionally
+unbuilt (see `README.md`'s Known Limitations) — everything else on the
+original roadmap plus all post-roadmap game-content work is done.
 
 ## High-level phases
 
@@ -186,17 +191,10 @@ Deferred, not yet resolved (see `phases/phase-3-data-models.md`):
 
 ## Next step
 
-The original 11-phase roadmap (0–10) is complete.
-
-- **Simplified Solo** resolution variant (single Skill Check, no
-  two-card comparison) — user decided to skip this rather than build it.
-  Noted as a known limitation in `README.md` so anyone installing the
-  system knows that resolution path isn't supported.
-- **Cut the actual first release**: run `npm run build:release` (with
-  Foundry closed — the dev junction means a running Foundry locks the
-  pack files being rebuilt), tag `v0.2.0`, create a GitHub Release, and
-  attach both `system.zip` and a standalone `system.json` as release
-  assets so the `manifest`/`download` URLs in `system.json` resolve to
-  something real (the "No system manifest found" warning seen in every
-  phase's live-testing log since Phase 2 is this exact gap). The user
-  explicitly held off on this in Phase 10 pending the above.
+Nothing is currently queued. `v0.3.0` is released; the only intentionally
+unbuilt item is **Simplified Solo** (single Skill Check, no two-card
+comparison), skipped by user decision and documented as a known
+limitation in `README.md` rather than left as an open task. Future work
+is whatever the user brings next — bugfixes/polish on the released
+system, or new content beyond what `01-rulebook-digest.md` already
+covers.
