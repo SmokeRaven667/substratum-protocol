@@ -1,0 +1,23 @@
+<div class="substratum-deep-breath">
+  <div class="deep-breath-headline">{{localize "SUBSTRATUM.DeepBreath"}}</div>
+
+  <div class="deep-breath-summary">
+    {{#if partial}}
+      {{localize "SUBSTRATUM.DeepBreathPartialReset"}}
+    {{else}}
+      {{localize "SUBSTRATUM.DeepBreathFullReset"}}
+    {{/if}}
+  </div>
+
+  {{#if changes.length}}
+    <div class="deep-breath-changes">
+      {{#each changes}}
+        <span class="deep-breath-change">
+          {{localize this.skillLabel}}: {{this.from}} &rarr; {{this.to}}
+        </span>
+      {{/each}}
+    </div>
+  {{/if}}
+
+  <div class="deep-breath-complication">{{localize "SUBSTRATUM.DeepBreathComplication"}}</div>
+</div>

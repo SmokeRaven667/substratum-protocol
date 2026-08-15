@@ -33,4 +33,20 @@
   <div class="skill-check-stepdown">
     {{localize "SUBSTRATUM.StepDown" skill=(localize stepDown.skillLabel) from=stepDown.from to=stepDown.to}}
   </div>
+
+  {{#if overclock}}
+    <div class="skill-check-overclock">
+      <span>{{localize "SUBSTRATUM.OverclockUsed" skill=(localize overclock.skillLabel)}}</span>
+      {{#if overclock.stressMarked}}
+        <span class="overclock-consequence">
+          {{localize "SUBSTRATUM.OverclockStressMark" amount=overclock.stressMarked}}
+        </span>
+      {{/if}}
+      {{#if overclock.newMax}}
+        <span class="overclock-consequence">
+          {{localize "SUBSTRATUM.OverclockMaxStepDown" skill=(localize overclock.skillLabel) from=overclock.fromMax to=overclock.newMax}}
+        </span>
+      {{/if}}
+    </div>
+  {{/if}}
 </div>

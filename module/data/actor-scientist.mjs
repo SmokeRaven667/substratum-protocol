@@ -22,7 +22,11 @@ export default class ScientistData extends foundry.abstract.TypeDataModel {
       // Boost Actions (helpers/exosuit.mjs) banks a +N here when spent on
       // someone else (or oneself) rather than applying immediately; the
       // next Skill Check this actor rolls consumes it automatically.
-      boostBonus: new fields.NumberField({ required: true, integer: true, min: 0, initial: 0 })
+      boostBonus: new fields.NumberField({ required: true, integer: true, min: 0, initial: 0 }),
+      // Overclock's "once per Deep Breath" use (helpers/dice.mjs): starts
+      // true so a fresh scientist can Overclock before ever taking a Deep
+      // Breath; consumed by use, refreshed by the next Deep Breath.
+      overclockAvailable: new fields.BooleanField({ required: true, initial: true })
     };
   }
 

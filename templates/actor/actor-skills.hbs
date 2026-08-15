@@ -33,6 +33,14 @@
       <p class="boost-bonus-banked">{{localize "SUBSTRATUM.BoostBonusAvailable"}}: +{{boostBonus}}</p>
     {{/if}}
 
+    <p class="overclock-status {{#unless overclockAvailable}}unavailable{{/unless}}">
+      {{#if overclockAvailable}}
+        {{localize "SUBSTRATUM.OverclockAvailable"}}
+      {{else}}
+        {{localize "SUBSTRATUM.OverclockUnavailable"}}
+      {{/if}}
+    </p>
+
     <div class="roll-row">
       <label>
         <span>{{localize "SUBSTRATUM.SkillOne"}}</span>
@@ -42,6 +50,10 @@
           {{/each}}
         </select>
       </label>
+      <label class="overclock-toggle">
+        <input type="checkbox" data-role="roll-overclock-1" {{#unless overclockAvailable}}disabled{{/unless}}>
+        {{localize "SUBSTRATUM.Overclock"}}
+      </label>
       <label>
         <span>{{localize "SUBSTRATUM.SkillTwo"}}</span>
         <select data-role="roll-skill-2">
@@ -49,6 +61,10 @@
             <option value="{{this.key}}" {{#if (eq this.key ../lastRollSkills.skill2)}}selected{{/if}}>{{localize this.label}}</option>
           {{/each}}
         </select>
+      </label>
+      <label class="overclock-toggle">
+        <input type="checkbox" data-role="roll-overclock-2" {{#unless overclockAvailable}}disabled{{/unless}}>
+        {{localize "SUBSTRATUM.Overclock"}}
       </label>
     </div>
 
