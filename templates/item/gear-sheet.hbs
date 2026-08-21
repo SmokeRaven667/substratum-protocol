@@ -36,7 +36,11 @@
 
   <div class="gear-description">
     <label>{{localize "SUBSTRATUM.Description"}}</label>
-    <prose-mirror name="system.description" value="{{system.description}}"
-      {{#unless isEditable}}disabled{{/unless}}></prose-mirror>
+    {{#if isEditable}}
+      <prose-mirror name="system.description" value="{{system.description}}" button="true" editable="true"
+        toggled="false">{{{descriptionHTML}}}</prose-mirror>
+    {{else}}
+      <div class="substratum-richtext-readonly">{{{descriptionHTML}}}</div>
+    {{/if}}
   </div>
 </div>

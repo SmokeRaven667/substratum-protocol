@@ -31,6 +31,70 @@ export const SUBSTRATUM = {
 
   storageUnitSlots: 3,
 
+  // The 7 core Actions (01-rulebook-digest.md p.103-118). Each has a fixed
+  // first Skill plus a player-chosen second Skill — fixedSkill is that
+  // first Skill's SUBSTRATUM.skills key; the "+ Skill" half of the roll
+  // formula is composed in the template from the generic SUBSTRATUM.Skill
+  // label rather than duplicated here.
+  actions: [
+    {
+      key: 'confront',
+      label: 'SUBSTRATUM.ActionConfront',
+      fixedSkill: 'break',
+      good: 'SUBSTRATUM.ActionConfrontGood',
+      ok: 'SUBSTRATUM.ActionConfrontOk',
+      bad: 'SUBSTRATUM.ActionConfrontBad'
+    },
+    {
+      key: 'avoid',
+      label: 'SUBSTRATUM.ActionAvoid',
+      fixedSkill: 'evade',
+      good: 'SUBSTRATUM.ActionAvoidGood',
+      ok: 'SUBSTRATUM.ActionAvoidOk',
+      bad: 'SUBSTRATUM.ActionAvoidBad'
+    },
+    {
+      key: 'convince',
+      label: 'SUBSTRATUM.ActionConvince',
+      fixedSkill: 'sway',
+      good: 'SUBSTRATUM.ActionConvinceGood',
+      ok: 'SUBSTRATUM.ActionConvinceOk',
+      bad: 'SUBSTRATUM.ActionConvinceBad'
+    },
+    {
+      key: 'prepare',
+      label: 'SUBSTRATUM.ActionPrepare',
+      fixedSkill: 'make',
+      good: 'SUBSTRATUM.ActionPrepareGood',
+      ok: 'SUBSTRATUM.ActionPrepareOk',
+      bad: 'SUBSTRATUM.ActionPrepareBad'
+    },
+    {
+      key: 'study',
+      label: 'SUBSTRATUM.ActionStudy',
+      fixedSkill: 'think',
+      good: 'SUBSTRATUM.ActionStudyGood',
+      ok: 'SUBSTRATUM.ActionStudyOk',
+      bad: 'SUBSTRATUM.ActionStudyBad'
+    },
+    {
+      key: 'travel',
+      label: 'SUBSTRATUM.ActionTravel',
+      fixedSkill: 'dash',
+      good: 'SUBSTRATUM.ActionTravelGood',
+      ok: 'SUBSTRATUM.ActionTravelOk',
+      bad: 'SUBSTRATUM.ActionTravelBad'
+    },
+    {
+      key: 'understand',
+      label: 'SUBSTRATUM.ActionUnderstand',
+      fixedSkill: 'think',
+      good: 'SUBSTRATUM.ActionUnderstandGood',
+      ok: 'SUBSTRATUM.ActionUnderstandOk',
+      bad: 'SUBSTRATUM.ActionUnderstandBad'
+    }
+  ],
+
   // Radio the Fracture Observatory, Solo-mode 2d6 oracle table
   // (848511358-Substratum-Protocol.pdf p.30).
   radioAnswerTable: [
