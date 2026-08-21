@@ -25,6 +25,15 @@ export default class GearSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
     context.system = this.item.system;
     context.isEditable = this.isEditable;
     context.dieChainOptions = Object.fromEntries(SUBSTRATUM.dieChain.map((die) => [die, die]));
+    // The <prose-mirror> element renders whatever's given as its inner
+    // content, not its `value` attribute (that's only the raw source used
+    // while actively editing) — without pre-enriched HTML here, @UUID[...]
+    // content links show as literal text instead of a clickable pill.
+    const TextEditorImpl = foundry.applications.ux.TextEditor.implementation;
+    context.descriptionHTML = await TextEditorImpl.enrichHTML(this.item.system.description, {
+      relativeTo: this.item,
+      secrets: this.item.isOwner
+    });
     return context;
   }
 

@@ -54,9 +54,52 @@
     "TeamWiped": "The Team has been wiped.",
 
     "TabMembers": "Members",
+    "TabActions": "Actions",
     "TabSkills": "Skills",
     "TabInventory": "Inventory",
     "TabExosuit": "Exosuit",
+    "TabNotes": "Notes",
+
+    "ActionRoll": "Roll",
+    "ActionGood": "Good",
+    "ActionOk": "OK",
+    "ActionBad": "Bad",
+    "ActionUse": "Use",
+
+    "ActionConfront": "Confront",
+    "ActionConfrontGood": "Success.",
+    "ActionConfrontOk": "Succeed with a complication.",
+    "ActionConfrontBad": "Forced into an Avoid Action.",
+
+    "ActionAvoid": "Avoid",
+    "ActionAvoidGood": "Avoid the danger.",
+    "ActionAvoidOk": "Mark 1 Stress.",
+    "ActionAvoidBad": "Mark 2 Stress.",
+
+    "ActionConvince": "Convince",
+    "ActionConvinceGood": "Success.",
+    "ActionConvinceOk": "Hesitant help, with a complication.",
+    "ActionConvinceBad": "Opposite/hostile reaction — forced into a Confront or Avoid Action.",
+
+    "ActionPrepare": "Prepare",
+    "ActionPrepareGood": "Works as intended.",
+    "ActionPrepareOk": "A flaw or delay complicates it.",
+    "ActionPrepareBad": "Fails catastrophically — forced into a Confront or Avoid Action.",
+
+    "ActionStudy": "Study",
+    "ActionStudyGood": "Learn something, and gain 1 Anomaly Clue.",
+    "ActionStudyOk": "Learn something with gaps — the MC may twist it later.",
+    "ActionStudyBad": "Confusion, with a complication.",
+
+    "ActionTravel": "Travel",
+    "ActionTravelGood": "Reach the next Depth Sector — everyone clears 2 Stress and fully resets their Skills.",
+    "ActionTravelOk": "Arrive, but it's hard — clear 1 Stress, complication on arrival.",
+    "ActionTravelBad": "A treacherous journey — mark 1 Stress, new complication.",
+
+    "ActionUnderstand": "Understand",
+    "ActionUnderstandGood": "Convert an Anomaly Clue into permanent Anomaly Knowledge.",
+    "ActionUnderstandOk": "Close but not quite — Flashback and reroll, or mark 1 Stress if there's no card or it's a second attempt.",
+    "ActionUnderstandBad": "Discard the Clue, or mark 2 Stress to give it to someone else.",
 
     "Member2Label": "Member 02 — Name, Pronouns, Scientific Specialty",
     "Member3Label": "Member 03 — Name, Pronouns, Scientific Specialty",

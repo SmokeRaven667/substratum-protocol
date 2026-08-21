@@ -23,6 +23,7 @@ export default class ScientistSheet extends HandlebarsApplicationMixin(ActorShee
     window: { resizable: true },
     form: { submitOnChange: true },
     actions: {
+      useAction: ScientistSheet.#onUseAction,
       rollSkillCheck: ScientistSheet.#onRollSkillCheck,
       createItem: ScientistSheet.#onCreateItem,
       editItem: ScientistSheet.#onEditItem,
@@ -42,17 +43,21 @@ export default class ScientistSheet extends HandlebarsApplicationMixin(ActorShee
   static PARTS = {
     header: { template: 'systems/substratum-protocol/templates/actor/scientist-header.hbs' },
     tabs: { template: 'systems/substratum-protocol/templates/actor/tab-navigation.hbs' },
+    actions: { template: 'systems/substratum-protocol/templates/actor/actor-actions.hbs' },
     skills: { template: 'systems/substratum-protocol/templates/actor/actor-skills.hbs' },
     inventory: { template: 'systems/substratum-protocol/templates/actor/actor-inventory.hbs' },
-    exosuit: { template: 'systems/substratum-protocol/templates/actor/actor-exosuit.hbs' }
+    exosuit: { template: 'systems/substratum-protocol/templates/actor/actor-exosuit.hbs' },
+    notes: { template: 'systems/substratum-protocol/templates/actor/actor-notes.hbs' }
   };
 
   static TABS = {
     primary: {
       tabs: [
+        { id: 'actions', label: 'SUBSTRATUM.TabActions', icon: 'fas fa-bolt' },
         { id: 'skills', label: 'SUBSTRATUM.TabSkills', icon: 'fas fa-dice' },
         { id: 'inventory', label: 'SUBSTRATUM.TabInventory', icon: 'fas fa-suitcase' },
-        { id: 'exosuit', label: 'SUBSTRATUM.TabExosuit', icon: 'fas fa-user-astronaut' }
+        { id: 'exosuit', label: 'SUBSTRATUM.TabExosuit', icon: 'fas fa-user-astronaut' },
+        { id: 'notes', label: 'SUBSTRATUM.TabNotes', icon: 'fas fa-note-sticky' }
       ],
       initial: 'skills',
       labelPrefix: 'SUBSTRATUM'
@@ -77,6 +82,10 @@ export default class ScientistSheet extends HandlebarsApplicationMixin(ActorShee
       max: actor.system.skills[key].max,
       current: actor.system.skills[key].current
     }));
+    context.actions = SUBSTRATUM.actions.map((action) => ({
+      ...action,
+      fixedSkillLabel: SUBSTRATUM.skills[action.fixedSkill].label
+    }));
     // selectOptions treats a plain array's *indices* as option values, so
     // build {die: die} dicts to get the die strings themselves submitted.
     context.dieChainOptions = Object.fromEntries(SUBSTRATUM.dieChain.map((die) => [die, die]));
@@ -96,6 +105,17 @@ export default class ScientistSheet extends HandlebarsApplicationMixin(ActorShee
     context.usableItems = context.items
       .filter((item) => !item.system.narrativeOnly && !item.system.broken)
       .map((item) => ({ id: item.id, name: item.name, die: item.system.dieRating.current }));
+
+    // The <prose-mirror> element renders whatever's given as its inner
+    // content, not its `value` attribute (that's only the raw source used
+    // while actively editing) — without pre-enriched HTML here, @UUID[...]
+    // content links dropped onto the Notes tab show as literal text
+    // instead of a clickable pill (see item-sheet-gear.mjs, same fix).
+    const TextEditorImpl = foundry.applications.ux.TextEditor.implementation;
+    context.notesHTML = await TextEditorImpl.enrichHTML(actor.system.notes, {
+      relativeTo: actor,
+      secrets: actor.isOwner
+    });
 
     context.hand = await getActorHandCards(actor);
     const otherActors = game.actors.filter((a) => a.id !== actor.id && ['scientist', 'team'].includes(a.type));
@@ -137,6 +157,22 @@ export default class ScientistSheet extends HandlebarsApplicationMixin(ActorShee
 
   #readSelectedCardSuits() {
     return Array.from(this.element.querySelectorAll('[data-role="hand-card"]:checked')).map((el) => el.dataset.suit);
+  }
+
+  /**
+   * An Action's Use button jumps to the Skills tab with Skill 1 preset to
+   * that Action's fixed Skill (the rulebook's non-player-choice half of
+   * "Break + Skill"), leaving Skill 2 exactly as the player last left it.
+   * Reuses the same lastRollSkills state the Skills tab template already
+   * reads to preselect its dropdowns (see actor-skills.hbs).
+   */
+  static async #onUseAction(event, target) {
+    const actionKey = target.dataset.actionKey;
+    const action = SUBSTRATUM.actions.find((a) => a.key === actionKey);
+    if (!action) return;
+    this.lastRollSkills = { skill1: action.fixedSkill, skill2: this.lastRollSkills?.skill2 ?? null };
+    await this.render();
+    this.changeTab('skills', 'primary');
   }
 
   static async #onRollSkillCheck(event, target) {

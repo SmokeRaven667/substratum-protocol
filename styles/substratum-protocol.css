@@ -357,6 +357,63 @@
   opacity: 0.6;
 }
 
+.substratum-protocol.actor .tab.actions-tab.active {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.substratum-protocol.actor .substratum-action {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+}
+
+.substratum-protocol.actor .action-roll {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75em;
+  margin: 0;
+}
+
+.substratum-protocol.actor .action-roll-formula {
+  font-weight: bold;
+}
+
+.substratum-protocol.actor .action-outcomes {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.15em 0.75em;
+  margin: 0;
+}
+
+.substratum-protocol.actor .action-outcome {
+  display: contents;
+}
+
+.substratum-protocol.actor .action-outcome dt {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.85em;
+}
+
+.substratum-protocol.actor .action-outcome dd {
+  margin: 0;
+}
+
+.substratum-protocol.actor .outcome-good dt {
+  color: #2e7d32;
+}
+
+.substratum-protocol.actor .outcome-ok dt {
+  color: #b8860b;
+}
+
+.substratum-protocol.actor .outcome-bad dt {
+  color: #c62828;
+}
+
 .substratum-protocol.actor .skills-table {
   width: 100%;
   border-collapse: collapse;
@@ -502,6 +559,21 @@
   font-size: 0.9em;
 }
 
+.substratum-protocol.actor .tab.notes-tab.active {
+  display: flex;
+  flex-direction: column;
+}
+
+.substratum-protocol.actor .notes-tab prose-mirror,
+.substratum-protocol.actor .notes-tab .substratum-richtext-readonly {
+  flex: 1;
+  min-height: 100%;
+}
+
+.substratum-richtext-readonly {
+  overflow-y: auto;
+}
+
 /* Gear item sheet */
 
 .substratum-protocol.item.gear .gear-sheet-body {
@@ -557,7 +629,8 @@
   flex: 1;
 }
 
-.substratum-protocol.item.gear .gear-description prose-mirror {
+.substratum-protocol.item.gear .gear-description prose-mirror,
+.substratum-protocol.item.gear .gear-description .substratum-richtext-readonly {
   flex: 1;
   min-height: 120px;
 }

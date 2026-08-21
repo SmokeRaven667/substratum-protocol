@@ -26,7 +26,8 @@ export default class ScientistData extends foundry.abstract.TypeDataModel {
       // Overclock's "once per Deep Breath" use (helpers/dice.mjs): starts
       // true so a fresh scientist can Overclock before ever taking a Deep
       // Breath; consumed by use, refreshed by the next Deep Breath.
-      overclockAvailable: new fields.BooleanField({ required: true, initial: true })
+      overclockAvailable: new fields.BooleanField({ required: true, initial: true }),
+      notes: new fields.HTMLField({ required: false, blank: true, initial: '' })
     };
   }
 

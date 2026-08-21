@@ -1,0 +1,27 @@
+<section class="tab actions-tab {{tab.cssClass}}" data-tab="actions" data-group="primary">
+  {{#each actions}}
+    <fieldset class="substratum-action">
+      <legend>{{localize this.label}}</legend>
+      <p class="action-roll">
+        <span class="action-roll-formula">{{localize this.fixedSkillLabel}} + {{localize "SUBSTRATUM.Skill"}}</span>
+        <button type="button" data-action="useAction" data-action-key="{{this.key}}">
+          <i class="fas fa-share"></i> {{localize "SUBSTRATUM.ActionUse"}}
+        </button>
+      </p>
+      <dl class="action-outcomes">
+        <div class="action-outcome outcome-good">
+          <dt>{{localize "SUBSTRATUM.ActionGood"}}</dt>
+          <dd>{{localize this.good}}</dd>
+        </div>
+        <div class="action-outcome outcome-ok">
+          <dt>{{localize "SUBSTRATUM.ActionOk"}}</dt>
+          <dd>{{localize this.ok}}</dd>
+        </div>
+        <div class="action-outcome outcome-bad">
+          <dt>{{localize "SUBSTRATUM.ActionBad"}}</dt>
+          <dd>{{localize this.bad}}</dd>
+        </div>
+      </dl>
+    </fieldset>
+  {{/each}}
+</section>

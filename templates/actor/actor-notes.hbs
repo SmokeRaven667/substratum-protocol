@@ -1,0 +1,8 @@
+<section class="tab notes-tab {{tab.cssClass}}" data-tab="notes" data-group="primary">
+  {{#if isEditable}}
+    <prose-mirror name="system.notes" value="{{system.notes}}" button="true" editable="true"
+      toggled="false">{{{notesHTML}}}</prose-mirror>
+  {{else}}
+    <div class="substratum-richtext-readonly">{{{notesHTML}}}</div>
+  {{/if}}
+</section>
