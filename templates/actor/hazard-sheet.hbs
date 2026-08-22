@@ -1,0 +1,18 @@
+<div class="hazard-sheet-body">
+  <header class="sheet-header">
+    <img class="profile-img" src="{{actor.img}}" alt="{{actor.name}}"
+      {{#if isEditable}}data-action="editImage"{{/if}}>
+    <input type="text" name="name" value="{{actor.name}}" placeholder="{{localize 'SUBSTRATUM.Name'}}"
+      {{#unless isEditable}}disabled{{/unless}}>
+  </header>
+
+  <div class="hazard-description">
+    <label>{{localize "SUBSTRATUM.Description"}}</label>
+    {{#if isEditable}}
+      <prose-mirror name="system.description" value="{{system.description}}" button="true" editable="true"
+        toggled="false">{{{descriptionHTML}}}</prose-mirror>
+    {{else}}
+      <div class="substratum-richtext-readonly">{{{descriptionHTML}}}</div>
+    {{/if}}
+  </div>
+</div>

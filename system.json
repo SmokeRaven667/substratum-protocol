@@ -29,7 +29,8 @@
   "documentTypes": {
     "Actor": {
       "scientist": {},
-      "team": {}
+      "team": {},
+      "hazard": {}
     },
     "Item": {
       "gear": { "htmlFields": ["description"] },

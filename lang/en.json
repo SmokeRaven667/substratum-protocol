@@ -224,7 +224,8 @@
   "TYPES": {
     "Actor": {
       "scientist": "Scientist",
-      "team": "Team"
+      "team": "Team",
+      "hazard": "Hazard"
     },
     "Item": {
       "gear": "Gear",
