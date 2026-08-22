@@ -1,5 +1,5 @@
 import { SUBSTRATUM } from '../helpers/config.mjs';
-import { rollSkillCheck, deepBreath } from '../helpers/dice.mjs';
+import { rollSkillCheck, deepBreath, autoSucceedUnderstand } from '../helpers/dice.mjs';
 import { getActorHandCards } from '../helpers/cards.mjs';
 import {
   repairAndHeal,
@@ -165,11 +165,21 @@ export default class ScientistSheet extends HandlebarsApplicationMixin(ActorShee
    * "Break + Skill"), leaving Skill 2 exactly as the player last left it.
    * Reuses the same lastRollSkills state the Skills tab template already
    * reads to preselect its dropdowns (see actor-skills.hbs).
+   *
+   * Exception: at the "Beyond the Horizon" Anomaly Influence tier (8+
+   * Stress), UNDERSTAND auto-succeeds (01-rulebook-digest.md p.86) — no
+   * roll needed, so this skips the Skills-tab jump entirely and posts the
+   * auto-success chat card instead.
    */
   static async #onUseAction(event, target) {
     const actionKey = target.dataset.actionKey;
     const action = SUBSTRATUM.actions.find((a) => a.key === actionKey);
     if (!action) return;
+    const beyondHorizon = this.actor.system.anomalyInfluence?.key === 'beyond';
+    if (actionKey === 'understand' && beyondHorizon) {
+      await autoSucceedUnderstand(this.actor);
+      return;
+    }
     this.lastRollSkills = { skill1: action.fixedSkill, skill2: this.lastRollSkills?.skill2 ?? null };
     await this.render();
     this.changeTab('skills', 'primary');

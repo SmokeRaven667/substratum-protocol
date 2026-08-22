@@ -72,6 +72,51 @@ in the same audit: **Auto-succeed UNDERSTAND**.
    and confirm clicking Use on UNDERSTAND auto-succeeds with a chat card
    and no roll.
 
+## Progress
+
+- **Step 2 (card collection fix) — done, live-verified.**
+  `rollSkillCheck()` (`module/helpers/dice.mjs`) now hoists the
+  `beyondHorizon` check above the card-draw block and skips
+  `discardCard` for unbeaten cards when true — both drawn cards stay in
+  the actor's hand at 8+ Stress regardless of outcome.
+- **Step 3 (Auto-succeed UNDERSTAND) — done, live-verified.** New
+  `autoSucceedUnderstand()` in `dice.mjs` posts a dedicated chat card
+  (`templates/chat/understand-auto-success.hbs`) with no roll, no cards
+  drawn, no Skill step-down. Wired into `#onUseAction` in
+  `actor-sheet-scientist.mjs`: clicking Use on UNDERSTAND while at the
+  `beyond` tier calls this instead of jumping to the Skills tab; every
+  other Action (and UNDERSTAND at any other tier) is unaffected. Per the
+  user's explicit instruction, this does **not** touch any Clue item —
+  see the note below.
+- **Step 4 (localization) — done.** Added
+  `SUBSTRATUM.ActionUnderstandAutoSuccess` to `lang/en.json`; reused
+  existing `ActionUnderstand`/`ActionUnderstandGood`/`AnomalyBeyond` keys
+  for the rest of the chat card. Added matching CSS
+  (`.substratum-understand-auto-success`) alongside the existing
+  `deep-breath`/`exosuit-action` chat card styles.
+- **Step 1 (confirm d0 / partial Deep Breath) and Step 5 (live
+  verification) — done.** User confirmed in a running Foundry world at 8+
+  Stress: unbeaten cards stay in hand, UNDERSTAND auto-succeeds via chat
+  card with no roll, Skills step down through the d2/d0 sub-chain
+  correctly, and Deep Breath only restores 1 step at this tier.
+
+## Unrelated fix picked up on this branch
+
+Not part of the Beyond the Horizon scope, but requested and done here
+since the branch was already open for small gear-related fixes:
+
+- **"Use Item Instead" dropdown already excluded Narrative Only gear** —
+  checked `context.usableItems` on both `ScientistSheet` and `TeamSheet`
+  (`.filter((item) => !item.system.narrativeOnly && !item.system.broken)`);
+  this was already correct, no code change needed.
+- **Die rating hidden for Narrative Only gear — done, live-verified.**
+  `templates/item/gear-sheet.hbs`: the Max Die Rating/Die Rating selects
+  are now wrapped in `{{#unless system.narrativeOnly}}`.
+  `templates/actor/actor-inventory.hbs` (shared by both actor sheets): the
+  die-rating `<span>` in the item row is wrapped the same way. Both
+  containers are `flex-wrap` layouts, so hiding the fields collapses
+  cleanly with no layout fix needed.
+
 ## Deferred / open questions
 
 - **Decided against**: UNDERSTAND's auto-success does **not** auto-flip a

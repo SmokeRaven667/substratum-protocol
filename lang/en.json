@@ -100,6 +100,7 @@
     "ActionUnderstandGood": "Convert an Anomaly Clue into permanent Anomaly Knowledge.",
     "ActionUnderstandOk": "Close but not quite — Flashback and reroll, or mark 1 Stress if there's no card or it's a second attempt.",
     "ActionUnderstandBad": "Discard the Clue, or mark 2 Stress to give it to someone else.",
+    "ActionUnderstandAutoSuccess": "Beyond the Horizon — UNDERSTAND automatically succeeds. No roll, no cards drawn.",
 
     "Member2Label": "Member 02 — Name, Pronouns, Scientific Specialty",
     "Member3Label": "Member 03 — Name, Pronouns, Scientific Specialty",

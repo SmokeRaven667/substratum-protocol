@@ -7,19 +7,21 @@
   </header>
 
   <div class="gear-fields">
-    <label class="gear-field">
-      <span>{{localize "SUBSTRATUM.MaxDieRating"}}</span>
-      <select name="system.dieRating.max" {{#unless isEditable}}disabled{{/unless}}>
-        {{selectOptions dieChainOptions selected=system.dieRating.max}}
-      </select>
-    </label>
+    {{#unless system.narrativeOnly}}
+      <label class="gear-field">
+        <span>{{localize "SUBSTRATUM.MaxDieRating"}}</span>
+        <select name="system.dieRating.max" {{#unless isEditable}}disabled{{/unless}}>
+          {{selectOptions dieChainOptions selected=system.dieRating.max}}
+        </select>
+      </label>
 
-    <label class="gear-field">
-      <span>{{localize "SUBSTRATUM.DieRating"}}</span>
-      <select name="system.dieRating.current" {{#unless isEditable}}disabled{{/unless}}>
-        {{selectOptions dieChainOptions selected=system.dieRating.current}}
-      </select>
-    </label>
+      <label class="gear-field">
+        <span>{{localize "SUBSTRATUM.DieRating"}}</span>
+        <select name="system.dieRating.current" {{#unless isEditable}}disabled{{/unless}}>
+          {{selectOptions dieChainOptions selected=system.dieRating.current}}
+        </select>
+      </label>
+    {{/unless}}
 
     <label class="checkbox-field">
       <input type="checkbox" name="system.narrativeOnly" {{#if system.narrativeOnly}}checked{{/if}}

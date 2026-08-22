@@ -143,6 +143,29 @@
   text-align: center;
 }
 
+.substratum-understand-auto-success {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+  text-align: center;
+}
+
+.substratum-understand-auto-success .understand-auto-success-headline {
+  font-weight: bold;
+}
+
+.substratum-understand-auto-success .understand-auto-success-tag {
+  color: #c62828;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.85em;
+}
+
+.substratum-understand-auto-success .understand-auto-success-summary {
+  font-style: italic;
+  opacity: 0.8;
+}
+
 .substratum-exosuit-action .exosuit-action-complication {
   text-align: center;
   font-style: italic;
