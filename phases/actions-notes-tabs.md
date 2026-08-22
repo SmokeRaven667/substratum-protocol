@@ -92,9 +92,9 @@ Exosuit tabs:
   `templates/actor/actor-notes.hbs` with a single `<prose-mirror>` element
   bound to `system.notes`; `ScientistSheet` gained the `notes` PARTS/TABS
   entry as the rightmost tab; CSS sizes the editor to fill the tab.
-- **Step 8 (Notes half) — not done.** Needs a real Foundry world: confirm
-  the Notes tab renders last, typing/formatting works, dragging an Item
-  onto the editor creates a working `@UUID` link, and `system.notes`
+- **Step 8 (Notes half) — done.** User confirmed working in a live Foundry
+  world: Notes tab renders last, typing/formatting works, dragging an Item
+  onto the editor creates a working content-link pill, and `system.notes`
   persists across a sheet close/reopen.
 - **Real bug found and fixed**: dragging an Item onto the Notes editor
   inserted the literal `@UUID[Item.xxxx]{Name}` text instead of a rendered
