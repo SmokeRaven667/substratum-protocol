@@ -3,6 +3,7 @@ import { rollSkillCheck, deepBreath, autoSucceedUnderstand } from '../helpers/di
 import { getActorHandCards } from '../helpers/cards.mjs';
 import {
   repairAndHeal,
+  getRepairTargets,
   boostActions,
   printItem,
   radioObservatory,
@@ -105,6 +106,7 @@ export default class ScientistSheet extends HandlebarsApplicationMixin(ActorShee
     context.usableItems = context.items
       .filter((item) => !item.system.narrativeOnly && !item.system.broken)
       .map((item) => ({ id: item.id, name: item.name, die: item.system.dieRating.current }));
+    context.repairTargets = getRepairTargets(actor);
 
     // The <prose-mirror> element renders whatever's given as its inner
     // content, not its `value` attribute (that's only the raw source used

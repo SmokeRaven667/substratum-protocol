@@ -164,6 +164,7 @@
     "ExosuitRepairTarget": "Target",
     "ExosuitRepairStress": "Cleared 1 Stress.",
     "ExosuitRepairItem": "Repaired {name} to {die}.",
+    "ExosuitRepairNothingAvailable": "Nothing to repair right now",
 
     "ExosuitBoostActions": "Boost Actions",
     "ExosuitBoostActionsHint": "Before a Skill Check, discard 2 same-suit cards to add +1 to the result. Stacks per extra 2 cards.",
@@ -210,7 +211,8 @@
     "WarnPickSameSuit": "Selected cards must all be the same suit.",
     "WarnPickAtLeastOneCard": "Select at least 1 card from your hand.",
     "WarnPickOneCard": "Select exactly 1 card from your hand.",
-    "WarnPickEightCards": "Select exactly 8 cards from your hand."
+    "WarnPickEightCards": "Select exactly 8 cards from your hand.",
+    "WarnRepairInvalidTarget": "That target can't be repaired right now — pick Stress above 0 or an item below its max die."
   },
   "TYPES": {
     "Actor": {

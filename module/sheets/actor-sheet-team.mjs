@@ -4,6 +4,7 @@ import { recordTeamDeath, applyMemberDeath } from '../helpers/team.mjs';
 import { getActorHandCards } from '../helpers/cards.mjs';
 import {
   repairAndHeal,
+  getRepairTargets,
   boostActions,
   printItem,
   radioObservatory,
@@ -110,6 +111,7 @@ export default class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
     context.usableItems = context.items
       .filter((item) => !item.system.narrativeOnly && !item.system.broken)
       .map((item) => ({ id: item.id, name: item.name, die: item.system.dieRating.current }));
+    context.repairTargets = getRepairTargets(actor);
 
     context.hand = await getActorHandCards(actor);
     const otherActors = game.actors.filter((a) => a.id !== actor.id && ['scientist', 'team'].includes(a.type));

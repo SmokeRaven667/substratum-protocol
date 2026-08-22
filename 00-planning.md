@@ -127,13 +127,14 @@ forward-looking; `phases/` is the archive.
   existing Gear item / Inventory tab pattern. Understood is a manual
   checkbox only — user explicitly ruled out any automation tying it to
   UNDERSTAND's auto-success. See `phases/clue-items.md`.
-- **Repair & Heal target validation — planned, not started.** The
-  `repair-target` dropdown lists Stress and every item with no filtering,
-  so a player can spend 2 cards on Repair & Heal for no effect (Stress
-  already 0, item already at max die). Fix: filter the dropdown to only
-  eligible targets, *and* validate the same rule inside `repairAndHeal()`
-  itself so cards can't be spent on an invalid target regardless of how
-  it got selected. See `phases/repair-heal-validation.md`.
+- **Repair & Heal target validation — done.** The `repair-target`
+  dropdown no longer lists Stress at 0, items already at max die, or
+  Narrative Only items (found live by the user, not in the original
+  scope). `isValidRepairTarget()`/`getRepairTargets()` in
+  `module/helpers/exosuit.mjs` back both the dropdown filter and
+  `repairAndHeal()`'s own pre-discard validation, so cards can't be spent
+  on an invalid target regardless of how it got selected. Live-verified
+  by the user. See `phases/repair-heal-validation.md`.
 
 **Released.** `v0.3.0` is live on GitHub; the item-substitution and
 Actions & Notes tabs work above landed after it and is queued for the next
@@ -239,15 +240,15 @@ Deferred, not yet resolved (see `phases/phase-3-data-models.md`):
 
 1. **Beyond the Horizon audit — done, live-verified.** See
    `phases/beyond-the-horizon-audit.md`.
-2. **Clue items & Clues tab** (`phases/clue-items.md`) — new `clue` Item
-   type and Clues tab on `ScientistSheet`. Not started.
-3. **Repair & Heal target validation** (`phases/repair-heal-validation.md`)
-   — filter the dropdown to eligible targets and validate the same rule in
-   `repairAndHeal()` itself. Not started.
+2. **Repair & Heal target validation — done, live-verified.** See
+   `phases/repair-heal-validation.md`.
+3. **Clue items & Clues tab** (`phases/clue-items.md`) — new `clue` Item
+   type and Clues tab on `ScientistSheet`. Not started — the only
+   remaining item before a version bump.
 
-Once Clues and Repair & Heal validation land, bump the version (`0.4.0` →
-next) alongside item-substitution, Actions & Notes, and the Beyond the
-Horizon fixes, which are already committed but unreleased. The only
+Once Clues land, bump the version (`0.4.0` → next) alongside
+item-substitution, Actions & Notes, and the Beyond the Horizon/Repair &
+Heal fixes, which are already committed but unreleased. The only
 intentionally unbuilt item from the original roadmap is **Simplified
 Solo** (single Skill Check, no two-card comparison), skipped by user
 decision and documented as a known limitation in `README.md` rather than

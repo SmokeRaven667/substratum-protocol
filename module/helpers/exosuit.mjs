@@ -34,8 +34,41 @@ function cardSummary(card) {
   return { name: card.name, value: card.value, suit: card.suit };
 }
 
+/**
+ * Repair & Heal target eligibility: Stress only qualifies above 0, and only
+ * a non-narrative-only gear item below its max die qualifies — Narrative
+ * Only items aren't die-rated for mechanical use (same reasoning as
+ * `usableItems`'s item-substitution filter), and an item already at max die
+ * has nothing to repair. Shared by both the sheet's dropdown filtering and
+ * `repairAndHeal()`'s own validation below, so the two can't drift apart.
+ */
+export function isValidRepairTarget(actor, target) {
+  if (target === 'stress') return actor.system.stress.value > 0;
+  const item = actor.items.get(target);
+  return (
+    !!item &&
+    item.type === 'gear' &&
+    !item.system.narrativeOnly &&
+    item.system.dieRating.current !== item.system.dieRating.max
+  );
+}
+
+/** The Repair & Heal target dropdown's eligible options, per `isValidRepairTarget`. */
+export function getRepairTargets(actor) {
+  const items = actor.items
+    .filter((item) => item.type === 'gear' && isValidRepairTarget(actor, item.id))
+    .map((item) => ({ id: item.id, name: item.name }));
+  const stress = isValidRepairTarget(actor, 'stress');
+  return { stress, items, none: !stress && items.length === 0 };
+}
+
 /** Repair & Heal: discard 2 cards, either clear 1 Stress or repair an item to max die. */
 export async function repairAndHeal(actor, { cardIds, target }) {
+  if (!isValidRepairTarget(actor, target)) {
+    ui.notifications.warn(game.i18n.localize('SUBSTRATUM.WarnRepairInvalidTarget'));
+    return null;
+  }
+
   await discardCards(actor, cardIds);
 
   let summary;

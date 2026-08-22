@@ -7,9 +7,12 @@ Repair & Heal (01-rulebook-digest.md p.29-31, `module/helpers/exosuit.mjs`
 or repair a broken/stepped-down item back to its max die. Today the
 `repair-target` dropdown (`templates/actor/actor-exosuit.hbs` line 25-28)
 unconditionally lists a "Stress" option plus every gear item, with no
-filtering — so a player can pick Stress when it's already 0, or pick an
-item that's already at its max die, and the ability fires anyway for no
-effect (silently wasting 2 real cards for nothing).
+filtering — so a player can pick Stress when it's already 0, an item
+that's already at its max die, or a **Narrative Only item** (found by the
+user live-testing after this doc was first written — Narrative Only gear
+isn't die-rated for mechanical use at all, same reasoning as the "Use
+Item Instead" dropdown's existing filter), and the ability fires anyway
+for no effect (silently wasting 2 real cards for nothing).
 
 User's call, agreed: fix this in two layers, not just one —
 1. **Filter the dropdown** so ineligible options (Stress at 0, items
@@ -50,6 +53,27 @@ User's call, agreed: fix this in two layers, not just one —
    damage; confirm an item disappears once repaired to max and reappears
    once it steps down again; confirm the ability can't be fired at all
    when nothing qualifies (or is properly blocked with cards NOT spent).
+
+## Progress
+
+- **Steps 1-4 — built, not yet live-verified.** New
+  `isValidRepairTarget(actor, target)` and `getRepairTargets(actor)` in
+  `module/helpers/exosuit.mjs`, shared by both the dropdown filter and the
+  handler validation so they can't drift apart. Eligibility: Stress only
+  qualifies above 0; a gear item only qualifies if it's not Narrative Only
+  and its current die is below its max. `ScientistSheet` and `TeamSheet`
+  both call `getRepairTargets(actor)` into `context.repairTargets`
+  (`{ stress, items, none }`); `actor-exosuit.hbs` (shared by both sheets)
+  renders only eligible options, showing a disabled "Nothing to repair
+  right now" placeholder and disabling the Repair & Heal button when
+  `none` is true. `repairAndHeal()` itself now calls
+  `isValidRepairTarget()` before discarding any cards and warns
+  (`SUBSTRATUM.WarnRepairInvalidTarget`) instead of doing nothing silently
+  if it's ever reached with an invalid target regardless of how.
+- **Step 5 (live verification) — done.** User confirmed in a running
+  Foundry world: Narrative Only items and items already at max die no
+  longer appear in the dropdown, Stress disappears at 0, and the fix
+  works correctly end-to-end.
 
 ## Deferred / open questions
 
