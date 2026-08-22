@@ -57,6 +57,7 @@
     "TabActions": "Actions",
     "TabSkills": "Skills",
     "TabInventory": "Inventory",
+    "TabClues": "Clues",
     "TabExosuit": "Exosuit",
     "TabNotes": "Notes",
 
@@ -100,6 +101,7 @@
     "ActionUnderstandGood": "Convert an Anomaly Clue into permanent Anomaly Knowledge.",
     "ActionUnderstandOk": "Close but not quite — Flashback and reroll, or mark 1 Stress if there's no card or it's a second attempt.",
     "ActionUnderstandBad": "Discard the Clue, or mark 2 Stress to give it to someone else.",
+    "ActionUnderstandAutoSuccess": "Beyond the Horizon — UNDERSTAND automatically succeeds. No roll, no cards drawn.",
 
     "Member2Label": "Member 02 — Name, Pronouns, Scientific Specialty",
     "Member3Label": "Member 03 — Name, Pronouns, Scientific Specialty",
@@ -148,6 +150,12 @@
     "DeleteGear": "Delete",
     "NoGear": "No gear yet.",
 
+    "AddClue": "Add Clue",
+    "NewClueName": "New Clue",
+    "Understood": "Understood",
+    "DeleteClue": "Delete",
+    "NoClues": "No Clues yet.",
+
     "DieRating": "Die Rating",
     "MaxDieRating": "Max Die Rating",
     "Description": "Description",
@@ -163,6 +171,7 @@
     "ExosuitRepairTarget": "Target",
     "ExosuitRepairStress": "Cleared 1 Stress.",
     "ExosuitRepairItem": "Repaired {name} to {die}.",
+    "ExosuitRepairNothingAvailable": "Nothing to repair right now",
 
     "ExosuitBoostActions": "Boost Actions",
     "ExosuitBoostActionsHint": "Before a Skill Check, discard 2 same-suit cards to add +1 to the result. Stacks per extra 2 cards.",
@@ -209,7 +218,8 @@
     "WarnPickSameSuit": "Selected cards must all be the same suit.",
     "WarnPickAtLeastOneCard": "Select at least 1 card from your hand.",
     "WarnPickOneCard": "Select exactly 1 card from your hand.",
-    "WarnPickEightCards": "Select exactly 8 cards from your hand."
+    "WarnPickEightCards": "Select exactly 8 cards from your hand.",
+    "WarnRepairInvalidTarget": "That target can't be repaired right now — pick Stress above 0 or an item below its max die."
   },
   "TYPES": {
     "Actor": {
@@ -217,7 +227,8 @@
       "team": "Team"
     },
     "Item": {
-      "gear": "Gear"
+      "gear": "Gear",
+      "clue": "Clue"
     }
   }
 }

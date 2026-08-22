@@ -137,18 +137,21 @@ export async function rollSkillCheck({
   const anomalyPenalty = actor.system.anomalyInfluence?.skillPenalty ?? 0;
   const boostBonus = actor.system.boostBonus ?? 0;
   const sum = dice[0].result + dice[1].result + stressSpend + bonus + boostBonus + anomalyPenalty;
+  const beyondHorizon = actor.system.anomalyInfluence?.key === 'beyond';
 
   const { discard, hand, card1, card2 } = await drawSkillCheckCards(actor);
   const cards = [card1, card2];
   const { outcome, beaten } = resolveSkillCheck(sum, cards.map((c) => c.value));
 
+  // Beyond the Horizon (01-rulebook-digest.md p.86): "Always collect both
+  // cards on every Check" — Good/OK/Bad still applies narratively, but
+  // unbeaten cards are no longer discarded at this tier.
   for (let i = 0; i < cards.length; i++) {
-    if (!beaten[i]) await discardCard(hand, discard, cards[i]);
+    if (!beaten[i] && !beyondHorizon) await discardCard(hand, discard, cards[i]);
   }
 
   const stepDownIndex = determineStepDownSlot(dice, tiebreakSkill);
   const stepDownSlot = dice[stepDownIndex];
-  const beyondHorizon = actor.system.anomalyInfluence?.key === 'beyond';
 
   // If the step-down slot was an item standing in for its Skill
   // (01-rulebook-digest.md p.98), the item takes the consequence instead
@@ -289,4 +292,21 @@ export async function deepBreath(actor) {
   await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content });
 
   return { partial: beyondHorizon, changes };
+}
+
+/**
+ * Auto-succeed UNDERSTAND (01-rulebook-digest.md p.86): at the "Beyond the
+ * Horizon" Anomaly Influence tier (8+ Stress), the UNDERSTAND Action always
+ * succeeds outright — no dice rolled, no cards drawn, no Skill die stepped
+ * down. Just posts a dedicated chat card. Deliberately does not touch any
+ * Clue item's Understood checkbox or otherwise auto-apply the Good outcome
+ * (01-rulebook-digest.md p.115) — that stays a manual step for the player,
+ * per explicit user decision.
+ */
+export async function autoSucceedUnderstand(actor) {
+  const { renderTemplate } = foundry.applications.handlebars;
+  const content = await renderTemplate('systems/substratum-protocol/templates/chat/understand-auto-success.hbs', {
+    actor
+  });
+  await ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor }), content });
 }

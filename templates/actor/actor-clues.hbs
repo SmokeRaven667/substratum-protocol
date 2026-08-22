@@ -1,0 +1,28 @@
+<section class="tab clues-tab {{tab.cssClass}}" data-tab="clues" data-group="primary">
+  <div class="inventory-header">
+    {{#if isEditable}}
+      <button type="button" data-action="createClue"><i class="fas fa-plus"></i> {{localize "SUBSTRATUM.AddClue"}}</button>
+    {{/if}}
+  </div>
+
+  <ol class="item-list">
+    {{#each clues}}
+      <li class="item" data-item-id="{{this.id}}">
+        <img class="item-img" src="{{this.img}}" alt="{{this.name}}">
+        <span class="item-name" data-action="editItem">{{this.name}}</span>
+        {{#if this.system.understood}}
+          <span class="item-flag understood" title="{{localize 'SUBSTRATUM.Understood'}}">
+            {{localize "SUBSTRATUM.Understood"}}
+          </span>
+        {{/if}}
+        {{#if ../isEditable}}
+          <button type="button" class="item-delete" data-action="deleteItem" title="{{localize 'SUBSTRATUM.DeleteClue'}}">
+            <i class="fas fa-trash"></i>
+          </button>
+        {{/if}}
+      </li>
+    {{else}}
+      <li class="item-list-empty">{{localize "SUBSTRATUM.NoClues"}}</li>
+    {{/each}}
+  </ol>
+</section>

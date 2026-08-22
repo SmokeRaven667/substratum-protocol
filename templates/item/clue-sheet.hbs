@@ -1,0 +1,26 @@
+<div class="clue-sheet-body">
+  <header class="sheet-header">
+    <img class="item-img" src="{{item.img}}" alt="{{item.name}}"
+      {{#if isEditable}}data-action="editImage"{{/if}}>
+    <input type="text" name="name" value="{{item.name}}" placeholder="{{localize 'SUBSTRATUM.Name'}}"
+      {{#unless isEditable}}disabled{{/unless}}>
+  </header>
+
+  <div class="clue-fields">
+    <label class="checkbox-field">
+      <input type="checkbox" name="system.understood" {{#if system.understood}}checked{{/if}}
+        {{#unless isEditable}}disabled{{/unless}}>
+      <span>{{localize "SUBSTRATUM.Understood"}}</span>
+    </label>
+  </div>
+
+  <div class="clue-description">
+    <label>{{localize "SUBSTRATUM.Description"}}</label>
+    {{#if isEditable}}
+      <prose-mirror name="system.description" value="{{system.description}}" button="true" editable="true"
+        toggled="false">{{{descriptionHTML}}}</prose-mirror>
+    {{else}}
+      <div class="substratum-richtext-readonly">{{{descriptionHTML}}}</div>
+    {{/if}}
+  </div>
+</div>

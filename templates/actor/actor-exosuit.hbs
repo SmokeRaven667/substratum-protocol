@@ -22,13 +22,17 @@
     <div class="roll-row">
       <label>
         <span>{{localize "SUBSTRATUM.ExosuitRepairTarget"}}</span>
-        <select data-role="repair-target">
-          <option value="stress">{{localize "SUBSTRATUM.Stress"}}</option>
-          {{#each items}}<option value="{{this.id}}">{{this.name}}</option>{{/each}}
+        <select data-role="repair-target" {{#if repairTargets.none}}disabled{{/if}}>
+          {{#if repairTargets.none}}
+            <option value="">{{localize "SUBSTRATUM.ExosuitRepairNothingAvailable"}}</option>
+          {{else}}
+            {{#if repairTargets.stress}}<option value="stress">{{localize "SUBSTRATUM.Stress"}}</option>{{/if}}
+            {{#each repairTargets.items}}<option value="{{this.id}}">{{this.name}}</option>{{/each}}
+          {{/if}}
         </select>
       </label>
     </div>
-    <button type="button" data-action="repairHeal">{{localize "SUBSTRATUM.ExosuitRepairHeal"}}</button>
+    <button type="button" data-action="repairHeal" {{#if repairTargets.none}}disabled{{/if}}>{{localize "SUBSTRATUM.ExosuitRepairHeal"}}</button>
   </fieldset>
 
   <fieldset class="substratum-roll-controls">
