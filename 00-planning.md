@@ -101,22 +101,44 @@ forward-looking; `phases/` is the archive.
   restructured around slot position instead. `README.md` gained a
   "Skill Check tiebreaks" section documenting the no-tiebreak-picked
   default. See `phases/item-substitution.md`.
-- **Actions & Notes tabs — built, pending final live verification.** Two
-  new tabs on `ScientistSheet`. Leftmost "Actions" tab: the 7 core Actions
-  (CONFRONT, AVOID, CONVINCE, PREPARE, STUDY, TRAVEL, UNDERSTAND) with a
-  Use button per Action that jumps to Skills with Skill 1 preset to that
-  Action's fixed Skill — live-verified working by the user. Rightmost
-  "Notes" tab: a `system.notes` `HTMLField` bound to a `<prose-mirror>`
-  editor (Foundry's real v14 rich-text editor — the user asked for
-  "TinyMCE" but v14 ships ProseMirror, matching the existing Gear
-  description field) — built, not yet live-verified. See
+- **Actions & Notes tabs — done.** Two new tabs on `ScientistSheet`.
+  Leftmost "Actions" tab: the 7 core Actions (CONFRONT, AVOID, CONVINCE,
+  PREPARE, STUDY, TRAVEL, UNDERSTAND) with a Use button per Action that
+  jumps to Skills with Skill 1 preset to that Action's fixed Skill.
+  Rightmost "Notes" tab: a `system.notes` `HTMLField` bound to a
+  `<prose-mirror>` editor (Foundry's real v14 rich-text editor — the user
+  asked for "TinyMCE" but v14 ships ProseMirror, matching the existing Gear
+  description field). Both halves live-verified by the user. See
   `phases/actions-notes-tabs.md` for the full step-by-step status.
+- **Beyond the Horizon audit — planned, not started.** Verify the
+  Anomaly Influence 8+ tier against `01-rulebook-digest.md` p.86: both
+  drawn cards always collected regardless of outcome (found to be a real
+  bug — currently discards unbeaten cards even at this tier), Skills
+  reducible to d0 (already correct, needs live confirmation), Deep Breath
+  restoring only 1 step (already correct, needs live confirmation), and
+  Auto-succeed UNDERSTAND (missing entirely, not previously built — no
+  automation tying it to Clues, per user decision). See
+  `phases/beyond-the-horizon-audit.md`.
+- **Clue items & Clues tab — planned, not started.** New `clue` Item type
+  (picture, title, Understood checkbox, description) and a Clues tab on
+  `ScientistSheet` (after Inventory, before Exosuit), modeled on the
+  existing Gear item / Inventory tab pattern. Understood is a manual
+  checkbox only — user explicitly ruled out any automation tying it to
+  UNDERSTAND's auto-success. See `phases/clue-items.md`.
+- **Repair & Heal target validation — planned, not started.** The
+  `repair-target` dropdown lists Stress and every item with no filtering,
+  so a player can spend 2 cards on Repair & Heal for no effect (Stress
+  already 0, item already at max die). Fix: filter the dropdown to only
+  eligible targets, *and* validate the same rule inside `repairAndHeal()`
+  itself so cards can't be spent on an invalid target regardless of how
+  it got selected. See `phases/repair-heal-validation.md`.
 
-**Released.** `v0.3.0` is live on GitHub; the item-substitution work above
-landed after it and is queued for the next version bump. Simplified Solo
-is intentionally unbuilt (see `README.md`'s Known Limitations) —
-everything else on the original roadmap plus all post-roadmap
-game-content work is done.
+**Released.** `v0.3.0` is live on GitHub; the item-substitution and
+Actions & Notes tabs work above landed after it and is queued for the next
+version bump, pending the three phases above. Simplified Solo is
+intentionally unbuilt (see `README.md`'s Known Limitations) — everything
+else on the original roadmap plus all post-roadmap game-content work is
+done.
 
 ## High-level phases
 
@@ -213,9 +235,19 @@ Deferred, not yet resolved (see `phases/phase-3-data-models.md`):
 
 ## Next step
 
-Live-verify the **Notes tab** in a running Foundry world (Actions tab
-already verified) — see `phases/actions-notes-tabs.md` for what to check.
-`v0.3.0` is released; the only intentionally unbuilt item from the original
-roadmap is **Simplified Solo** (single Skill Check, no two-card
-comparison), skipped by user decision and documented as a known limitation
-in `README.md` rather than left as an open task.
+1. **Beyond the Horizon audit** (`phases/beyond-the-horizon-audit.md`) —
+   fix the card-collection bug, implement Auto-succeed UNDERSTAND (no tie
+   to Clues), and live-confirm the d0/Deep-Breath behavior that's already
+   correct in code.
+2. **Clue items & Clues tab** (`phases/clue-items.md`) — new `clue` Item
+   type and Clues tab on `ScientistSheet`.
+3. **Repair & Heal target validation** (`phases/repair-heal-validation.md`)
+   — filter the dropdown to eligible targets and validate the same rule in
+   `repairAndHeal()` itself.
+
+All three are planned but not started. Once they land, bump the version
+(`0.4.0` → next) alongside item-substitution and Actions & Notes, which are
+already committed but unreleased. The only intentionally unbuilt item from
+the original roadmap is **Simplified Solo** (single Skill Check, no
+two-card comparison), skipped by user decision and documented as a known
+limitation in `README.md` rather than left as an open task.
