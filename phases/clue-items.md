@@ -73,6 +73,46 @@ existing Gear item / Inventory tab pattern but simpler:
    to confirm content-link enrichment works, delete a Clue, and confirm
    Clues never appear in or affect the Inventory tab's Storage Unit count.
 
+## Progress
+
+- **Steps 1-7 — built, not yet live-verified.**
+  - `module/data/item-clue.mjs`: `ClueData` schema (`understood`,
+    `description`), matching `GearData`'s `description` field shape.
+  - Registered in `module/substratum-protocol.mjs`
+    (`CONFIG.Item.dataModels.clue`, `ClueSheet` for `types: ['clue']`) and
+    `system.json` (`documentTypes.Item.clue`).
+  - `module/sheets/item-sheet-clue.mjs` + `templates/item/clue-sheet.hbs`:
+    mirrors `GearSheet`/`gear-sheet.hbs` minus die-rating/narrativeOnly/
+    broken, plus the Understood checkbox; reuses the exact `enrichHTML`
+    pattern for the description `<prose-mirror>` editor.
+  - `templates/actor/actor-clues.hbs`: item list modeled on
+    `actor-inventory.hbs`, but Understood renders as a read-only
+    `item-flag` badge (matching how Narrative Only/Broken are shown on
+    Gear) rather than an inline-editable checkbox — embedded Item fields
+    aren't part of the actor sheet's own form the way Team's per-member
+    Dead checkbox is (that's actor-level data); toggling Understood still
+    requires opening the Clue's own sheet, consistent with every other
+    per-item flag in the codebase.
+  - `ScientistSheet`: `clues` added to `PARTS`/`TABS.primary.tabs`
+    (positioned after `inventory`, before `exosuit`, icon
+    `fa-magnifying-glass`); `context.clues` filters `actor.items` by
+    `type === 'clue'`; new `#onCreateClue` handler (`createClue` action)
+    creates a `clue` Item, parallel to `#onCreateItem`'s `gear` creation.
+    `#onEditItem`/`#onDeleteItem` needed no changes — already generic over
+    `data-item-id` regardless of item type.
+  - `lang/en.json`: `TabClues`, `AddClue`, `NewClueName`, `Understood`,
+    `DeleteClue`, `NoClues`, plus the `TYPES.Item.clue` display label.
+  - CSS: `.item.clue` sheet rules mirroring `.item.gear`'s, and
+    `.item-flag.understood` (green accent, matching the Anomaly
+    Resistant tier color) alongside the existing flag styles. No new
+    tab-visibility CSS needed — `clues-tab` falls under the same generic
+    `.tab`/`.tab.active` rule Inventory already uses.
+- **Step 8 (live verification) — done.** User confirmed in a running
+  Foundry world: the Clues tab renders in the right position, a Clue can
+  be created/edited (picture/title/description/Understood) and persists
+  across sheet close/reopen, and it doesn't affect the Inventory tab's
+  Storage Unit count.
+
 ## Deferred / open questions
 
 - Scope is Scientist-only per the Actions/Notes precedent — `TeamSheet`

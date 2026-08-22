@@ -57,6 +57,7 @@
     "TabActions": "Actions",
     "TabSkills": "Skills",
     "TabInventory": "Inventory",
+    "TabClues": "Clues",
     "TabExosuit": "Exosuit",
     "TabNotes": "Notes",
 
@@ -149,6 +150,12 @@
     "DeleteGear": "Delete",
     "NoGear": "No gear yet.",
 
+    "AddClue": "Add Clue",
+    "NewClueName": "New Clue",
+    "Understood": "Understood",
+    "DeleteClue": "Delete",
+    "NoClues": "No Clues yet.",
+
     "DieRating": "Die Rating",
     "MaxDieRating": "Max Die Rating",
     "Description": "Description",
@@ -220,7 +227,8 @@
       "team": "Team"
     },
     "Item": {
-      "gear": "Gear"
+      "gear": "Gear",
+      "clue": "Clue"
     }
   }
 }

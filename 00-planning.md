@@ -121,12 +121,12 @@ forward-looking; `phases/` is the archive.
   and the Inventory tab row (the "Use Item Instead" dropdown already
   excluded Narrative Only gear correctly). All live-verified by the user.
   See `phases/beyond-the-horizon-audit.md`.
-- **Clue items & Clues tab — planned, not started.** New `clue` Item type
-  (picture, title, Understood checkbox, description) and a Clues tab on
-  `ScientistSheet` (after Inventory, before Exosuit), modeled on the
-  existing Gear item / Inventory tab pattern. Understood is a manual
-  checkbox only — user explicitly ruled out any automation tying it to
-  UNDERSTAND's auto-success. See `phases/clue-items.md`.
+- **Clue items & Clues tab — done.** New `clue` Item type (picture, title,
+  Understood checkbox, description) and a Clues tab on `ScientistSheet`
+  (after Inventory, before Exosuit), modeled on the existing Gear item /
+  Inventory tab pattern. Understood is a manual checkbox only — user
+  explicitly ruled out any automation tying it to UNDERSTAND's
+  auto-success. Live-verified by the user. See `phases/clue-items.md`.
 - **Repair & Heal target validation — done.** The `repair-target`
   dropdown no longer lists Stress at 0, items already at max die, or
   Narrative Only items (found live by the user, not in the original
@@ -238,18 +238,14 @@ Deferred, not yet resolved (see `phases/phase-3-data-models.md`):
 
 ## Next step
 
-1. **Beyond the Horizon audit — done, live-verified.** See
-   `phases/beyond-the-horizon-audit.md`.
-2. **Repair & Heal target validation — done, live-verified.** See
-   `phases/repair-heal-validation.md`.
-3. **Clue items & Clues tab** (`phases/clue-items.md`) — new `clue` Item
-   type and Clues tab on `ScientistSheet`. Not started — the only
-   remaining item before a version bump.
+All three queued phases (Beyond the Horizon audit, Repair & Heal target
+validation, Clue items & Clues tab) are done and live-verified. This
+branch (`beyond-the-horizon-audit`) is ready to push and PR into `main`.
 
-Once Clues land, bump the version (`0.4.0` → next) alongside
-item-substitution, Actions & Notes, and the Beyond the Horizon/Repair &
-Heal fixes, which are already committed but unreleased. The only
-intentionally unbuilt item from the original roadmap is **Simplified
-Solo** (single Skill Check, no two-card comparison), skipped by user
-decision and documented as a known limitation in `README.md` rather than
-left as an open task.
+Once merged, a version bump (`0.4.0` → next) is the only thing left before
+another GitHub Release — covering this branch's work plus
+item-substitution and Actions & Notes, which are already on `main` but
+unreleased. The only intentionally unbuilt item from the original roadmap
+is **Simplified Solo** (single Skill Check, no two-card comparison),
+skipped by user decision and documented as a known limitation in
+`README.md` rather than left as an open task.

@@ -549,6 +549,11 @@
   border-radius: 3px;
 }
 
+.substratum-protocol.actor .item-flag.understood {
+  color: #2e7d32;
+  border-color: #2e7d32;
+}
+
 .substratum-protocol.actor .item-list-empty {
   opacity: 0.6;
   font-style: italic;
@@ -654,6 +659,52 @@
 
 .substratum-protocol.item.gear .gear-description prose-mirror,
 .substratum-protocol.item.gear .gear-description .substratum-richtext-readonly {
+  flex: 1;
+  min-height: 120px;
+}
+
+.substratum-protocol.item.clue .clue-sheet-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+  padding: 0.5em;
+}
+
+.substratum-protocol.item.clue .sheet-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+}
+
+.substratum-protocol.item.clue .item-img {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border: none;
+  cursor: pointer;
+}
+
+.substratum-protocol.item.clue .sheet-header input[type='text'] {
+  flex: 1;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.substratum-protocol.item.clue .clue-fields .checkbox-field {
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+}
+
+.substratum-protocol.item.clue .clue-description {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  flex: 1;
+}
+
+.substratum-protocol.item.clue .clue-description prose-mirror,
+.substratum-protocol.item.clue .clue-description .substratum-richtext-readonly {
   flex: 1;
   min-height: 120px;
 }

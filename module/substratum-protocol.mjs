@@ -5,9 +5,11 @@
 import ScientistData from './data/actor-scientist.mjs';
 import TeamData from './data/actor-team.mjs';
 import GearData from './data/item-gear.mjs';
+import ClueData from './data/item-clue.mjs';
 import ScientistSheet from './sheets/actor-sheet-scientist.mjs';
 import TeamSheet from './sheets/actor-sheet-team.mjs';
 import GearSheet from './sheets/item-sheet-gear.mjs';
+import ClueSheet from './sheets/item-sheet-clue.mjs';
 
 Hooks.once('init', () => {
   console.log('Substratum Protocol | Initializing system');
@@ -17,7 +19,8 @@ Hooks.once('init', () => {
     team: TeamData
   };
   CONFIG.Item.dataModels = {
-    gear: GearData
+    gear: GearData,
+    clue: ClueData
   };
 
   const { Actors, Items } = foundry.documents.collections;
@@ -34,6 +37,10 @@ Hooks.once('init', () => {
   Items.unregisterSheet('core', foundry.appv1.sheets.ItemSheet);
   Items.registerSheet('substratum-protocol', GearSheet, {
     types: ['gear'],
+    makeDefault: true
+  });
+  Items.registerSheet('substratum-protocol', ClueSheet, {
+    types: ['clue'],
     makeDefault: true
   });
 });

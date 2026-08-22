@@ -27,6 +27,7 @@ export default class ScientistSheet extends HandlebarsApplicationMixin(ActorShee
       useAction: ScientistSheet.#onUseAction,
       rollSkillCheck: ScientistSheet.#onRollSkillCheck,
       createItem: ScientistSheet.#onCreateItem,
+      createClue: ScientistSheet.#onCreateClue,
       editItem: ScientistSheet.#onEditItem,
       deleteItem: ScientistSheet.#onDeleteItem,
       editImage: ScientistSheet.#onEditImage,
@@ -47,6 +48,7 @@ export default class ScientistSheet extends HandlebarsApplicationMixin(ActorShee
     actions: { template: 'systems/substratum-protocol/templates/actor/actor-actions.hbs' },
     skills: { template: 'systems/substratum-protocol/templates/actor/actor-skills.hbs' },
     inventory: { template: 'systems/substratum-protocol/templates/actor/actor-inventory.hbs' },
+    clues: { template: 'systems/substratum-protocol/templates/actor/actor-clues.hbs' },
     exosuit: { template: 'systems/substratum-protocol/templates/actor/actor-exosuit.hbs' },
     notes: { template: 'systems/substratum-protocol/templates/actor/actor-notes.hbs' }
   };
@@ -57,6 +59,7 @@ export default class ScientistSheet extends HandlebarsApplicationMixin(ActorShee
         { id: 'actions', label: 'SUBSTRATUM.TabActions', icon: 'fas fa-bolt' },
         { id: 'skills', label: 'SUBSTRATUM.TabSkills', icon: 'fas fa-dice' },
         { id: 'inventory', label: 'SUBSTRATUM.TabInventory', icon: 'fas fa-suitcase' },
+        { id: 'clues', label: 'SUBSTRATUM.TabClues', icon: 'fas fa-magnifying-glass' },
         { id: 'exosuit', label: 'SUBSTRATUM.TabExosuit', icon: 'fas fa-user-astronaut' },
         { id: 'notes', label: 'SUBSTRATUM.TabNotes', icon: 'fas fa-note-sticky' }
       ],
@@ -96,6 +99,7 @@ export default class ScientistSheet extends HandlebarsApplicationMixin(ActorShee
     context.items = actor.items.filter((item) => item.type === 'gear');
     context.storageSlotsUsed = context.items.filter((item) => !item.system.narrativeOnly).length;
     context.storageSlotsMax = SUBSTRATUM.storageUnitSlots;
+    context.clues = actor.items.filter((item) => item.type === 'clue');
 
     context.boostBonus = actor.system.boostBonus;
     context.overclockAvailable = actor.system.overclockAvailable;
@@ -353,6 +357,12 @@ export default class ScientistSheet extends HandlebarsApplicationMixin(ActorShee
   static async #onCreateItem() {
     await this.actor.createEmbeddedDocuments('Item', [
       { name: game.i18n.localize('SUBSTRATUM.NewGearName'), type: 'gear' }
+    ]);
+  }
+
+  static async #onCreateClue() {
+    await this.actor.createEmbeddedDocuments('Item', [
+      { name: game.i18n.localize('SUBSTRATUM.NewClueName'), type: 'clue' }
     ]);
   }
 

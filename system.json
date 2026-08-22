@@ -32,7 +32,8 @@
       "team": {}
     },
     "Item": {
-      "gear": { "htmlFields": ["description"] }
+      "gear": { "htmlFields": ["description"] },
+      "clue": { "htmlFields": ["description"] }
     }
   },
   "packs": [
