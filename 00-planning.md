@@ -151,6 +151,14 @@ forward-looking; `phases/` is the archive.
   newly-created stacks — user applied the one-time manual fix (Configure
   Ownership) to the existing world's stacks and confirmed a Player can
   now roll successfully. See `phases/card-permission-fix.md`.
+- **Scientist Specialty dropdown — done.** The header's free-text
+  Specialty field is now a `<select>` constrained to a fixed,
+  alphabetized 20-entry list of scientific disciplines (a house list the
+  user supplied, not from the rulebook). Data model left unconstrained on
+  purpose — the schema still accepts any string, so an already-set custom
+  Specialty on an existing actor isn't silently discarded, it just won't
+  match a dropdown option until explicitly changed. Live-verified by the
+  user. See `phases/scientist-specialty-dropdown.md`.
 
 **Released.** `v0.5.0` is live on GitHub (tagged, `system.zip` + standalone
 `system.json` attached) — covers everything above through Hazard actor
@@ -253,10 +261,19 @@ Deferred, not yet resolved (see `phases/phase-3-data-models.md`):
 
 ## Next step
 
-**Card stack permission fix** (`phases/card-permission-fix.md`) is built,
-live-verified, and committed on its own branch (`card-permission-fix`,
-off `main`) — ready to push and PR once the user asks; will need its own
-version bump once merged. The only intentionally unbuilt item from the
-original roadmap is **Simplified Solo** (single Skill Check, no two-card
-comparison), skipped by user decision and documented as a known
-limitation in `README.md` rather than left as an open task.
+`card-permission-fix` (PR #22) is merged into `main`. Two more phases are
+built on their own branches off `main`, not yet merged:
+
+- **Link Scientist/Team tokens by default**
+  (`phases/link-scientist-team-tokens.md`, branch
+  `link-scientist-team-tokens`) — needs live verification, plus a manual
+  fix on the user's existing affected Scientist actor.
+- **Scientist Specialty dropdown**
+  (`phases/scientist-specialty-dropdown.md`, branch
+  `scientist-specialty-dropdown`) — needs live verification.
+
+Both will need a version bump once merged. The only intentionally
+unbuilt item from the original roadmap is **Simplified Solo** (single
+Skill Check, no two-card comparison), skipped by user decision and
+documented as a known limitation in `README.md` rather than left as an
+open task.

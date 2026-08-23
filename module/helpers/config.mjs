@@ -105,6 +105,21 @@ export const SUBSTRATUM = {
     { min: 11, max: 12, label: 'SUBSTRATUM.RadioAnswerYesAnd' }
   ],
 
+  // Scientist header's Specialty dropdown — a closed list of scientific
+  // disciplines supplied by the user (not from the rulebook), alphabetized.
+  // Raw display strings, not localized keys - matches dieChain's pattern
+  // rather than skills/actions', since these are proper nouns with no
+  // rulebook-defined mechanical text to route through lang.json, and using
+  // the same raw string as before keeps any already-typed free-text value
+  // compatible rather than switching storage format.
+  specialties: [
+    'Aerologist', 'Anthropologist', 'Astrophysicist', 'Biologist', 'Chemist',
+    'Engineer', 'Geochronologist', 'Geologist', 'Hydrologist', 'Linguist',
+    'Mathematician', 'Microbiologist', 'Nanotechnologist', 'Physicist',
+    'Radiologist', 'Seismologist', 'Survival Specialist', 'Thermologist',
+    'Xenobiologist', 'Zoologist'
+  ],
+
   scientistDefaults: { stressCapacity: 8 },
   teamDefaults: { stressCapacity: 4 },
 
