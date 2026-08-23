@@ -33,6 +33,14 @@ function findWorldStack(flagKey) {
   return game.cards.find((stack) => stack.getFlag(SUBSTRATUM.cardFlagScope, flagKey) === true);
 }
 
+// Cards.create() otherwise defaults to ownership.default: NONE for a
+// world-level document, which blocks every non-GM player from the
+// draw/pass/discard operations a Skill Check needs (they update/delete
+// embedded Card documents on these stacks) - the deck and discard pile are
+// shared, and each actor's hand needs to be usable by whichever player owns
+// that actor, so all three are created world-open at Owner level.
+const SHARED_STACK_OWNERSHIP = { default: CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER };
+
 /** Get (or create) the shared world-level draw deck and discard pile. */
 export async function ensureDeckEconomy() {
   let deck = findWorldStack('deck');
@@ -41,7 +49,8 @@ export async function ensureDeckEconomy() {
       name: game.i18n.localize('SUBSTRATUM.DrawDeckName'),
       type: 'deck',
       cards: buildStandardDeckCards(),
-      flags: { [SUBSTRATUM.cardFlagScope]: { deck: true } }
+      flags: { [SUBSTRATUM.cardFlagScope]: { deck: true } },
+      ownership: SHARED_STACK_OWNERSHIP
     });
   }
 
@@ -50,7 +59,8 @@ export async function ensureDeckEconomy() {
     discard = await Cards.create({
       name: game.i18n.localize('SUBSTRATUM.DiscardPileName'),
       type: 'pile',
-      flags: { [SUBSTRATUM.cardFlagScope]: { discard: true } }
+      flags: { [SUBSTRATUM.cardFlagScope]: { discard: true } },
+      ownership: SHARED_STACK_OWNERSHIP
     });
   }
 
@@ -66,7 +76,8 @@ export async function ensureActorHand(actor) {
     hand = await Cards.create({
       name: game.i18n.format('SUBSTRATUM.ActorHandName', { name: actor.name }),
       type: 'hand',
-      flags: { [SUBSTRATUM.cardFlagScope]: { handOwner: actor.id } }
+      flags: { [SUBSTRATUM.cardFlagScope]: { handOwner: actor.id } },
+      ownership: SHARED_STACK_OWNERSHIP
     });
   }
   return hand;

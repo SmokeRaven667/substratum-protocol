@@ -142,6 +142,15 @@ forward-looking; `phases/` is the archive.
   multi-tab Scientist/Team pattern. Description field flexes to fill the
   sheet's full height with its own scrollbar. Live-verified by the user.
   See `phases/hazard-actor-type.md`.
+- **Card stack permission fix — done.** A Player hit "lacks permission to
+  delete Card" clicking Roll on a Skill Check — the shared deck/discard
+  pile and each actor's hand were created via `Cards.create()` with no
+  `ownership` field, defaulting to `NONE` for every non-GM user (GM
+  testing never surfaced this since GMs bypass all permission checks).
+  Fix: all three now create with `ownership.default: OWNER`. Only fixes
+  newly-created stacks — user applied the one-time manual fix (Configure
+  Ownership) to the existing world's stacks and confirmed a Player can
+  now roll successfully. See `phases/card-permission-fix.md`.
 
 **Released.** `v0.5.0` is live on GitHub (tagged, `system.zip` + standalone
 `system.json` attached) — covers everything above through Hazard actor
@@ -244,8 +253,10 @@ Deferred, not yet resolved (see `phases/phase-3-data-models.md`):
 
 ## Next step
 
-`v0.5.0` is tagged and published as a GitHub Release — no open work item
-right now. The only intentionally unbuilt item from the original roadmap
-is **Simplified Solo** (single Skill Check, no two-card comparison),
-skipped by user decision and documented as a known limitation in
-`README.md` rather than left as an open task.
+**Card stack permission fix** (`phases/card-permission-fix.md`) is built,
+live-verified, and committed on its own branch (`card-permission-fix`,
+off `main`) — ready to push and PR once the user asks; will need its own
+version bump once merged. The only intentionally unbuilt item from the
+original roadmap is **Simplified Solo** (single Skill Check, no two-card
+comparison), skipped by user decision and documented as a known
+limitation in `README.md` rather than left as an open task.
