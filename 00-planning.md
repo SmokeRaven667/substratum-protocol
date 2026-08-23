@@ -135,6 +135,13 @@ forward-looking; `phases/` is the archive.
   `repairAndHeal()`'s own pre-discard validation, so cards can't be spent
   on an invalid target regardless of how it got selected. Live-verified
   by the user. See `phases/repair-heal-validation.md`.
+- **Hazard actor type — done.** New `hazard` Actor type: image picker,
+  title, description only, no tabs, no card-deck participation at all —
+  meant to be dragged onto the canvas as a simple environmental/narrative
+  token. Structured like an item sheet (single form) rather than the
+  multi-tab Scientist/Team pattern. Description field flexes to fill the
+  sheet's full height with its own scrollbar. Live-verified by the user.
+  See `phases/hazard-actor-type.md`.
 
 **Released.** `v0.3.0` is live on GitHub; the item-substitution and
 Actions & Notes tabs work above landed after it and is queued for the next
@@ -238,14 +245,15 @@ Deferred, not yet resolved (see `phases/phase-3-data-models.md`):
 
 ## Next step
 
-All three queued phases (Beyond the Horizon audit, Repair & Heal target
-validation, Clue items & Clues tab) are done and live-verified. This
-branch (`beyond-the-horizon-audit`) is ready to push and PR into `main`.
+`beyond-the-horizon-audit` (PR #19) is merged into `main`. The version
+bump to `0.5.0` is out for review as PR #20 (`release-0.5.0`) — once
+merged, tag `v0.5.0` and publish the GitHub Release (`system.zip` +
+standalone `system.json` as assets), same process as `v0.3.0`/`v0.4.0`.
 
-Once merged, a version bump (`0.4.0` → next) is the only thing left before
-another GitHub Release — covering this branch's work plus
-item-substitution and Actions & Notes, which are already on `main` but
-unreleased. The only intentionally unbuilt item from the original roadmap
-is **Simplified Solo** (single Skill Check, no two-card comparison),
-skipped by user decision and documented as a known limitation in
-`README.md` rather than left as an open task.
+**Hazard actor type** (`phases/hazard-actor-type.md`) is built and
+live-verified on its own branch (`hazard-actor-type`, off `main`,
+independent of the release branch) — ready to push and PR once the user
+asks. The only intentionally unbuilt item from the original roadmap is
+**Simplified Solo** (single Skill Check, no two-card comparison), skipped
+by user decision and documented as a known limitation in `README.md`
+rather than left as an open task.

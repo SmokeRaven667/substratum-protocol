@@ -4,10 +4,12 @@
  */
 import ScientistData from './data/actor-scientist.mjs';
 import TeamData from './data/actor-team.mjs';
+import HazardData from './data/actor-hazard.mjs';
 import GearData from './data/item-gear.mjs';
 import ClueData from './data/item-clue.mjs';
 import ScientistSheet from './sheets/actor-sheet-scientist.mjs';
 import TeamSheet from './sheets/actor-sheet-team.mjs';
+import HazardSheet from './sheets/actor-sheet-hazard.mjs';
 import GearSheet from './sheets/item-sheet-gear.mjs';
 import ClueSheet from './sheets/item-sheet-clue.mjs';
 
@@ -16,7 +18,8 @@ Hooks.once('init', () => {
 
   CONFIG.Actor.dataModels = {
     scientist: ScientistData,
-    team: TeamData
+    team: TeamData,
+    hazard: HazardData
   };
   CONFIG.Item.dataModels = {
     gear: GearData,
@@ -31,6 +34,10 @@ Hooks.once('init', () => {
   });
   Actors.registerSheet('substratum-protocol', TeamSheet, {
     types: ['team'],
+    makeDefault: true
+  });
+  Actors.registerSheet('substratum-protocol', HazardSheet, {
+    types: ['hazard'],
     makeDefault: true
   });
 
