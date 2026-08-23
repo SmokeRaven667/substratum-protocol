@@ -51,6 +51,18 @@ the multi-tab `ScientistSheet`/`TeamSheet` pattern.
 
 - **Steps 1-5 — built, not yet live-verified.** All files created/wired
   as described above.
+- **Description area full-height fix** — the user asked for the
+  description field and its scrollbar to fill the sheet's full height.
+  Initial CSS set `flex: 1` on `.hazard-description`/`prose-mirror` but
+  was missing `min-height: 0` (a flex item's default `min-height: auto`
+  stops it from shrinking below its content size, which breaks the
+  overflow-scroll chain) and had no explicit `overflow-y: auto`, and
+  `.hazard-sheet-body` itself wasn't set to `flex: 1; min-height: 0` to
+  fill `.window-content` in the first place — `HazardSheet` has no `.tab`
+  wrapper (unlike the Notes tab) to inherit that from generically. Fixed
+  by mirroring the Notes tab's flex chain (`.tab.notes-tab.active` →
+  `prose-mirror`) manually down through `.hazard-sheet-body` →
+  `.hazard-description` → `prose-mirror`/`.substratum-richtext-readonly`.
 - **Step 6 (live verification) — not done.** Needs a running Foundry
   world.
 
