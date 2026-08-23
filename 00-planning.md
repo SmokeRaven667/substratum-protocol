@@ -143,12 +143,11 @@ forward-looking; `phases/` is the archive.
   sheet's full height with its own scrollbar. Live-verified by the user.
   See `phases/hazard-actor-type.md`.
 
-**Released.** `v0.3.0` is live on GitHub; the item-substitution and
-Actions & Notes tabs work above landed after it and is queued for the next
-version bump, pending the three phases above. Simplified Solo is
-intentionally unbuilt (see `README.md`'s Known Limitations) — everything
-else on the original roadmap plus all post-roadmap game-content work is
-done.
+**Released.** `v0.5.0` is live on GitHub (tagged, `system.zip` + standalone
+`system.json` attached) — covers everything above through Hazard actor
+type. Simplified Solo is intentionally unbuilt (see `README.md`'s Known
+Limitations) — everything else on the original roadmap plus all
+post-roadmap game-content work is done.
 
 ## High-level phases
 
@@ -245,15 +244,8 @@ Deferred, not yet resolved (see `phases/phase-3-data-models.md`):
 
 ## Next step
 
-`beyond-the-horizon-audit` (PR #19) is merged into `main`. The version
-bump to `0.5.0` is out for review as PR #20 (`release-0.5.0`) — once
-merged, tag `v0.5.0` and publish the GitHub Release (`system.zip` +
-standalone `system.json` as assets), same process as `v0.3.0`/`v0.4.0`.
-
-**Hazard actor type** (`phases/hazard-actor-type.md`) is built and
-live-verified on its own branch (`hazard-actor-type`, off `main`,
-independent of the release branch) — ready to push and PR once the user
-asks. The only intentionally unbuilt item from the original roadmap is
-**Simplified Solo** (single Skill Check, no two-card comparison), skipped
-by user decision and documented as a known limitation in `README.md`
-rather than left as an open task.
+`v0.5.0` is tagged and published as a GitHub Release — no open work item
+right now. The only intentionally unbuilt item from the original roadmap
+is **Simplified Solo** (single Skill Check, no two-card comparison),
+skipped by user decision and documented as a known limitation in
+`README.md` rather than left as an open task.
