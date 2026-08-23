@@ -95,6 +95,7 @@ export default class ScientistSheet extends HandlebarsApplicationMixin(ActorShee
     context.dieChainOptions = Object.fromEntries(SUBSTRATUM.dieChain.map((die) => [die, die]));
     const fullDieChain = [...SUBSTRATUM.dieChainBeyondHorizon, ...SUBSTRATUM.dieChain];
     context.fullDieChainOptions = Object.fromEntries(fullDieChain.map((die) => [die, die]));
+    context.specialtyOptions = Object.fromEntries(SUBSTRATUM.specialties.map((s) => [s, s]));
 
     context.items = actor.items.filter((item) => item.type === 'gear');
     context.storageSlotsUsed = context.items.filter((item) => !item.system.narrativeOnly).length;

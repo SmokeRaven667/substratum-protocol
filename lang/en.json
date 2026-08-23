@@ -43,6 +43,7 @@
 
     "Name": "Name",
     "Specialty": "Specialty",
+    "SpecialtyNone": "— Specialty —",
     "Pronouns": "Pronouns",
     "Stress": "Stress",
     "AnomalyInfluence": "Anomaly Influence",

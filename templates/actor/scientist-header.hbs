@@ -9,8 +9,9 @@
     <div class="header-row">
       <label class="header-field">
         <span>{{localize "SUBSTRATUM.Specialty"}}</span>
-        <input type="text" name="system.specialty" value="{{system.specialty}}"
-          {{#unless isEditable}}disabled{{/unless}}>
+        <select name="system.specialty" {{#unless isEditable}}disabled{{/unless}}>
+          {{selectOptions specialtyOptions selected=system.specialty blank=(localize "SUBSTRATUM.SpecialtyNone")}}
+        </select>
       </label>
       <label class="header-field">
         <span>{{localize "SUBSTRATUM.Pronouns"}}</span>
