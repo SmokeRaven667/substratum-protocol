@@ -142,6 +142,16 @@ forward-looking; `phases/` is the archive.
   multi-tab Scientist/Team pattern. Description field flexes to fill the
   sheet's full height with its own scrollbar. Live-verified by the user.
   See `phases/hazard-actor-type.md`.
+- **Card stack permission fix — planned, not started.** A Player hit
+  "lacks permission to delete Card" clicking Roll on a Skill Check — the
+  shared deck/discard pile and each actor's hand were created via
+  `Cards.create()` with no `ownership` field, defaulting to `NONE` for
+  every non-GM user (GM testing never surfaced this since GMs bypass all
+  permission checks). Fix: all three now create with
+  `ownership.default: OWNER`. Only fixes newly-created stacks — the
+  user's existing world needs a one-time manual fix (Configure Ownership,
+  or delete-and-let-regenerate) documented in the phase doc. See
+  `phases/card-permission-fix.md`.
 
 **Released.** `v0.5.0` is live on GitHub (tagged, `system.zip` + standalone
 `system.json` attached) — covers everything above through Hazard actor
@@ -244,8 +254,12 @@ Deferred, not yet resolved (see `phases/phase-3-data-models.md`):
 
 ## Next step
 
-`v0.5.0` is tagged and published as a GitHub Release — no open work item
-right now. The only intentionally unbuilt item from the original roadmap
-is **Simplified Solo** (single Skill Check, no two-card comparison),
-skipped by user decision and documented as a known limitation in
-`README.md` rather than left as an open task.
+**Card stack permission fix** (`phases/card-permission-fix.md`) is built
+on its own branch (`card-permission-fix`, off `main`) and needs live
+verification as a Player, plus the one-time manual ownership fix on the
+user's existing world's Cards documents (see the phase doc). `v0.5.0` is
+tagged and published as a GitHub Release; this fix will need its own
+version bump once verified. The only intentionally unbuilt item from the
+original roadmap is **Simplified Solo** (single Skill Check, no two-card
+comparison), skipped by user decision and documented as a known
+limitation in `README.md` rather than left as an open task.
