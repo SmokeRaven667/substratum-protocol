@@ -52,6 +52,12 @@ un-stuck, either works:
    fixed ownership baked in. Loses whatever cards were currently held/
    discarded, which is a non-issue this early in testing.
 
+## Progress
+
+- **Fix — done, live-verified.** User applied the manual ownership fix to
+  the existing world's Cards documents and confirmed a Player can now
+  successfully roll a Skill Check without the permission error.
+
 ## Deferred / open questions
 
 - No self-healing code path added (e.g. auto-upgrading ownership on an
