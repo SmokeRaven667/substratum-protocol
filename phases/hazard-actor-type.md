@@ -63,8 +63,8 @@ the multi-tab `ScientistSheet`/`TeamSheet` pattern.
   by mirroring the Notes tab's flex chain (`.tab.notes-tab.active` →
   `prose-mirror`) manually down through `.hazard-sheet-body` →
   `.hazard-description` → `prose-mirror`/`.substratum-richtext-readonly`.
-- **Step 6 (live verification) — not done.** Needs a running Foundry
-  world.
+- **Step 6 (live verification) — done.** User confirmed in a running
+  Foundry world, including the description field's full-height fix.
 
 ## Deferred / open questions
 
