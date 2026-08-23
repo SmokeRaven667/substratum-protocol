@@ -51,6 +51,11 @@ order in the dropdown — sorted before implementing.)
    already-set custom value just won't match any `<option>` until the
    player explicitly picks one from the dropdown, which is non-destructive.
 
+## Live verification
+
+Done. User confirmed the dropdown renders all 20 disciplines in
+alphabetical order and works correctly.
+
 ## Deferred / open questions
 
 - If the user later wants schema-level enforcement too (rejecting any

@@ -157,8 +157,8 @@ forward-looking; `phases/` is the archive.
   user supplied, not from the rulebook). Data model left unconstrained on
   purpose — the schema still accepts any string, so an already-set custom
   Specialty on an existing actor isn't silently discarded, it just won't
-  match a dropdown option until explicitly changed. See
-  `phases/scientist-specialty-dropdown.md`.
+  match a dropdown option until explicitly changed. Live-verified by the
+  user. See `phases/scientist-specialty-dropdown.md`.
 
 **Released.** `v0.5.0` is live on GitHub (tagged, `system.zip` + standalone
 `system.json` attached) — covers everything above through Hazard actor
